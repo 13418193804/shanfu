@@ -1,0 +1,19 @@
+.cart_container{
+  background-color: #F4F4F4;
+  height: 100vh;
+}
+.shop_width_goods{
+  
+}
+.good_info_item{
+  margin: 0 30rpx;
+  padding: 20rpx 0;
+  background-color: #fff;
+  position: relative;
+  border-bottom: 1rpx #F4F4F4 solid;
+}
+.progress{
+position: absolute;
+right: 20rpx;
+bottom: 20rpx;
+}

@@ -1,0 +1,36 @@
+.address_container {
+  height: 100vh;
+  background-color: #F4F4F4;
+  position: relative;
+}
+
+.address_container_content {
+  background-color: #fff;
+  padding: 0 30rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.address_container_content_label {
+  width: 6rem;
+  color: #888888;
+}
+
+.save_box {
+  position: absolute;
+  bottom: 20vh;
+  left: 0;
+  width: 100vw;
+}
+
+.save_address {
+  font-size: 28rpx;
+  background-color: #FF7F00;
+  color: #fff;
+  width: 65%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  margin: 0 auto;
+}

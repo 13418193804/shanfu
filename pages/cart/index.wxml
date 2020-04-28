@@ -1,0 +1,48 @@
+<view class="cart_container">
+	<view class="shop_width_goods" wx:for="{{2}}">
+
+		<view style="padding: 20rpx 30rpx;" class="fontSize28">
+			<van-checkbox  checked-color="#FF7F00" value="{{ checked }}" bind:change="onChange">永民店铺></van-checkbox>
+		</view>
+		<view wx:for="{{4}}" style="background-color: #fff;">
+			<van-swipe-cell right-width="{{ 65 }}">
+
+				<view class="good_info_item flex  flex-align-center fontSize28">
+					<van-checkbox  checked-color="#FF7F00" value="{{ checked }}" bind:change="onChange"></van-checkbox>
+					<image mode="widthFix" src="../../images/cai.png" style="width:20vw"></image>
+					<view>
+						<view class="fontSize28">本地尖椒250g/份</view>
+						<view style="color:#888888;" class="fontSize24">爽脆微辣</view>
+						<view style="color:#FF7F00">
+							<text>￥</text>
+							<text style="font-size:38rpx">8</text>
+						</view>
+					</view>
+					<view class="progress flex  flex-align-center">
+
+						<i class="iconfont iconjian " style="font-size:54rpx;color:#E5E5E5"></i>
+
+						<text style="width:50rpx;text-align:center;">1</text>
+
+						<i class="iconfont iconadd " style="font-size:54rpx;color:#009A44"></i>
+
+					</view>
+
+				</view>
+
+				<view slot="right">删除</view>
+			</van-swipe-cell>
+		</view>
+	</view>
+
+    <view style="height:100rpx;"></view>
+
+	<van-submit-bar price="{{ 3050 }}" button-text="去支付" bind:submit="doSubmit">
+		<!-- <van-tag type="primary">标签</van-tag>
+  <view slot="tip">
+    您的收货地址不支持同城送, <text>修改地址</text>
+  </view> -->
+		<van-checkbox  checked-color="#FF7F00" value="{{ selectAll }}" bind:change="onSelectAllChange">全选</van-checkbox>
+	</van-submit-bar>
+
+</view>

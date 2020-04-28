@@ -1,0 +1,39 @@
+<view class="category_container">
+
+	<view class="search_postion flex  flex-pack-justify">
+		<view class="postion flex  flex-align-center fontSize28">
+			<i class="iconfont icondingwei fontSize28" style="margin-right:10rpx;"></i>
+			<text>中心市场</text>
+			<i class="iconfont iconxia1" style=""></i>
+		</view>
+
+		<view class="search_white">
+			<view class=" flex  flex-align-center fontSize28">
+				<i class="iconfont iconsousuo " style="font-size: 40rpx;color:#888888;margin-right:10rpx;"></i>
+				<input placeholder="输入商品名称" class="fontSize28 flex-1" placeholder-class="fontSize28"></input>
+			</view>
+		</view>
+
+	</view>
+
+	<van-tree-select style="" items="{{ items }}" main-active-index="{{ mainActiveIndex }}" active-id="{{ activeId }}" bind:click-nav="onClickNav" bind:click-item="onClickItem">
+		<view slot="content">
+			<view class="goods_item fontSize28 flex" wx:for="{{10}}">
+				<image mode="widthFix" src="../../images/cai.png" style="margin:0 20rpx;width:20vw;"></image>
+				<view style="line-height: 55rpx;">
+					<view class="fontSize28">
+						<text class="taps">永民</text>小白菜500g/份
+					</view>
+					<view style="color:#888888" class="fontSize24">新鲜蔬菜</view>
+					<view style="color:#FF7F00">
+						<text>￥</text>
+						<text style="font-size:38rpx">8</text>
+					</view>
+				</view>
+				<view class="plus"><i class="iconfont iconadd " style="font-size:54rpx;color:#009A44"></i></view>
+			</view>
+
+		</view>
+	</van-tree-select>
+
+</view>

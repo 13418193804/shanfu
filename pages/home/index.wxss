@@ -1,0 +1,65 @@
+/* pages/home/index.wxss */
+
+.page-body {
+  height: 100vh;
+  overflow: auto;
+  background-color: #f4f4f4;
+}
+.category{
+  background-color: #fff;
+  text-align: center;
+  padding: 30rpx;
+}
+.around_shop{
+  padding: 30rpx 30rpx;
+}
+.around_shop_item{
+  margin-top: 20rpx;
+  background-color: #fff;
+}
+.go_shop{
+  border-radius: 40rpx;
+  color: #FF7F00;
+  border:1rpx solid #FF7F00;
+  padding: 10rpx 20rpx;
+  margin-right: 20rpx;
+  transform: scaleY(1);
+}
+.userinfo-avatar {
+  border-color: #fff !important;
+  border: 0 !important;
+  background-color: none !important;
+  padding: 0 !important;
+  min-height: 70rpx !important;
+  max-height: 70rpx !important;
+  min-width: 70rpx !important;
+  max-width: 70rpx !important;
+  margin-right: 20rpx !important;
+  border-radius: 40rpx !important;
+}
+.nickName{
+  white-space: nowrap;
+  color: #fff;
+}
+.postion{
+  white-space: nowrap;
+  color: #fff;
+}
+.fresh_search {
+  padding: 15rpx 20rpx;
+
+  background-color: #ff7f00;
+}
+
+
+.search {
+   border-radius: 40rpx;
+   padding: 10rpx 20rpx;
+  background-color: #fff;
+}
+
+.banner{
+  text-align: center;
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+}

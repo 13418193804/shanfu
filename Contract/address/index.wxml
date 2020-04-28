@@ -1,0 +1,40 @@
+<view class="address_container">
+	<picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+		<view class="address_container_content  fontSize28 flex   flex-pack-justify flex-align-center">
+			<view class="address_container_content_label">收货地址</view>
+			<view>{{region[0]}} {{region[1]}} {{region[2]}}<i class="iconfont iconxia" style="margin-left:10rpx"></i></view>
+		</view>
+	</picker>
+
+
+	<view class="address_container_content fontSize28 flex   flex-pack-justify flex-align-center">
+		<view class="address_container_content_label">门牌号</view>
+		<view class="flex-1"><input placeholder="例：16号楼303"></input></view>
+	</view>
+
+
+	<view class="address_container_content fontSize28 flex   flex-pack-justify flex-align-center">
+		<view class="address_container_content_label">联系人</view>
+		<view class="flex-1"><input placeholder="请输入联系人"></input></view>
+	</view>
+
+
+	<view class="address_container_content fontSize28 flex   flex-pack-justify flex-align-center">
+		<view class="address_container_content_label">手机号</view>
+		<view class="flex-1"><input placeholder="请输入手机号"></input></view>
+	</view>
+
+
+
+	<view class="address_container_content fontSize28 flex   flex-pack-justify flex-align-center">
+		<view class="">设为默认地址</view>
+		<view>
+			<switch></switch>
+		</view>
+	</view>
+
+
+	<view class="save_box">
+		<view class="save_address" bindtap="saveAddress">保存</view>
+	</view>
+</view>

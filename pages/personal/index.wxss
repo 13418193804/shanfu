@@ -1,0 +1,39 @@
+.personal_container {
+  background-color: #F4F4F4;
+  height: 100vh;
+}
+
+.userinfo-avatar {
+  width: 100rpx !important;
+  height: 100rpx !important;
+  border-radius: 50%;
+  padding: 0;margin: 0;
+}
+
+.y_line {
+  border-left: 1rpx solid #fff;
+}
+
+.user_card {
+  line-height: 52rpx;
+  color: #fff;
+  padding: 20rpx 30rpx;
+  background-color: #FF7F00;
+
+}
+.user_order{
+background-color:#fff ;
+text-align: center;
+padding: 20rpx 0 30rpx;
+}
+.user_active{
+  background-color:#fff ;
+  text-align: center;
+  padding: 20rpx 0 30rpx;
+
+}
+.user_menu_title{
+  color: #888888;
+  padding: 20rpx 30rpx;
+  background-color:#fff ;
+}

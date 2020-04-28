@@ -1,0 +1,68 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/authorization/index",
+    "pages/personal/index",
+    "pages/category/index",
+    "pages/cart/index"
+  ],
+  "subpackages": [
+    {
+      "root": "Trade",
+      "name": "交易流程",
+      "pages": [
+        "confirm/index"
+      ]
+    },
+    {
+      "root": "Contract",
+      "name": "个人合约",
+      "pages": [
+        "address_list/index",
+        "address/index"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "膳夫",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#888888",
+    "selectedColor": "#232323",
+    "list": [
+      {
+        "iconPath": "./images/home.png",
+        "selectedIconPath": "./images/home_select.png",
+        "pagePath": "pages/home/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "./images/shop.png",
+        "selectedIconPath": "./images/shop_select.png",
+        "pagePath": "pages/category/index",
+        "text": "商家"
+      },
+      {
+        "iconPath": "./images/cart.png",
+        "selectedIconPath": "./images/cart_select.png",
+        "pagePath": "pages/cart/index",
+        "text": "购物车"
+      },
+      {
+        "iconPath": "./images/me.png",
+        "selectedIconPath": "./images/me_select.png",
+        "pagePath": "pages/personal/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于获取当前城市"
+    }
+  }
+}

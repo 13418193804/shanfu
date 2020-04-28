@@ -1,0 +1,23 @@
+<view class="phonenumber">
+  <!-- wx.reLaunch -->
+
+    <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+
+
+   
+
+  <button style="margin:30rpx auto;" wx:if="{{!token}}" open-type="getPhoneNumber" type="primary" bindgetphonenumber="getPhoneNumber">
+    授权登录
+  </button>
+  
+  <button  type="primary" bindtap="goHome">
+    回到首页
+  </button>
+
+</view>

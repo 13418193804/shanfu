@@ -1,0 +1,56 @@
+.confirm_container {
+  height: 100vh;
+  background-color: #F4F4F4;
+  padding: 20rpx 30rpx;
+  overflow: auto;
+}
+
+.address_tab {
+  border-radius: 7rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.address_tab_title {
+  padding: 20rpx;
+  border-bottom: #F4F4F4 1rpx solid;
+}
+
+.add_address {
+  text-align: center;
+  border: 1px #888888 dashed;
+  padding: 25rpx 0;
+  width: 40%;
+  margin: 40rpx 0;
+  color: #888888;
+  transform: scaleY(1);
+
+}
+.order_width_shop{
+  border-radius: 7rpx;
+  background-color: #fff;
+  margin-bottom: 30rpx;
+}
+.order_width_shop_title{
+  padding: 20rpx;
+  border-bottom: #F4F4F4 1rpx solid;
+  position: relative;
+}
+
+.goods_info_list{
+padding: 20rpx;
+}
+.send_time{
+  padding: 20rpx;
+}
+.desc_price{
+  color:#888888
+}
+.desc_box{
+  border-bottom:1rpx solid #F4F4F4;
+    padding: 0 20rpx;
+    
+}
+.discount_rule{
+  padding: 20rpx;
+}

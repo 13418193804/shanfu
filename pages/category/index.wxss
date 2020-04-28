@@ -1,0 +1,32 @@
+/* pages/category/index.wxss */
+.category_container {
+  height: 100vh;
+}
+
+.goods_item {
+  position: relative;
+  margin-top: 20rpx;
+}
+
+.plus {
+  position: absolute;
+  right: 40rpx;
+  bottom: 20rpx;
+}
+
+
+.search_postion {
+  padding: 20rpx 30rpx;
+
+}
+
+.main-item-class {
+  width: 10vw !important;
+}
+
+.search_white {
+  border-radius: 40rpx;
+  padding: 10rpx 20rpx;
+  background-color: #F4F4F4;
+  border:1rpx solid #e5e5e5;
+}
