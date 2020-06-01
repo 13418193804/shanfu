@@ -1,0 +1,138 @@
+<!--
+此文件为开发者工具生成，生成时间: 2020/6/1 上午11:19:25 
+使用方法：
+1. 在"pages\category\index.wxml"中使用`include`指令引入此模板，
+2. 在"pages\category\index.wxss"中使用`import`指令引入"pages\category\index.skeleton.wxss"
+3. 书写对应的逻辑，来控制骨架屏的显示与隐藏
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<view class="sk-container">
+  <view class="category_container">
+    <view class="search_postion flex flex-pack-justify">
+      <picker class="postion flex flex-align-center fontSize28" range="[{&quot;marketplaceId&quot;:&quot;1254680326229549057&quot;,&quot;merchantId&quot;:&quot;1252848869419532290&quot;,&quot;merchantName&quot;:&quot;膳夫商城&quot;,&quot;marketplaceName&quot;:&quot;小林哥市场&quot;,&quot;longitude&quot;:116.380638,&quot;latitude&quot;:39.944679,&quot;deliveryDistanceRange&quot;:188,&quot;address&quot;:&quot;北京市西城区木上鸟巢999号&quot;,&quot;contactName&quot;:&quot;小林哥&quot;,&quot;contactPhone&quot;:&quot;13838385438&quot;,&quot;marketplaceImg&quot;:&quot;https://image.haiweibuy.com/upload/20200116/1579138166757.png,http://saas.aisishop.com/shanfu-file-service-dev/upload/otherImage/20200506/file5eb25edaf3c5430ee06ea4ac.png&quot;,&quot;remark&quot;:&quot;这是市场备注&quot;,&quot;onlineStatus&quot;:true,&quot;createTime&quot;:&quot;2020-04-27 15:54:35&quot;,&quot;updateTime&quot;:&quot;2020-05-06 14:53:17&quot;}]"
+        range-key="marketplaceName" value="0"><i class="iconfont icondingwei fontSize28 sk-pseudo sk-pseudo-circle" style="margin-right:5px;"></i><text class="sk-transparent sk-text-14-2857-964 sk-text" style="background-size: 100% 1.3125rem;">小林哥市场</text><i class="iconfont iconxia1 sk-pseudo sk-pseudo-circle"
+          style="true"></i></picker>
+      <view class="search_white" style="border: none;">
+        <view class="flex flex-align-center fontSize28"><i class="iconfont iconsousuo sk-pseudo sk-pseudo-circle" style="font-size: 22px;color:#888888;margin-right:5px;"></i><input class="fontSize28 flex-1 sk-transparent sk-text-14-2857-981 sk-text" placeholder="输入商品名称" placeholder-class="fontSize28"
+            style="background-size: 100% 1.3125rem;">输入商品名称</input>
+        </view>
+      </view>
+    </view>
+    <view is="miniprogram_npm/@vant/weapp/tree-select/index">
+      <view class="van-tree-select select-index--van-tree-select" style="height: 300px">
+        <scroll-view scroll-y="true" class="van-tree-select__nav select-index--van-tree-select__nav">
+          <view is="miniprogram_npm/@vant/weapp/sidebar/index">
+            <view class="van-sidebar sidebar-index--van-sidebar select-index--van-tree-select__nav__inner">
+              <view is="miniprogram_npm/@vant/weapp/sidebar-item/index">
+                <view class="van-sidebar-item item-index--van-sidebar-item van-sidebar-item--selected item-index--van-sidebar-item--selected  " hover-class="van-sidebar-item--hover" hover-stay-time="70" style="border: none;">
+                  <view class="van-sidebar-item__text item-index--van-sidebar-item__text">
+                    <view class="sk-transparent sk-text-15-0000-944 sk-text" style="background-size: 100% 1.25rem;">哈密瓜</view>
+                  </view>
+                </view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/sidebar-item/index">
+                <view class="van-sidebar-item item-index--van-sidebar-item " hover-class="van-sidebar-item--hover" hover-stay-time="70" style="border: none;">
+                  <view class="van-sidebar-item__text item-index--van-sidebar-item__text">
+                    <view class="sk-transparent sk-text-15-0000-983 sk-text" style="background-size: 100% 1.25rem;">苹果</view>
+                  </view>
+                </view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/sidebar-item/index">
+                <view class="van-sidebar-item item-index--van-sidebar-item " hover-class="van-sidebar-item--hover" hover-stay-time="70" style="border: none;">
+                  <view class="van-sidebar-item__text item-index--van-sidebar-item__text">
+                    <view class="sk-transparent sk-text-15-0000-688 sk-text" style="background-size: 100% 1.25rem;">雪梨</view>
+                  </view>
+                </view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/sidebar-item/index">
+                <view class="van-sidebar-item item-index--van-sidebar-item " hover-class="van-sidebar-item--hover" hover-stay-time="70" style="border: none;">
+                  <view class="van-sidebar-item__text item-index--van-sidebar-item__text">
+                    <view class="sk-transparent sk-text-15-0000-139 sk-text" style="background-size: 100% 1.25rem;">香蕉</view>
+                  </view>
+                </view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/sidebar-item/index">
+                <view class="van-sidebar-item item-index--van-sidebar-item " hover-class="van-sidebar-item--hover" hover-stay-time="70" style="border: none;">
+                  <view class="van-sidebar-item__text item-index--van-sidebar-item__text">
+                    <view class="sk-transparent sk-text-15-0000-682 sk-text" style="background-size: 100% 1.25rem;">瓜子</view>
+                  </view>
+                </view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/sidebar-item/index">
+                <view class="van-sidebar-item item-index--van-sidebar-item " hover-class="van-sidebar-item--hover" hover-stay-time="70" style="border: none;">
+                  <view class="van-sidebar-item__text item-index--van-sidebar-item__text">
+                    <view class="sk-transparent sk-text-15-0000-868 sk-text" style="background-size: 100% 1.25rem;">花生</view>
+                  </view>
+                </view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/sidebar-item/index">
+                <view class="van-sidebar-item item-index--van-sidebar-item " hover-class="van-sidebar-item--hover" hover-stay-time="70" style="border: none;">
+                  <view class="van-sidebar-item__text item-index--van-sidebar-item__text">
+                    <view class="sk-transparent sk-text-15-0000-770 sk-text" style="background-size: 100% 1.25rem;">坚果</view>
+                  </view>
+                </view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/sidebar-item/index">
+                <view class="van-sidebar-item item-index--van-sidebar-item " hover-class="van-sidebar-item--hover" hover-stay-time="70" style="border: none;">
+                  <view class="van-sidebar-item__text item-index--van-sidebar-item__text">
+                    <view class="sk-transparent sk-text-15-0000-392 sk-text" style="background-size: 100% 1.25rem;">蚕豆</view>
+                  </view>
+                </view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/sidebar-item/index">
+                <view class="van-sidebar-item item-index--van-sidebar-item " hover-class="van-sidebar-item--hover" hover-stay-time="70" style="border: none;">
+                  <view class="van-sidebar-item__text item-index--van-sidebar-item__text">
+                    <view class="sk-transparent sk-text-15-0000-271 sk-text" style="background-size: 100% 1.25rem;">辣条</view>
+                  </view>
+                </view>
+              </view>
+              <view is="miniprogram_npm/@vant/weapp/sidebar-item/index">
+                <view class="van-sidebar-item item-index--van-sidebar-item " hover-class="van-sidebar-item--hover" hover-stay-time="70" style="border: none;">
+                  <view class="van-sidebar-item__text item-index--van-sidebar-item__text">
+                    <view class="sk-transparent sk-text-15-0000-456 sk-text" style="background-size: 100% 1.25rem;">蓝莓</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+        <scroll-view scroll-y="true" class="van-tree-select__content select-index--van-tree-select__content">
+          <view>
+            <view class="goods_item fontSize28 flex">
+              <image mode="widthFix" style="margin: 0px 11px; width: 20vw; height: 83px;" class="sk-image"></image>
+              <view style="line-height: 30px;">
+                <view class="fontSize28 sk-transparent"><text class="taps sk-transparent sk-text-9-3750-93 sk-text" style="border: none; background-size: 100% 1rem;">膳夫商城</text>葡萄
+                </view>
+                <view class="fontSize24 sk-transparent sk-text-28-3333-487 sk-text" style="color: rgb(136, 136, 136); background-size: 59.0909% 1.875rem;">时令水果</view>
+                <view class="flex">
+                  <view style="color:red"><text class="sk-transparent sk-text-25-0000-378 sk-text" style="background-size: 100% 1.875rem;">￥</text><text style="font-size:20px" class="sk-transparent sk-opacity">2</text></view>
+                  <view class="label_price" style="text-decoration-color: transparent;"><text class="sk-transparent sk-opacity">￥</text><text class="sk-transparent sk-opacity">3</text></view>
+                </view>
+              </view>
+              <view class="plus flex flex-align-center">
+                <view><i class="iconfont iconjiarugouwuche sk-pseudo sk-pseudo-circle" data-item="[object Object]" style="font-size:27px;"></i></view>
+              </view>
+            </view>
+            <view class="goods_item fontSize28 flex">
+              <image mode="widthFix" style="margin: 0px 11px; width: 20vw; height: 80.7867px;" class="sk-image"></image>
+              <view style="line-height: 30px;">
+                <view class="fontSize28 sk-transparent"><text class="taps sk-transparent sk-text-9-3750-806 sk-text" style="border: none; background-size: 100% 1rem;">膳夫商城</text>哈密瓜大王
+                </view>
+                <view class="fontSize24 sk-transparent sk-text-28-3333-272 sk-text" style="color: rgb(136, 136, 136); background-size: 39.0977% 1.875rem;">时令水果</view>
+                <view class="flex">
+                  <view style="color:red"><text class="sk-transparent sk-text-25-0000-429 sk-text" style="background-size: 100% 1.875rem;">￥</text><text style="font-size: 20px; background-size: 100% 1.875rem;" class="sk-transparent sk-text-16-6667-420 sk-text">10</text></view>
+                  <view
+                    class="label_price" style="text-decoration-color: transparent;"><text class="sk-transparent sk-opacity">￥</text><text class="sk-transparent sk-text-28-3333-358 sk-text" style="background-size: 100% 1.875rem;">12</text></view>
+              </view>
+            </view>
+            <view class="plus flex flex-align-center">
+              <view><i class="iconfont iconjiarugouwuche sk-pseudo sk-pseudo-circle" data-item="[object Object]" style="font-size:27px;"></i></view>
+            </view>
+          </view>
+      </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+</view>

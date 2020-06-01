@@ -5,7 +5,10 @@ const app = getApp()
 Page({
       data: {
         shopList:["中心市场","城东市场","城西市场"],
-        catList: ["限时秒杀", "天天特价", "应季果蔬", "邀请有奖", "下单减免 "],
+        catList: ["限时秒杀", "天天特价", "应季果蔬"],
+        hotBarList:[],
+        marketPlaceList:[],
+        // "邀请有奖", "下单减免 "
           invitationReward: 0.00,
           invitationNum: 0.00,
           userId: null,
@@ -235,10 +238,14 @@ Page({
 
         },
 
-
+        goMarket(e){
+          let marketPlaceId  = e.currentTarget.dataset.id
+          wx.reLaunch({
+            url: `/pages/category/index?marketPlaceId=${marketPlaceId}`,
+          })
+        },
 
         onShow: function () {
-
           if (app.globalData.userInfo) {
             this.setData({
               userInfo: app.globalData.userInfo,
@@ -265,7 +272,6 @@ Page({
               }
             })
           }
-          this.getOilCardList()
 
           app.reverseGeocoder((e) => {
             console.log('home--', e)
@@ -273,103 +279,28 @@ Page({
               city: e.address_component.city,
               regionName: e.address_component.province,
             })
-            this.getNetWorkList()
+            // this.getNetWorkList()
           })
+          this.getMainPage()
+          
         },
-        getNetWorkList() {
-          api.get("/network/list", {
-            latitudeForm: app.globalData.lat,
-            longitudeForm: app.globalData.lat
+        getMainPage(){
+          api.post("/facade/front/portal/mainPage", {
           }).then(res => {
-            let result = res.list[1] || {}
-            if (result.id) {
-              result.oilPrice = result.oilPrice.toFixed(2)
-            }
-            this.setData({
-              netWorkObj: result
-            })
-
-          }).catch(e => {
-            console.log(e)
-          })
-        },
-        getOilCardList() {
-          if ((this.data.userId || '') != '') {
-            api.get("/front/oilCard/list?status=Y", {}, {}).then(res => {
-              console.log('---油卡列表', res)
-
-
-              if (res.length > 0) {
-                // this.setData({
-                //   oilList: 
-                // });
-
-                this.getRechargeCardData(this.data.currentSwiperIndex, res);
-              }
-            }).catch(e => {
-              console.log(e)
-            })
-          }
-
-        },
-        doRechargeCard() {
-          api.post("/front/depositCard/recharge", {
-            amount: this.data.rechargeAmount,
-            "oilCardId": this.data.oilList[this.data.currentSwiperIndex].id,
-          }).then(res => {
-            if (res.status >= 550) {
-              wx.showToast({
-                title: res.message,
-                icon: 'none',
-                duration: 1500,
-              })
-              return
-            }
-            this.getOilCardList();
-            // this.getRechargeCardData(this.data.currentSwiperIndex)
-            this.closeRefuelModel();
-            this.setData({
-              rechargeAmount: 0
-            })
-            wx.showToast({
-              title: '已提交充值，请在充值记录中查看状态',
-              icon: "none",
-              duration: 3000,
-            })
-
-          })
-        },
-        // 获取用户可充值数据
-        getRechargeCardData(currentSwiperIndex, list = this.data.oilList) {
-          api.get("/front/depositCard/my/data", {
-            oilCardId: list[currentSwiperIndex].id
-          }).then(res => {
-            list[currentSwiperIndex].denominationObj = res.list
-            console.log('获取用户可充值数据', list)
-            return
-          }).then(() => {
-            api.get("/depositCard/forSale", {
-              oilCardId: list[currentSwiperIndex].id
-            }).then(res => {
-              console.log('---可充值的列表', res)
-              list[currentSwiperIndex].forSale = res
               this.setData({
-                oilList: list
+                hotBarList:res.data.hotBarList,
+                marketPlaceList:res.data.marketPlaceList
               })
-            }).catch(e => {
-              console.log(e)
-            })
           }).catch(e => {
             console.log(e)
           })
-
-
         },
-        getDepositList() {
+        
 
-
+        getNetWorkList() {
+        
         },
-
+     
         doPay() {
           const _self = this
           api.post("/front/depositCard/buy", {
@@ -449,10 +380,7 @@ Page({
 
 
         },
-        goRule() {
-          let ruleDialog = this.selectComponent("#rule-dialog")
-          ruleDialog.open()
-        },
+      
         onShareAppMessage: function (res) {
           let invitationCode = wx.getStorageSync("invitationCode") || '';
           return {

@@ -1,7 +1,7 @@
 var apidomain = {
   // 基础接口
   base: {
-    prod: 'https://chelushi.aisishop.com/miniApi',
+    prod: 'http://apigateway.aisishop.com/shanfu-user-service-dev',
     debug: 'http://120.24.70.202:9000',
     huidu: 'https://gfhapi.zkungfu.com/v29'
   },

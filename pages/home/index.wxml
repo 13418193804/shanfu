@@ -35,11 +35,11 @@
 		<image src="../../images/banner.png" mode="widthFix" style="width:100%;"></image>
 	</view>
 	<view class="category flex  flex-around-justify">
-		<view wx:for="{{catList}}">
+		<view wx:for="{{hotBarList}}">
 			<view class="flex-1">
-				<image src="../../images/c{{index+1}}.png" mode="widthFix" style="width:70%"></image>
+				<image src="../../images/c{{index+1}}.png" mode="widthFix" style="width:100rpx"></image>
 			</view>
-			<view class="fontSize28" style="margin-top:10rpx;">{{item}}</view>
+			<view class="fontSize28" style="margin-top:10rpx;">{{item.title}}</view>
 		</view>
 	</view>
 
@@ -49,19 +49,19 @@
 			<view class="fontSize28" style="color:#888888"><i class="iconfont icongonggao" style="color:#FF7F00"></i>今日促销满38元免配送费 ></view>
 		</view>
 
-		<view class="around_shop_item flex flex-align-center fontSize28" wx:for="{{shopList}}">
+		<view class="around_shop_item flex flex-align-center fontSize28" wx:for="{{marketPlaceList}}">
 			<view>
 				<image src="../../images/s{{index+1}}.png" mode="widthFix" style="width:20vw;margin:20rpx;"></image>
 			</view>
 			<view class="flex-1" style="line-height:60rpx;">
-				<view class="fontSize32">{{item}}</view>
+				<view class="fontSize32">{{item.merchantName}}</view>
 				<view class="flex fontSize24">
-					<view class="taps" style="color:#FC5D5E;border-color:#FC5D5E;">实惠</view>
+					<view class="taps" style="color:#FC5D5E;border-color:#FC5D5E;">{{item.remark}}</view>
 				</view>
-				<view style="color:#888888;">广州市天河北路90号 </view>
+				<view style="color:#888888;">{{item.address}} </view>
 			</view>
 			<view>
-				<view class="go_shop">去买菜</view>
+				<view class="go_shop" bindtap="goMarket" data-id="{{item.marketplaceId}}">去买菜</view>
 			</view>
 		</view>
 

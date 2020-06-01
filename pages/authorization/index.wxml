@@ -1,23 +1,43 @@
 <view class="phonenumber">
-  <!-- wx.reLaunch -->
 
-    <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+  <view  wx:if="{{!hasUserInfo && canIUse}}">
+    <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+    </block> -->
+      <view class="auth_app_name">膳夫</view>
+      <view class="auth_app_desc">
+        您暂未授权膳夫小程序获取你的信息，将无法正常使用小程序的功能。如需要正常使用，请点击“授权”按钮，打开头像，昵称等信息的授权。
+      </view>
+
+        <button style="margin:30rpx 10vw;font-size:32rpx;" type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+        授权登录
+        </button>
+
+  <button style="margin:30rpx 10vw;font-size:32rpx;" type="primary"  plain bindtap="goBack">
+     取消
+  </button>
   </view>
 
 
    
+<view wx:else>
 
-  <button style="margin:30rpx auto;" wx:if="{{!token}}" open-type="getPhoneNumber" type="primary" bindgetphonenumber="getPhoneNumber">
-    授权登录
+<view class="userinfo">
+   <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nicknameF">{{userInfo.nickName}}</text>
+</view>
+
+  <button style="margin:30rpx 10vw;font-size:32rpx;" open-type="getPhoneNumber" type="primary" bindgetphonenumber="getPhoneNumber">
+    <i class="iconfont iconweixin" style="font-size:40rpx;color:#fff;"></i> 微信用户快捷登录
   </button>
-  
-  <button  type="primary" bindtap="goHome">
-    回到首页
+
+  <button style="margin:30rpx 10vw;font-size:32rpx;" type="primary" plain bindtap="phoneCreate">
+    <i class="iconfont iconshoujihao" style="font-size:40rpx"></i> 手机号登录/注册
   </button>
+  <view style="margin:30rpx 10vw;color:#666;font-size:24rpx">
+           点击"登录/注册"即表示您同意<text style="color:#1aad19">《用户服务条款》</text>
+  </view>
+
+  </view>
 
 </view>

@@ -28,27 +28,16 @@ class API {
           mask: true,
           title: '加载中',
         })
-        // if (loadingtime) {
-        //   setTimeout(function() {
-        //     wx.hideLoading()
-        //   }, 2000)
-        // }
       }
-
-
 
       return new Promise((resolve, reject) => {
 
         const token = wx.getStorageSync("token") ? wx.getStorageSync("token") : '';
-        const userid = wx.getStorageSync("userId") ? wx.getStorageSync("userId") : '';
-        const userMobile = wx.getStorageSync("loginName") ? wx.getStorageSync("loginName") : '';
+        const uid = wx.getStorageSync("uid") ? wx.getStorageSync("uid") : '';
         
-        // const userid = '1';
         params['token'] = token;
-        params['userId'] = userid;
-        console.log(url)
+        params['uid'] = uid;
         var rUrl = urlapi.getUrl(url);
-        console.log(rUrl)
         // 校验参数（不可传undefined和null），过滤空格
         for (let index in params) {
           if (util.isBlank(params[index])) {
@@ -64,22 +53,17 @@ class API {
             method: method,
             header: Object.assign(header, {
               token: token,
-              uid: userid,
-              userMobile
+              uid: uid,
             })
           })
           .then(res => {
-            console.log('-1', res)
             if (loading) {
               wx.hideLoading()
             }
-           
             switch (res.statusCode) {
               case 200:
-                if (rUrl.indexOf('Lunched') < 0 && rUrl.indexOf('homeOrderDetail') < 0) {
-                  console.log(`######MINA_AISI_CONSOLE:${rUrl},Params:${JSON.stringify(params)} response:`, res);
-                }
-                resolve(res.data);
+
+                resolve(res);
                 break;
               case 401:
                 wx.showToast({
@@ -91,19 +75,16 @@ class API {
                   url: '/pages/home/index',
                 })
                 break;
-              // case 500:
-              //   wx.showModal({
-              //     title: '错误',
-              //     content: '状态码 500；本次操作未成功，请联系管理员处理',
-              //     showCancel: false,
-              //     success(res) {
-              //     }
-              //   })
-              //   break;
+              case 500:
+                wx.showToast({
+                  title: '错误代码 500',
+                  icon:'none'
+                })
+                break;
               default:
                 console.log(`######MINA_AISI_CONSOLE:${rUrl}错误,Params:${JSON.stringify(params)} response:`, res);
 
-                reject(res.data);
+                resolve(res);
                 break;
             }
           })

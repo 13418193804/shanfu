@@ -69,34 +69,51 @@ App({
       console.log('用户信息', res)
     })
   },
-  invitationBind() {
-    let userid = wx.getStorageSync("userId") || '';
-    let reUserCode = wx.getStorageSync("reUserCode") || '';
-    if (userid != '' && reUserCode != '') {
-      setTimeout(() => {
-        api.post("/user/invitation/bind", {
-          "invitationCode": reUserCode
-        }).then(res => {
-          console.log('绑定关系', res)
-        })
-      }, 1000)
+
+ //登录code获取
+ getCode(callback) {
+  let _self = this
+  wx.login({
+    success(res) {
+      if (res.code) {
+        _self.globalData.code = res.code
+        console.log("更新Code", res.code)
+        callback()
+      }
     }
+  })
+},
+  onLaunch: function(options) {
+    
+    const token = wx.getStorageSync("token") ? wx.getStorageSync("token") : '';
+    this.getUserInfo();
+    this.getCode(()=>{})
 
   },
 
-  onLaunch: function(options) {
-
-
-    // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+  checkToken(callback){
     const token = wx.getStorageSync("token") ? wx.getStorageSync("token") : '';
-
-
-    this.getUserInfo();
-
-
+    const uid = wx.getStorageSync("uid") ? wx.getStorageSync("uid") : '';
+    if(!uid && !token){
+      wx.showModal({
+        title:'提示',
+        content:'还未授权登录，是否马上授权登录?',
+        confirmText:'马上授权',
+        success:(e)=>{
+          if(e.confirm){
+            wx.navigateTo({
+              url: '/pages/authorization/index',
+            })
+          }
+        }
+      })
+      return
+    }else{
+      if(callback){
+        callback()
+      }
+    }
+  
   },
   reverseGeocoder(callback) {
     qqmapsdk.reverseGeocoder({
@@ -133,6 +150,7 @@ App({
 
 
   globalData: {
+    code:null,
     token: null,
     userId: null,
     userInfo: null

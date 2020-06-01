@@ -8,6 +8,7 @@
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
+		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
@@ -23,11 +24,14 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"skeletonGenerateFilesWithoutConfirm": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.5",
-	"appid": "wx320d240471780f0e",
+	"appid": "wx1369228bfc6534ff",
 	"projectname": "refueling_card_minapp",
 	"cloudfunctionTemplateRoot": "",
 	"watchOptions": {
@@ -61,180 +65,7 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "ChrageProcess/station_detail/index",
-					"pathName": "ChrageProcess/station_detail/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "ChrageProcess/order_process/index",
-					"pathName": "ChrageProcess/order_process/index",
-					"query": "gunid=1226867914038517761",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "ChrageProcess/order_detail/index",
-					"pathName": "ChrageProcess/order_detail/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "ChrageProcess/station/index",
-					"pathName": "ChrageProcess/station/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "pages/live/index",
-					"pathName": "pages/live/index",
-					"query": "",
-					"scene": 1044,
-					"shareInfo": {
-						"groupName": "测试模拟群0",
-						"shareName": "1O9fPLh2EqLpJujgYMx8yHoWZ3u6Hx5pl6XynodB1Hw@cr4dev",
-						"shareKey": "wF_wSLObK4SgIngypFpsalTn8fsUtfP09jHH0KqBavEFqV612sc9MG-DFL5aZpC2lfTqAGS0vgzUNNql2z0Qhg~~"
-					}
-				},
-				{
-					"id": -1,
-					"name": "PersonalContract/recharge_list/index",
-					"pathName": "PersonalContract/recharge_list/index",
-					"query": "gunid=1226867914038517761",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "PersonalContract/buy_list/index",
-					"pathName": "PersonalContract/buy_list/index",
-					"query": "gunid=1226867914038517761",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "PersonalContract/invite/index",
-					"pathName": "PersonalContract/invite/index",
-					"query": "gunid=1226867914038517761",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "PersonalContract/station_list/index",
-					"pathName": "PersonalContract/station_list/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 9,
-					"name": "ChrageProcess/apply_card/index",
-					"pathName": "ChrageProcess/apply_card/index",
-					"query": "refuelType=GASOLINE&vendor=SINOEPC&regionName=%E6%96%B0%E7%96%86%E7%BB%B4%E5%90%BE%E5%B0%94%E8%87%AA%E6%B2%BB%E5%8C%BA&regionId=31",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/personal/index",
-					"pathName": "pages/personal/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "ChrageProcess/select_city/index",
-					"pathName": "ChrageProcess/select_city/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/personal/index",
-					"pathName": "pages/personal/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 13,
-					"name": "ChrageProcess/apply_card/index",
-					"pathName": "ChrageProcess/apply_card/index",
-					"query": "refuelType=DIESEL&isnationwide=N&vendor=SINOEPC&province=0",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "ChrageProcess/select_city/index",
-					"pathName": "ChrageProcess/select_city/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 15,
-					"name": "ChrageProcess/select_card/index",
-					"pathName": "ChrageProcess/select_card/index",
-					"query": "refuelType=GASOLINE&regionName=%E6%96%B0%E7%96%86%E7%BB%B4%E5%90%BE%E5%B0%94%E8%87%AA%E6%B2%BB%E5%8C%BA&regionId=31&vendor=undefined",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "PersonalContract/buy_list/index",
-					"pathName": "PersonalContract/buy_list/index",
-					"query": "refuelType=DIESEL&isnationwide=N&vendor=SINOEPC&province=0",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "PersonalContract/recharge_list/index",
-					"pathName": "PersonalContract/recharge_list/index",
-					"query": "refuelType=DIESEL&isnationwide=N&vendor=SINOEPC&province=0",
-					"scene": null
-				},
-				{
-					"id": 18,
-					"name": "pages/home/index",
-					"pathName": "pages/home/index",
-					"query": "invitationCode=llt",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "PersonalContract/invite/index",
-					"pathName": "PersonalContract/invite/index",
-					"query": "invitationCode=llt",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/category/index",
-					"pathName": "pages/category/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/cart/index",
-					"pathName": "pages/cart/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "Trade/confirm/index",
-					"pathName": "Trade/confirm/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "Contract/address/index",
-					"pathName": "Contract/address/index",
-					"scene": null
-				}
-			]
+			"list": []
 		}
 	}
 }

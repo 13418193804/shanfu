@@ -1,10 +1,11 @@
 {
   "pages": [
+    "pages/cart/index",
+    "pages/category/index",
     "pages/home/index",
     "pages/authorization/index",
     "pages/personal/index",
-    "pages/category/index",
-    "pages/cart/index"
+    "pages/login/index"
   ],
   "subpackages": [
     {

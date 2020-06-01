@@ -1,11 +1,12 @@
 <view class="category_container">
+<include src="index.skeleton.wxml" wx:if="{{skeleton}}"/>
 
 	<view class="search_postion flex  flex-pack-justify">
-		<view class="postion flex  flex-align-center fontSize28">
+		 <picker class="postion flex  flex-align-center fontSize28" bindchange="bindPickerChange" value="{{marketIndex}}" range="{{marketPlaceList}}" range-key="marketplaceName">
 			<i class="iconfont icondingwei fontSize28" style="margin-right:10rpx;"></i>
-			<text>中心市场</text>
+			<text>{{marketPlaceList[marketIndex].marketplaceName}}</text>
 			<i class="iconfont iconxia1" style=""></i>
-		</view>
+  </picker>
 
 		<view class="search_white">
 			<view class=" flex  flex-align-center fontSize28">
@@ -13,27 +14,99 @@
 				<input placeholder="输入商品名称" class="fontSize28 flex-1" placeholder-class="fontSize28"></input>
 			</view>
 		</view>
-
 	</view>
 
-	<van-tree-select style="" items="{{ items }}" main-active-index="{{ mainActiveIndex }}" active-id="{{ activeId }}" bind:click-nav="onClickNav" bind:click-item="onClickItem">
+	<van-tree-select items="{{ categoryList }}" main-active-index="{{ mainActiveIndex }}"  bind:click-nav="onClickNav">
 		<view slot="content">
-			<view class="goods_item fontSize28 flex" wx:for="{{10}}">
-				<image mode="widthFix" src="../../images/cai.png" style="margin:0 20rpx;width:20vw;"></image>
+			<view class="goods_item fontSize28 flex" wx:for="{{currentGoodsList}}">
+				<image mode="widthFix" src="{{item.goodsIcon}}" style="margin:0 20rpx;width:20vw;"></image>
 				<view style="line-height: 55rpx;">
 					<view class="fontSize28">
-						<text class="taps">永民</text>小白菜500g/份
+						<text class="taps">{{item.merchantName}}</text>{{item.goodsName}}
 					</view>
-					<view style="color:#888888" class="fontSize24">新鲜蔬菜</view>
-					<view style="color:#FF7F00">
-						<text>￥</text>
-						<text style="font-size:38rpx">8</text>
-					</view>
+					<view style="color:#888888" class="fontSize24">{{item.firstCatName}}</view>
+					<view class="flex">
+							<view style="color:red">
+								<text>￥</text>
+								<text style="font-size:38rpx">{{item.salePrice}}</text>
+							</view>
+							<view class="label_price">
+								<text>￥</text>
+								<text >{{item.labelPrice}}</text>
+							</view>
+						</view>
+
+					
 				</view>
-				<view class="plus"><i class="iconfont iconadd " style="font-size:54rpx;color:#009A44"></i></view>
+
+					<view class="plus flex  flex-align-center">
+
+							<view class=""  wx:if="{{cartEnum[item.goodsId]}}">
+			 
+							<i bindtap="subCart" data-id="{{item.goodsId}}" class="iconfont iconjian " style="font-size:34rpx;color:#E5E5E5"></i>
+						
+							<text style="width:50rpx;text-align:center;margin:0 10rpx;">{{cartEnum[item.goodsId]}}</text>
+		 
+					
+								<i bindtap="openSkuModel" data-item="{{item}}" class="iconfont iconadd " style="font-size:34rpx;color:#009A44"></i>
+								</view>
+
+						<view wx:else>
+							<i bindtap="openSkuModel" data-item="{{item}}" class="iconfont iconjiarugouwuche " style="font-size:50rpx;"></i>
+						</view>
+
+					</view>
+				
 			</view>
 
 		</view>
 	</van-tree-select>
+
+		<van-popup
+			show="{{ skuModel }}"
+			closeable
+			z-index="{{999}}"
+			position="bottom"
+			custom-style="height: 70%"
+			bind:close="onClose"
+		>
+
+
+
+			<view class="sku_content">
+				<view class="flex sku_goods_content">
+					<view>
+					<image mode="widthFix" src="{{selectSku && selectSku.skuImg ?selectSku.skuImg : goodsObj.goodsIcon}}" style="margin-right:20rpx;width:160rpx"/>
+					</view>
+					<view class="flex-1" style="position: relative;">
+						<view class="fontSize32 van-multi-ellipsis--l2" style="margin-right: 20rpx;">{{goodsObj.goodsName}}</view>
+						<view class="fontSize24" wx:if="{{selectSku}}" style="margin-top:10rpx;color:#666">已选：{{selectSku.skuName}}</view>
+
+							<view class="flex flex-align-center sku_price_view">
+							<view style="color:red">
+								<text>￥</text>
+								<text style="font-size:38rpx">{{selectSku ? selectSku.skuSalePrice: goodsObj.salePrice}}</text>
+							</view>
+							<view class="label_price">
+								<text>￥</text>
+								<text >{{selectSku ? selectSku.skuLabelPrice: goodsObj.labelPrice}}</text>
+							</view>
+						</view>
+
+
+					</view>
+				</view>
+
+				<view class="sku_content_list">
+
+						<view wx:for="{{goodsObj.skuList}}" class="sku_content_item {{selectSku && selectSku.skuId == item.skuId  ?'sku_content_item_active':''}}" bindtap="checkSkuItem" data-item="{{item}}">{{item.skuName}}</view>
+				
+				</view>
+			
+			<view class="sku_content_submit">
+				 <button type="primary" style="width:100%" bindtap="submitSku">选好了</button>
+			</view>
+			</view>
+		</van-popup>
 
 </view>

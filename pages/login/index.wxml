@@ -1,0 +1,22 @@
+<view class="login_container">
+
+    <view class="login_title">
+    欢迎来到膳夫
+    </view>
+
+
+      <view class="login_row  flex flex-align-center">
+                <input class="flex-1" placeholder="输入手机号" maxlength="11" model:value="{{phoneNum}}" type="number" focus="{{phoneNumFocus}}"></input>
+                <view class="viftly_code">获取验证码</view>
+      </view>
+
+      <view class="login_row flex flex-align-center">
+                <input class="flex-1" model:value="{{code}}" placeholder="输入验证码" maxlength="6" type="number"></input>
+      </view>
+
+      <view>
+        <button bindtap="doSubmit" type="primary" style="margin:50rpx 0;font-size:32rpx;border-radius: 40rpx;">
+        注册/登录
+        </button>
+      </view>
+</view>

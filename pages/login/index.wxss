@@ -1,0 +1,19 @@
+.login_row{
+  font-size: 32rpx;
+  height: 100rpx;
+  margin-bottom: 20rpx;
+  border-bottom: 1rpx solid #bbb;
+}
+.login_title{
+  font-size:50rpx;
+  font-weight: 600;
+  color:#000;
+  margin: 35rpx 0;
+}
+.login_container{
+  padding: 40rpx;
+  height: 100vh;
+}
+.viftly_code{
+    color: #1aad19;
+}

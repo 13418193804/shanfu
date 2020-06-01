@@ -53,6 +53,11 @@ Page({
     }
 
   },
+  phoneCreate(){
+    wx.navigateTo({
+      url: '/pages/login/index',
+    })
+  },
   goHome() {
     const token = wx.getStorageSync("token") ? wx.getStorageSync("token") : '';
     if ((token || '') !== '') {
@@ -70,23 +75,35 @@ Page({
     }
   
   },
-  doLogin(code, encryptedData, iv) {
+  goBack(){
+      wx.navigateBack({
+        complete: (res) => {},
+      })
+  },
+  loadLogin(e) {
 
-    api.post("/front/user/user/login", {
-      "appId": 'wxbb171a4508d8980e',
-      "code": code,
-      "encryptedData": encryptedData,
-      "iv": iv
+    api.post("/facade/front/wechat/requestPhoneNum", {
+      "appid": 'wx1369228bfc6534ff',
+      "code": app.globalData.code,
+      "encryptedData": e.detail.encryptedData,
+      "iv": e.detail.iv
     }, {
-        header: { 'Content-Type': 'application/json;charset=UTF-8' }
+       
     }).then(res => {
       console.log(res)
-      wx.setStorageSync('token', res.token)
-      wx.setStorageSync('userId', res.userId)
-      wx.setStorageSync('loginName', res.loginName)
-      this.setData({
-        token: res.token
+      
+      wx.setStorageSync('token', res.data.token)
+      wx.setStorageSync('uid', res.data.uid)
+      wx.showToast({
+        title: '登录成功',
+        duration:1000
       })
+     setTimeout(()=>{
+      wx.reLaunch({
+        url: '/pages/home/index',
+      })
+     },1000)
+
     }).catch(e => {
       console.log(e)
     })
@@ -96,17 +113,36 @@ Page({
   },
 
   getPhoneNumber(e) {
-    let self = this
-    let encryptedData = e.detail.encryptedData
-    let iv = e.detail.iv
-    // 登录
-    wx.login({
-      success: loginRes => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        self.doLogin(loginRes.code, encryptedData, iv)
+    if ((e.detail.iv || '') == '' && (e.detail.encryptedData || '') == '') {
+      wx.showToast({
+        title: "授权失败",
+        icon: 'none',
+        duration: 1500,
+      })
+      return
+    }
+    let _self = this
+    wx.checkSession({
+      success() {
+        if (app.globalData.code) {
+          _self.loadLogin(e)
+        } else {
+          app.getCode(() => {
+            _self.loadLogin(e)
+          })
+        }
+        //session_key 未过期，并且在本生命周期一直有效
+      },
+      fail() {
+        // session_key 已经失效，需要重新执行登录流程
+        app.getCode(() => {
+          _self.loadLogin(e)
+        })
       }
     })
+
   },
+ 
 
 
 

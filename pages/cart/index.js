@@ -1,22 +1,65 @@
-// pages/cart/index.js
+import api from "../../utils/http_request.js"
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    checked:false,
-    selectAll:false
+    checked: false,
+    selectAll: false,
+    token: null,
+    cartObj:{},
+    selectCartList:[]
   },
-  doSubmit(){
+  submitCart(){
+    api.post("/facade/front/cart/cart2Prepare", {}).then(res => {
+      console.log('--提交购物车', res)
+      let prepareId =  res.data.prepareId
+      wx.navigateTo({
+        url: `/Trade/confirm/index?prepareId=${prepareId}`,
+      })
+    }).catch(e => {
+      console.log(e)
+    })
+  },
+  getCartList() {
+    api.post("/facade/front/cart/queryCartWithStore", {}).then(res => {
+      console.log('---查询购物车', res)
+      this.setData({
+        cartObj:res.data
+      })
+    }).catch(e => {
+      console.log(e)
+    })
+  },
+  doSubmit() {
     wx.navigateTo({
       url: '/Trade/confirm/index',
     })
   },
   onChange(event) {
+    console.log(event)
+    this.data.selectCartList.push(event.detail[0])
+    // for(let i in this.data.cartObj){
+    //   if(i==event.detail[0]){
+
+        
+
+    //     let value = !this.data.selectCartObj[event.detail[0]]
+        
+    //     this.data.cartObj[event.detail[0]].forEach(e=>{
+    //        this.data.selectCartObj[e.cartId] = value
+    //     })
+    //     this.data.selectCartObj[event.detail[0]] =value
+    //   }
+    // }
+
     this.setData({
-      checked: event.detail
+      selectCartList: this.data.selectCartList
     });
+
+
   },
   onSelectAllChange(event) {
     this.setData({
@@ -41,9 +84,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
- 
-  },
+    const token = wx.getStorageSync("token") ? wx.getStorageSync("token") : '';
 
+    this.setData({
+      token: token
+    })
+    if (token) {
+      this.getCartList()
+    }
+
+  },
+  goLogin(){
+    wx.navigateTo({
+      url: '/pages/authorization/index',
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

@@ -9,7 +9,9 @@ padding-top: 30vh;
   align-items: center;
   margin-bottom: 100rpx;
 }
-
+.iconweixin{
+  font-size:34rpx
+}
 .userinfo-avatar {
   width: 128rpx;
   height: 128rpx;
@@ -21,6 +23,16 @@ padding-top: 30vh;
   color: #aaa;
 }
 
+.auth_app_name{
+  font-size:40rpx;
+  text-align: center;
+}
+.auth_app_desc{
+  margin:70rpx 12vw;
+  line-height: 40rpx;
+  font-size:24rpx;
+  color: #666;
+}
 .usermotto {
   margin-top: 200px;
 }
