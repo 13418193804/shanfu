@@ -1,0 +1,43 @@
+.order_container {
+  background-color: #F4F4F4;
+  height: 100vh;
+  padding:0 20rpx;
+  overflow: auto;
+}
+
+.order_title {
+  padding: 20rpx 0;
+  font-size: 32rpx
+}
+
+.order_content {
+  font-size: 28rpx;
+  
+}
+.cart_empty{
+  height: 100vh;
+  background-color: #fff;
+  text-align: center;
+}
+.order_item {
+  background-color: #fff;
+  border-radius: 8rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.order_item_store_status {
+  border-bottom: 1rpx solid #bbb;
+}
+
+.order_item_store {
+  height: 2rem;
+  line-height: 2rem;
+
+  font-size: 28rpx;
+}
+
+.order_item_time {
+  color: #666;
+  margin-bottom: 20rpx;
+}

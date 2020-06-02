@@ -1,0 +1,231 @@
+<!--
+此文件为开发者工具生成，生成时间: 2020/6/1 下午6:31:46 
+使用方法：
+1. 在"pages\cart\index.wxml"中使用`include`指令引入此模板，
+2. 在"pages\cart\index.wxss"中使用`import`指令引入"pages\cart\index.skeleton.wxss"
+3. 书写对应的逻辑，来控制骨架屏的显示与隐藏
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<view class="sk-container">
+  <view class="cart_container">
+    <view>
+      <view is="miniprogram_npm/@vant/weapp/checkbox-group/index">
+        <view class="shop_width_goods">
+          <view class="fontSize28" style="padding: 11px 16px;">
+            <view is="miniprogram_npm/@vant/weapp/checkbox/index">
+              <view class="van-checkbox checkbox-index--van-checkbox ">
+                <view class="van-checkbox__icon-wrap checkbox-index--van-checkbox__icon-wrap">
+                  <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-checkbox__icon checkbox-index--van-checkbox__icon van-checkbox__icon--round checkbox-index--van-checkbox__icon--round" style="font-size: 20px; border: none;">
+                    <view class="van-icon icon-index--van-icon van-icon-success icon-index--van-icon-success sk-pseudo sk-pseudo-circle" style="color: ;font-size: 0.8em;line-height: 1.25em;"></view>
+                  </view>
+                </view>
+                <view class="van-checkbox__label checkbox-index--van-checkbox__label sk-transparent sk-text-12-5000-599 sk-text" style="background-size: 99.9879% 1.25rem;">权权越秀店&gt;</view>
+              </view>
+            </view>
+          </view>
+          <view style="background-color: #fff;">
+            <view is="miniprogram_npm/@vant/weapp/swipe-cell/index">
+              <view class="van-swipe-cell cell-index--van-swipe-cell" data-key="cell">
+                <view style="true">
+                  <view class="good_info_item flex flex-align-center fontSize28" style="border: none;">
+                    <view is="miniprogram_npm/@vant/weapp/checkbox/index">
+                      <view class="van-checkbox checkbox-index--van-checkbox ">
+                        <view class="van-checkbox__icon-wrap checkbox-index--van-checkbox__icon-wrap">
+                          <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-checkbox__icon checkbox-index--van-checkbox__icon van-checkbox__icon--round checkbox-index--van-checkbox__icon--round" style="font-size: 20px; border: none;">
+                            <view class="van-icon icon-index--van-icon van-icon-success icon-index--van-icon-success sk-pseudo sk-pseudo-circle" style="color: ;font-size: 0.8em;line-height: 1.25em;"></view>
+                          </view>
+                        </view>
+                        <view class=" van-checkbox__label checkbox-index--van-checkbox__label"></view>
+                      </view>
+                    </view>
+                    <view class="cart_image_box flex flex-align-center">
+                      <image mode="widthFix" style="height: 83px;" class="sk-image"></image>
+                    </view>
+                    <view style="true">
+                      <view style="position: absolute;top: 11px;">
+                        <view class="fontSize28 van-multi-ellipsis--l2 sk-transparent sk-text-14-2857-98 sk-text" style="background-size: 100% 1.3125rem;">葡萄</view>
+                        <view class="fontSize24 sk-transparent sk-text-14-2857-733 sk-text" style="color: rgb(136, 136, 136); background-size: 86.6667% 1.1375rem;">葡萄</view>
+                      </view>
+                      <view class="flex flex-align-center cart_price_view">
+                        <view style="color:red"><text class="sk-transparent sk-text-14-2857-893 sk-text" style="background-size: 100% 1.3125rem;">￥</text><text style="font-size:20px" class="sk-transparent sk-opacity">2</text></view>
+                        <view class="label_price" style="text-decoration-color: transparent;"><text class="sk-transparent sk-opacity">￥</text><text class="sk-transparent sk-opacity">3</text></view>
+                      </view>
+                    </view>
+                    <view class="progress flex flex-align-center"><i class="iconfont iconjian sk-pseudo sk-pseudo-circle" style="font-size:29px;color:#E5E5E5"></i><text style="width: 27px; text-align: center; background-size: 65.1235% 1.3125rem; background-position-x: 50%;" class="sk-transparent sk-text-14-2857-886 sk-text">17</text>
+                      <i
+                        class="iconfont iconadd sk-pseudo sk-pseudo-circle" style="font-size:29px;color:#009A44"></i>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view style="background-color: #fff;">
+            <view is="miniprogram_npm/@vant/weapp/swipe-cell/index">
+              <view class="van-swipe-cell cell-index--van-swipe-cell" data-key="cell">
+                <view style="true">
+                  <view class="good_info_item flex flex-align-center fontSize28" style="border: none;">
+                    <view is="miniprogram_npm/@vant/weapp/checkbox/index">
+                      <view class="van-checkbox checkbox-index--van-checkbox ">
+                        <view class="van-checkbox__icon-wrap checkbox-index--van-checkbox__icon-wrap">
+                          <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-checkbox__icon checkbox-index--van-checkbox__icon van-checkbox__icon--round checkbox-index--van-checkbox__icon--round" style="font-size: 20px; border: none;">
+                            <view class="van-icon icon-index--van-icon van-icon-success icon-index--van-icon-success sk-pseudo sk-pseudo-circle" style="color: ;font-size: 0.8em;line-height: 1.25em;"></view>
+                          </view>
+                        </view>
+                        <view class=" van-checkbox__label checkbox-index--van-checkbox__label"></view>
+                      </view>
+                    </view>
+                    <view class="cart_image_box flex flex-align-center">
+                      <image mode="widthFix" style="height: 44.7093px;" class="sk-image"></image>
+                    </view>
+                    <view style="true">
+                      <view style="position: absolute;top: 11px;">
+                        <view class="fontSize28 van-multi-ellipsis--l2 sk-transparent sk-text-14-2857-807 sk-text" style="background-size: 100% 1.3125rem;">越南进口瓜子</view>
+                        <view class="fontSize24 sk-transparent sk-text-14-2857-821 sk-text" style="color: rgb(136, 136, 136); background-size: 28.8889% 1.1375rem;">原味</view>
+                      </view>
+                      <view class="flex flex-align-center cart_price_view">
+                        <view style="color:red"><text class="sk-transparent sk-text-14-2857-291 sk-text" style="background-size: 100% 1.3125rem;">￥</text><text style="font-size:20px" class="sk-transparent sk-opacity">5</text></view>
+                        <view class="label_price" style="text-decoration-color: transparent;"><text class="sk-transparent sk-opacity">￥</text><text class="sk-transparent sk-text-14-2857-5 sk-text" style="background-size: 100% 1.1375rem;">10</text></view>
+                      </view>
+                    </view>
+                    <view class="progress flex flex-align-center"><i class="iconfont iconjian sk-pseudo sk-pseudo-circle" style="font-size:29px;color:#E5E5E5"></i><text style="width: 27px; text-align: center; background-size: 32.5617% 1.3125rem; background-position-x: 50%;" class="sk-transparent sk-text-14-2857-568 sk-text">1</text>
+                      <i
+                        class="iconfont iconadd sk-pseudo sk-pseudo-circle" style="font-size:29px;color:#009A44"></i>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view style="background-color: #fff;">
+            <view is="miniprogram_npm/@vant/weapp/swipe-cell/index">
+              <view class="van-swipe-cell cell-index--van-swipe-cell" data-key="cell">
+                <view style="true">
+                  <view class="good_info_item flex flex-align-center fontSize28" style="border: none;">
+                    <view is="miniprogram_npm/@vant/weapp/checkbox/index">
+                      <view class="van-checkbox checkbox-index--van-checkbox ">
+                        <view class="van-checkbox__icon-wrap checkbox-index--van-checkbox__icon-wrap">
+                          <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-checkbox__icon checkbox-index--van-checkbox__icon van-checkbox__icon--round checkbox-index--van-checkbox__icon--round" style="font-size: 20px; border: none;">
+                            <view class="van-icon icon-index--van-icon van-icon-success icon-index--van-icon-success sk-pseudo sk-pseudo-circle" style="color: ;font-size: 0.8em;line-height: 1.25em;"></view>
+                          </view>
+                        </view>
+                        <view class=" van-checkbox__label checkbox-index--van-checkbox__label"></view>
+                      </view>
+                    </view>
+                    <view class="cart_image_box flex flex-align-center">
+                      <image mode="widthFix" style="height: 80.7867px;" class="sk-image"></image>
+                    </view>
+                    <view style="true">
+                      <view style="position: absolute;top: 11px;">
+                        <view class="fontSize28 van-multi-ellipsis--l2 sk-transparent sk-text-14-2857-637 sk-text" style="background-size: 100% 1.3125rem;">哈密瓜大王</view>
+                        <view class="fontSize24 sk-transparent sk-text-14-2857-11 sk-text" style="color: rgb(136, 136, 136); background-size: 86.6667% 1.1375rem;">哈密瓜大王</view>
+                      </view>
+                      <view class="flex flex-align-center cart_price_view">
+                        <view style="color:red"><text class="sk-transparent sk-text-14-2857-968 sk-text" style="background-size: 100% 1.3125rem;">￥</text><text style="font-size: 20px; background-size: 100% 1.75rem;" class="sk-transparent sk-text-14-2857-232 sk-text">10</text></view>
+                        <view
+                          class="label_price" style="text-decoration-color: transparent;"><text class="sk-transparent sk-opacity">￥</text><text class="sk-transparent sk-text-14-2857-50 sk-text" style="background-size: 100% 1.1375rem;">12</text></view>
+                    </view>
+                  </view>
+                  <view class="progress flex flex-align-center"><i class="iconfont iconjian sk-pseudo sk-pseudo-circle" style="font-size:29px;color:#E5E5E5"></i><text style="width: 27px; text-align: center; background-size: 32.5617% 1.3125rem; background-position-x: 50%;" class="sk-transparent sk-text-14-2857-236 sk-text">8</text>
+                    <i
+                      class="iconfont iconadd sk-pseudo sk-pseudo-circle" style="font-size:29px;color:#009A44"></i>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view style="background-color: #fff;">
+          <view is="miniprogram_npm/@vant/weapp/swipe-cell/index">
+            <view class="van-swipe-cell cell-index--van-swipe-cell" data-key="cell">
+              <view style="true">
+                <view class="good_info_item flex flex-align-center fontSize28" style="border: none;">
+                  <view is="miniprogram_npm/@vant/weapp/checkbox/index">
+                    <view class="van-checkbox checkbox-index--van-checkbox ">
+                      <view class="van-checkbox__icon-wrap checkbox-index--van-checkbox__icon-wrap">
+                        <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-checkbox__icon checkbox-index--van-checkbox__icon van-checkbox__icon--round checkbox-index--van-checkbox__icon--round" style="font-size: 20px; border: none;">
+                          <view class="van-icon icon-index--van-icon van-icon-success icon-index--van-icon-success sk-pseudo sk-pseudo-circle" style="color: ;font-size: 0.8em;line-height: 1.25em;"></view>
+                        </view>
+                      </view>
+                      <view class=" van-checkbox__label checkbox-index--van-checkbox__label"></view>
+                    </view>
+                  </view>
+                  <view class="cart_image_box flex flex-align-center">
+                    <image mode="widthFix" style="height: 69.9634px;" class="sk-image"></image>
+                  </view>
+                  <view style="true">
+                    <view style="position: absolute;top: 11px;">
+                      <view class="fontSize28 van-multi-ellipsis--l2 sk-transparent sk-text-14-2857-829 sk-text" style="background-size: 100% 1.3125rem;">烟台红富士苹果栖霞水果10新鲜现吃当季苹果批整箱斤山东脆甜多汁</view>
+                      <view class="fontSize24 sk-transparent sk-text-14-2857-207 sk-text" style="color: rgb(136, 136, 136); background-size: 10.1085% 1.1375rem;">一份</view>
+                    </view>
+                    <view class="flex flex-align-center cart_price_view">
+                      <view style="color:red"><text class="sk-transparent sk-text-14-2857-106 sk-text" style="background-size: 100% 1.3125rem;">￥</text><text style="font-size: 20px; background-size: 100% 1.75rem;" class="sk-transparent sk-text-14-2857-529 sk-text">22.9</text></view>
+                      <view
+                        class="label_price" style="text-decoration-color: transparent;"><text class="sk-transparent sk-opacity">￥</text><text class="sk-transparent sk-text-14-2857-366 sk-text" style="background-size: 100% 1.1375rem;">32.9</text></view>
+                  </view>
+                </view>
+                <view class="progress flex flex-align-center"><i class="iconfont iconjian sk-pseudo sk-pseudo-circle" style="font-size:29px;color:#E5E5E5"></i><text style="width: 27px; text-align: center; background-size: 32.5617% 1.3125rem; background-position-x: 50%;" class="sk-transparent sk-text-14-2857-73 sk-text">1</text>
+                  <i
+                    class="iconfont iconadd sk-pseudo sk-pseudo-circle" style="font-size:29px;color:#009A44"></i>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view style="background-color: #fff;">
+        <view is="miniprogram_npm/@vant/weapp/swipe-cell/index">
+          <view class="van-swipe-cell cell-index--van-swipe-cell" data-key="cell">
+            <view style="true">
+              <view class="good_info_item flex flex-align-center fontSize28" style="border: none;">
+                <view is="miniprogram_npm/@vant/weapp/checkbox/index">
+                  <view class="van-checkbox checkbox-index--van-checkbox ">
+                    <view class="van-checkbox__icon-wrap checkbox-index--van-checkbox__icon-wrap">
+                      <view is="miniprogram_npm/@vant/weapp/icon/index" class="van-checkbox__icon checkbox-index--van-checkbox__icon van-checkbox__icon--round checkbox-index--van-checkbox__icon--round" style="font-size: 20px; border: none;">
+                        <view class="van-icon icon-index--van-icon van-icon-success icon-index--van-icon-success sk-pseudo sk-pseudo-circle" style="color: ;font-size: 0.8em;line-height: 1.25em;"></view>
+                      </view>
+                    </view>
+                    <view class=" van-checkbox__label checkbox-index--van-checkbox__label"></view>
+                  </view>
+                </view>
+                <view class="cart_image_box flex flex-align-center">
+                  <image mode="widthFix" style="height: 62.25px;" class="sk-image"></image>
+                </view>
+                <view style="true">
+                  <view style="position: absolute;top: 11px;">
+                    <view class="fontSize28 van-multi-ellipsis--l2 sk-transparent sk-text-14-2857-69 sk-text" style="background-size: 100% 1.3125rem;">清甜雪梨</view>
+                    <view class="fontSize24 sk-transparent sk-text-14-2857-560 sk-text" style="color: rgb(136, 136, 136); background-size: 43.3333% 1.1375rem;">一个</view>
+                  </view>
+                  <view class="flex flex-align-center cart_price_view">
+                    <view style="color:red"><text class="sk-transparent sk-text-14-2857-750 sk-text" style="background-size: 100% 1.3125rem;">￥</text><text style="font-size:20px" class="sk-transparent sk-opacity">3</text></view>
+                    <view class="label_price" style="text-decoration-color: transparent;"><text class="sk-transparent sk-opacity">￥</text><text class="sk-transparent sk-opacity">5</text></view>
+                  </view>
+                </view>
+                <view class="progress flex flex-align-center"><i class="iconfont iconjian sk-pseudo sk-pseudo-circle" style="font-size:29px;color:#E5E5E5"></i><text style="width: 27px; text-align: center; background-size: 32.5617% 1.3125rem; background-position-x: 50%;" class="sk-transparent sk-text-14-2857-4 sk-text">1</text>
+                  <i
+                    class="iconfont iconadd sk-pseudo sk-pseudo-circle" style="font-size:29px;color:#009A44"></i>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view style="background-color: #fff;">
+        <view is="miniprogram_npm/@vant/weapp/swipe-cell/index">
+          <view class="van-swipe-cell cell-index--van-swipe-cell" data-key="cell">
+            <view style="true">
+              <view class="good_info_item flex flex-align-center fontSize28" style="border: none;">
+                <view class="cart_image_box flex flex-align-center">
+                  <image mode="widthFix" style="height: 83px;" class="sk-image"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</view>
+</view>

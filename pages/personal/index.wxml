@@ -38,16 +38,16 @@
 
 	</view>
 
-	<view class="user_menu_title  flex   flex-pack-justify">
+	<!-- 	<view class="user_menu_title  flex   flex-pack-justify">
 		<view>我的订单</view>
 		<view>查看全部<i class="iconfont iconshangxiazuoyou-"></i></view>
 	</view>
-	<view class="user_order fontSize28 flex flex-around-justify">
+<view class="user_order fontSize28 flex flex-around-justify">
 		<view wx:for="{{olist}}">
 			<image mode="widthFix" src="../../images/o{{index+1}}.png" style="width:6vw"></image>
 			<view>{{item}}</view>
 		</view>
-	</view>
+	</view> -->
 
 	<view class="user_menu_title  flex   flex-pack-justify">
 		<view>我的活动</view>
@@ -61,10 +61,12 @@
 
 
 
-	<van-cell is-link title="地址管理" link-type="navigateTo" />
+	<van-cell is-link title="地址管理" bindtap="goAddressList" />
 
 	<van-cell is-link title="问题反馈" link-type="navigateTo" />
 
 	<van-cell is-link title="关于我们" link-type="navigateTo" />
+
+	<van-cell title="清除登录信息" bindtap="clearStore" />
 
 </view>

@@ -131,7 +131,7 @@ line-height: 1rem;
 /* VANT */
 
 .van-tree-select{
-  height: 100%!important; 
+  height: calc(100% - 100rpx)!important; 
 }
 .van-tree-select__nav{
   color: #E5E5E5!important;
