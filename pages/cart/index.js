@@ -53,7 +53,7 @@ Page({
   },
 
 
-  addCart() {
+  addCart(e) {
     let cart = e.currentTarget.dataset.cart
     api.post("/facade/front/cart/inc", {
       cartId : cart.cartId ,
