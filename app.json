@@ -1,9 +1,10 @@
 {
   "pages": [
-    "pages/cart/index",
-    "pages/category/index",
     "pages/home/index",
+    "pages/order/index",
+    "pages/cart/index",
     "pages/authorization/index",
+    "pages/category/index",
     "pages/personal/index",
     "pages/login/index"
   ],
@@ -12,7 +13,8 @@
       "root": "Trade",
       "name": "交易流程",
       "pages": [
-        "confirm/index"
+        "confirm/index",
+        "order_detail/index"
       ]
     },
     {
@@ -27,7 +29,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTitleText": "膳夫",
+    "navigationBarTitleText": "翕牛",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -51,6 +53,12 @@
         "selectedIconPath": "./images/cart_select.png",
         "pagePath": "pages/cart/index",
         "text": "购物车"
+      },
+      {
+        "iconPath": "./images/shop.png",
+        "selectedIconPath": "./images/shop_select.png",
+        "pagePath": "pages/order/index",
+        "text": "订单"
       },
       {
         "iconPath": "./images/me.png",

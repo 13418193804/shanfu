@@ -1,45 +1,70 @@
 <view class="confirm_container fontSize28">
 	<!-- 地址 -->
-	<!-- not_have_address -->
+	
 	<view class="address_tab fontSize28">
-		<view class="address_tab_title">送货地址</view>
-		<view class="address_tab_content  flex   flex-pack-center  flex-align-center">
+		<!-- <view class="address_tab_title">送货地址</view> -->
+
+		<!-- <view class="address_tab_content  flex   flex-pack-center  flex-align-center" wx:if="{{!address}}">
 			<view class="add_address" bindtap="goAddAddress">+新增收货地址</view>
 		</view>
+		 -->
+		<view class="flex flex-align-center" style="padding:20rpx" bindtap="changAddress">
+				<view class="flex-1" wx:if="{{address}}">
+					<view class="fontSize28"><van-tag color="#FC5D5E" wx:if="{{address.isDefault}}" plain>默认</van-tag>{{address.contractName}} {{address.contractMobile}}</view>
+					<view class="fontSize24">{{address.province}}{{address.city}}{{address.country}}{{address.street}} {{address.address}}</view>
+				</view>
+				<view wx:else class="flex-1 fontSize32">
+					<view>选择配送地址</view>
+				</view>
+				<view>
+					<i class="iconfont iconshangxiazuoyou-"></i>
+				</view>
+		</view>
 	</view>
 
-	<view class="send_time fontSize28 flex   flex-pack-justify">
+
+	<!-- <view class="send_time fontSize28 flex   flex-pack-justify">
 		<view>送达时间</view>
 		<view style="color:#FF7F00">填写地址后可显示<i class="iconfont iconshangxiazuoyou-"></i></view>
-	</view>
+	</view> -->
 
-	<view class="order_width_shop" wx:for="{{2}}">
+	<view class="order_width_shop" wx:for="{{cartList}}">
 		<view class="order_width_shop_title">
-			永民店铺>
+			{{index}}
 		</view>
-		<view class="goods_info_list flex flex-align-center">
-
-			<view class="flex-1 flex flex-align-center">
-				<image src="../../images/cai.png" mode="widthFix" style="width:18vw;margin:10rpx;" wx:for="{{3}}"></image>
-			</view>
-			<view class="fontSize24 flex  flex-align-center" style="color:#888888">
-				<text>共4类商品</text><i class="iconfont iconshangxiazuoyou-"></i>
-			</view>
+		<view class="goods_info_list ">
+	<view wx:for="{{cartList[index]}}"  wx:for-item="cart" class="flex flex-align-center">
+	<view class="confirm_image">
+						<image mode="widthFix" src="{{cart.goodsImg}}" style="width:100%"></image>
+	</view>
+	<view class="flex-1">
+			<view class="confirm_goodsName van-multi-ellipsis--l2">{{cart.goodsName}}</view>
+			<view class="confirm_sku">{{cart.skuKeyValue}}</view>
+	</view>
+	<view  class="confirm_num_box" >
+		x{{cart.num}}
+	</view>
+	<view class="confirm_num_box">
+			￥{{cart.salePrice}}
+	</view>
+	</view>
+	
+		</view>
 		</view>
 
-		<view class="order_width_shop_title fontSize32 flex flex-pack-justify">
+		<!-- <view class="order_width_shop_title fontSize32 flex flex-pack-justify">
 			<view>商品总价</view>
 			<view>¥60.0</view>
-		</view>
+		</view> -->
 
 		<view class="desc_box ">
 
-			<view class=" flex flex-pack-justify" style="padding:20rpx 0">
+			<!-- <view class=" flex flex-pack-justify" style="padding:20rpx 0">
 				<view class="desc_price fontSize28">包装费</view>
 				<view class="fontSize28">¥4.0</view>
-			</view>
+			</view> -->
 
-			<view class=" flex flex-pack-justify" style="padding:20rpx 0;">
+			<!-- <view class=" flex flex-pack-justify" style="padding:20rpx 0;">
 				<view class="desc_price fontSize28">
 					<text>配送费</text>
 					<view class="fontSize24">已减3元配送费</view>
@@ -47,9 +72,9 @@
 				<view class="fontSize28"><text class="desc_price" style="text-decoration: line-through;margin-right:20rpx;">￥5.0</text>¥2.0</view>
 			</view>
 
-		</view>
+		</view> -->
 
-		<view class="desc_box fontSize28">
+		<!-- <view class="desc_box fontSize28">
 			<view class=" flex flex-pack-justify" style="padding:20rpx 0">
 				<view class="flex flex-align-center desc_price">
 					<image mode="widthFix" src="../../images/Q100.png" style="width:28rpx;margin-right:10rpx"></image>
@@ -58,9 +83,9 @@
 				<view>
 					<text style="color:#FE3B30">-5元</text><i class="iconfont iconshangxiazuoyou-" style="font-size: 24rpx;color: #888"></i>
 				</view>
-			</view>
+			</view> -->
 
-			<view class=" flex flex-pack-justify" style="padding:20rpx 0">
+			<!-- <view class=" flex flex-pack-justify" style="padding:20rpx 0">
 				<view class="flex flex-align-center desc_price">
 					<image mode="widthFix" src="../../images/Y100.png" style="width:28rpx;margin-right:10rpx"></image>
 					<text>抵用券</text>
@@ -68,12 +93,12 @@
 				<view>
 					<text class="desc_price">填写地址后可选</text><i class="iconfont iconshangxiazuoyou-" style="font-size: 24rpx;color: #888"></i>
 				</view>
-			</view>
+			</view> -->
 
 
 
 
-			<view class=" flex flex-pack-justify" style="padding:20rpx 0">
+			<!-- <view class=" flex flex-pack-justify" style="padding:20rpx 0">
 				<view class="flex flex-align-center desc_price">
 					<image mode="widthFix" src="../../images/J100.png" style="width:28rpx;margin-right:10rpx"></image>
 					<text>商家代金券</text>
@@ -83,8 +108,8 @@
 				</view>
 			</view>
 
-		</view>
-		<view class="discount_rule flex  flex-pack-justify flex-align-center">
+		</view> -->
+		<!-- <view class="discount_rule flex  flex-pack-justify flex-align-center">
 			<view class="desc_price">
 				优惠规则
 				<i class="iconfont iconwenhao"></i>
@@ -92,7 +117,7 @@
 					
 					<view class=""><text class="desc_price" style="margin-right:20rpx;">已优惠¥5.0</text>小计 ￥<text style="font-size:44rpx">61.00</text></view>
 
-		</view>
+		</view> -->
 
 	</view>
 
@@ -101,11 +126,11 @@
 	<view style="height:180rpx"></view>
 
 
-	<van-submit-bar price="{{ 3050 }}" button-text="提交订单" bind:submit="doSubmit">
-		<text class="fontSize24" style="color:#FF3024">已优惠 ¥10.0</text>
+	<van-submit-bar price="{{ totalAmmountStr }}" button-text="提交订单" bind:submit="doSubmit">
+		<!-- <text class="fontSize24" style="color:#FF3024">已优惠 ¥10.0</text>
 		<view slot="tip" style="color:#FF7F00">
 			<i class="iconfont icongantanhao" style="margin-right:20rpx;"></i>已为您选中最大优惠
-		</view>
+		</view> -->
 	</van-submit-bar>
 
 

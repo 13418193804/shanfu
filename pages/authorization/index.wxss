@@ -1,6 +1,5 @@
 /* pages/authorization/index.wxss */
 .phonenumber{
-padding-top: 30vh;  
   
 }
 .userinfo {
@@ -32,6 +31,11 @@ padding-top: 30vh;
   line-height: 40rpx;
   font-size:24rpx;
   color: #666;
+}
+.auto_app_logo{
+  width:35vw;
+  border-radius: 50%;
+  margin:50rpx auto 0;
 }
 .usermotto {
   margin-top: 200px;

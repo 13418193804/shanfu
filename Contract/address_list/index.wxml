@@ -1,4 +1,33 @@
-<view class="address_list_container">
+<view class="address_list_container" wx:if="{{addressList.length>0 }}">
+	<view class="address_item fontSize28" style="line-height: 54rpx;" wx:for="{{addressList}}" bindtap="selectAddress" data-id="{{item.addressId}}">
+		<view class="flex">
+			<view style="margin-right:20rpx;">{{item.contractName}}</view>
+			<view>{{item.contractMobile}}</view>
+		</view>
+		<view>{{item.province}}{{item.city}}{{item.country}}{{item.street}} {{item.address}}</view>
+		<view class=" flex   flex-pack-justify  flex-align-center">
+			<view>
+				<van-checkbox value="{{ item.isDefault }}" checked-color="#07c160" bind:change="onChange" data-id="{{item.addressId}}">设为默认</van-checkbox>
 
+			</view>
+			<view>
+				<van-button size="small" plain style="margin-right:20rpx" catchtap="doEdit" data-id="{{item.addressId}}">编辑</van-button>
+				<van-button type="warning" plain size="small" catchtap="doDelete" data-id="{{item.addressId}}">删除</van-button>
+			</view>
+		</view>
+	</view>
+
+	<!-- <van-button color="#7232dd">单色按钮</van-button> -->
+
+	<view class="address_btx" bindtap="doAdd">新增地址</view>
+<view style="height:100rpx"></view>
+</view>
+
+<view wx:else class="no_address fontSize28 flex  flex-align-center  flex-pack-center">
+
+	<view >
+		<view>暂无收货地址</view>
+		<view class="add_address_center" bindtap="doAdd">新增地址</view>
+	</view>
 
 </view>

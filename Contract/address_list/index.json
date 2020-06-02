@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-button": "@vant/weapp/button/index"
+  },
+  "navigationBarTitleText": "收货地址"
 }

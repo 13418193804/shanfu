@@ -1,16 +1,18 @@
 .cart_container{
   background-color: #F4F4F4;
   height: 100vh;
+  overflow: auto;
 }
 .shop_width_goods{
   
 }
 .good_info_item{
   margin: 0 30rpx;
-  padding: 20rpx 0;
+  padding: 30rpx 0;
   background-color: #fff;
   position: relative;
   border-bottom: 1rpx #F4F4F4 solid;
+  min-height: 160rpx;
 }
 .progress{
 position: absolute;
@@ -37,4 +39,9 @@ bottom: 20rpx;
   width:65px;
   color:#fff;
   height: 100%;
+}
+.cart_image_box{
+  min-width:20vw;max-width:20vw;
+  min-height:20vw;max-height:20vw;
+  overflow: hidden;margin:0 20rpx;
 }

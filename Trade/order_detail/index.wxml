@@ -1,0 +1,72 @@
+<view class="detail_container fontSize28">
+	<!-- 地址 -->
+	<view class="detail_order_status">
+    {{orderStatusEnum[orderDetail.orderStatus]}}
+  </view>
+	<view class="address_tab fontSize28">
+			<view  class="flex flex-align-center" style="padding:20rpx" bindtap="changAddress">
+				<view class="flex-1">
+				<view class="fontSize28">{{orderDetail.contractName}} {{orderDetail.contractMobile}}</view>
+				<view class="fontSize24">{{orderDetail.province}}{{orderDetail.city}}{{orderDetail.country}}{{orderDetail.street}} {{orderDetail.address}}</view>
+				</view>
+		</view>
+	</view>
+
+
+	<view class="order_width_shop" wx:for="{{orderDetail.details}}">
+		<view class="order_width_shop_title">
+		  {{orderDetail.storeName}}
+		</view>
+		<view class="goods_info_list ">
+	<view wx:for="{{orderDetail.details}}"  wx:for-item="cart" class="flex flex-align-center">
+	<view class="detail_image">
+						<image mode="widthFix" src="{{cart.goodsImg}}" style="width:100%"></image>
+	</view>
+      <view class="flex-1">
+          <view class="detail_goodsName van-multi-ellipsis--l2">{{cart.goodsName}}</view>
+          <view class="detail_sku">{{cart.skuKeyValue}}</view>
+      </view>
+      <view  class="detail_num_box" >
+        x{{cart.goodsNum}}
+      </view>
+      <view class="detail_num_box">
+          ￥{{cart.payAmount}}
+      </view>
+      </view>
+
+		</view>
+		</view>
+
+<view class="detail_row ">
+
+
+
+
+<view class="order_width_shop" >
+		<view class="order_width_shop_title">
+		订单信息
+		</view>
+		<view class=" ">
+
+          <view class=" goods_info_list flex flex-pack-justify">
+            <view>合计</view>
+            <view class="order_price">￥{{orderDetail.orderAmount}}</view>
+          </view>
+
+          <view class="goods_info_list flex flex-pack-justify">
+            <view>下单时间</view>
+            <view class="detail_desc">￥{{orderDetail.createTime}}</view>
+          </view>
+
+
+		</view>
+		</view>
+
+
+
+</view>
+
+
+
+
+</view>

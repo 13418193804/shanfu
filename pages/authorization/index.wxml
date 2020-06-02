@@ -4,9 +4,12 @@
     <!-- <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
     </block> -->
-      <view class="auth_app_name">膳夫</view>
+      <view style="text-align:center">
+       <image src="/images/logo.jpg" mode="widthFix" class="auto_app_logo"></image>
+       </view>
+      <view class="auth_app_name">翕牛</view>
       <view class="auth_app_desc">
-        您暂未授权膳夫小程序获取你的信息，将无法正常使用小程序的功能。如需要正常使用，请点击“授权”按钮，打开头像，昵称等信息的授权。
+        您暂未授权翕牛小程序获取你的信息，将无法正常使用小程序的功能。如需要正常使用，请点击“授权”按钮，打开头像，昵称等信息的授权。
       </view>
 
         <button style="margin:30rpx 10vw;font-size:32rpx;" type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
@@ -20,7 +23,7 @@
 
 
    
-<view wx:else>
+<view wx:else style="margin-top:30vh">
 
 <view class="userinfo">
    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
