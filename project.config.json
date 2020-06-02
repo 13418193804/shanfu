@@ -68,10 +68,8 @@
 			"list": [
 				{
 					"id": -1,
-<<<<<<< HEAD
 					"name": "购物车",
 					"pathName": "pages/cart/index",
-=======
 					"name": "Contract/address/index",
 					"pathName": "Contract/address/index",
 					"query": "",
@@ -96,7 +94,6 @@
 					"name": "Trade/order_detail/index",
 					"pathName": "Trade/order_detail/index",
 					"query": "orderId=202006020353420616685568",
->>>>>>> 75baabdad3bd3a8121902be654632db146c5b5ab
 					"scene": null
 				}
 			]
