@@ -93,6 +93,12 @@
 					"pathName": "Trade/order_detail/index",
 					"query": "orderId=202006020353420616685568",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "商家",
+					"pathName": "pages/category/index",
+					"scene": null
 				}
 			]
 		}
