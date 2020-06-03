@@ -1,0 +1,88 @@
+<!--
+此文件为开发者工具生成，生成时间: 2020/6/3 下午3:06:01 
+使用方法：
+1. 在"pages\order\index.wxml"中使用`include`指令引入此模板，
+2. 在"pages\order\index.wxss"中使用`import`指令引入"pages\order\index.skeleton.wxss"
+3. 书写对应的逻辑，来控制骨架屏的显示与隐藏
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<view class="sk-container">
+  <view class="order_container">
+    <view>
+      <view class="order_title sk-transparent sk-text-14-2857-670 sk-text" style="background-size: 17.3469% 1.4875rem;">
+        我的订单
+      </view>
+      <view>
+        <view class="order_item" data-orderid="202006022317181646310400">
+          <view class="order_item_store_status flex flex-pack-justify" style="border: none;">
+            <view class="flex-1">
+              <view class="order_item_store sk-transparent">权权越秀店<i class="iconfont iconshangxiazuoyou- sk-pseudo sk-pseudo-circle"></i></view>
+              <view class="order_item_time fontSize24 sk-transparent sk-text-14-2857-312 sk-text" style="background-size: 41.3138% 1.1375rem;">2020-06-02 23:17:18</view>
+            </view>
+            <view class="order_item_store fontSize28 sk-transparent sk-text-26-5625-126 sk-text" style="background-size: 100% 2rem;">等待递送</view>
+          </view>
+          <view class="order_item_content">
+            <view class="flex flex-pack-justify fontSize28" style="padding:11px 11px 0;">
+              <view class="fontSize24 sk-transparent sk-text-14-2857-192 sk-text" style="background-size: 100% 1.1375rem;">烟台红富士苹果栖霞水果10新鲜现吃当季苹果批整箱斤山东脆甜多汁 等1件</view>
+              <view style="font-weight: 600; background-size: 95.6599% 1.3125rem;" class="sk-transparent sk-text-14-2857-983 sk-text">￥22.9</view>
+            </view>
+          </view>
+        </view>
+        <view class="order_item" data-orderid="202006020638512788716544">
+          <view class="order_item_store_status flex flex-pack-justify" style="border: none;">
+            <view class="flex-1">
+              <view class="order_item_store sk-transparent">权权越秀店<i class="iconfont iconshangxiazuoyou- sk-pseudo sk-pseudo-circle"></i></view>
+              <view class="order_item_time fontSize24 sk-transparent sk-text-14-2857-264 sk-text" style="background-size: 41.3138% 1.1375rem;">2020-06-02 06:38:51</view>
+            </view>
+            <view class="order_item_store fontSize28 sk-transparent sk-text-26-5625-197 sk-text" style="background-size: 100% 2rem;">等待支付</view>
+          </view>
+          <view class="order_item_content">
+            <view class="flex flex-pack-justify fontSize28" style="padding:11px 11px 0;">
+              <view class="fontSize24 sk-transparent sk-text-14-2857-318 sk-text" style="background-size: 100% 1.1375rem;">新疆哈密瓜10斤新鲜水果当应季脆甜网纹香蜜瓜吐鲁番一整箱包邮 等1件</view>
+              <view style="font-weight: 600; background-size: 95.6599% 1.3125rem;" class="sk-transparent sk-text-14-2857-164 sk-text">￥77.6</view>
+            </view>
+          </view>
+        </view>
+        <view class="order_item" data-orderid="202006020638512885185536">
+          <view class="order_item_store_status flex flex-pack-justify" style="border: none;">
+            <view class="flex-1">
+              <view class="order_item_store sk-transparent">小林哥天河店<i class="iconfont iconshangxiazuoyou- sk-pseudo sk-pseudo-circle"></i></view>
+              <view class="order_item_time fontSize24 sk-transparent sk-text-14-2857-482 sk-text" style="background-size: 41.3138% 1.1375rem;">2020-06-02 06:38:51</view>
+            </view>
+            <view class="order_item_store fontSize28 sk-transparent sk-text-26-5625-858 sk-text" style="background-size: 100% 2rem;">等待支付</view>
+          </view>
+          <view class="order_item_content">
+            <view class="flex flex-pack-justify fontSize28" style="padding:11px 11px 0;">
+              <view class="fontSize24 sk-transparent sk-text-14-2857-152 sk-text" style="background-size: 100% 1.1375rem;">网红辣条大礼包零食小吃休闲食品麻辣味超辣片儿时5毛钱校园怀旧 等1件</view>
+              <view style="font-weight: 600; background-size: 95.7828% 1.3125rem;" class="sk-transparent sk-text-14-2857-211 sk-text">￥8.8</view>
+            </view>
+          </view>
+        </view>
+        <view class="order_item" data-orderid="202006020638404248036352">
+          <view class="order_item_store_status flex flex-pack-justify" style="border: none;">
+            <view class="flex-1">
+              <view class="order_item_store sk-transparent">权权越秀店<i class="iconfont iconshangxiazuoyou- sk-pseudo sk-pseudo-circle"></i></view>
+              <view class="order_item_time fontSize24 sk-transparent sk-text-14-2857-971 sk-text" style="background-size: 41.3138% 1.1375rem;">2020-06-02 06:38:40</view>
+            </view>
+            <view class="order_item_store fontSize28 sk-transparent sk-text-26-5625-387 sk-text" style="background-size: 100% 2rem;">等待支付</view>
+          </view>
+          <view class="order_item_content">
+            <view class="flex flex-pack-justify fontSize28" style="padding:11px 11px 0;">
+              <view class="fontSize24 sk-transparent sk-text-14-2857-190 sk-text" style="background-size: 100% 1.1375rem;">新疆哈密瓜10斤新鲜水果当应季脆甜网纹香蜜瓜吐鲁番一整箱包邮 等1件</view>
+              <view style="font-weight: 600; background-size: 95.6599% 1.3125rem;" class="sk-transparent sk-text-14-2857-911 sk-text">￥77.6</view>
+            </view>
+          </view>
+        </view>
+        <view class="order_item" data-orderid="202006020638404331922432">
+          <view class="order_item_store_status flex flex-pack-justify" style="border: none;">
+            <view class="flex-1">
+              <view class="order_item_store sk-transparent">小林哥天河店<i class="iconfont iconshangxiazuoyou- sk-pseudo sk-pseudo-circle"></i></view>
+            </view>
+            <view class="order_item_store fontSize28 sk-transparent sk-text-26-5625-207 sk-text" style="background-size: 100% 2rem;">等待支付</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -5,8 +5,9 @@
 	
 		<view class="flex flex-align-center" style="padding:20rpx" bindtap="changAddress">
 				<view class="flex-1" wx:if="{{address}}">
-					<view class="fontSize28"><van-tag color="#FC5D5E" style="margin:0 10rpx 10rpx 0" wx:if="{{address.isDefault}}" plain>默认</van-tag>{{address.contractName}} {{address.contractMobile}}</view>
-					<view class="fontSize24">{{address.street}} {{address.address}}</view>
+					<view class="fontSize32">
+					<!-- <van-tag color="#FC5D5E" style="margin:0 10rpx 10rpx 0" wx:if="{{address.isDefault}}" plain>默认</van-tag> -->{{address.street}} {{address.address}}</view>
+					<view class="fontSize24" style="color:#666;margin-top:10rpx;">{{address.contractName}} {{address.contractMobile}}</view>
 				</view>
 				<view wx:else class="flex-1 fontSize32">
 					<view>选择配送地址</view>

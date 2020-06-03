@@ -18,7 +18,8 @@ Page({
     ORDER_FINISH:'订单完成'
     },
     orderList:[],
-    token:null
+    loginStatus:true,
+    skeleton:true
   },
   goLogin(){
     wx.navigateTo({
@@ -31,7 +32,7 @@ Page({
   onLoad: function (options) {
     const token = wx.getStorageSync("token") ? wx.getStorageSync("token") : '';
     this.setData({
-      token: token
+      loginStatus: token
     })
   },
   goDetail(e){
@@ -47,7 +48,8 @@ Page({
     }).then(res => {
 
       this.setData({
-        orderList:res.data.list
+        orderList:res.data.list,
+        skeleton:false
       })
 
     }).catch(e => {
@@ -65,10 +67,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
-    if (this.data.token) {
+    if (this.data.loginStatus) {
       this.getOrderList()
-
     }
   },
 

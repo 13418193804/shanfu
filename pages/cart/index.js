@@ -14,7 +14,8 @@ Page({
     selectCartObj: {},
     selectStore: {},
     selectAll: false,
-    totalAmount:0
+    totalAmount:0,
+    isLoad:false
   },
   submitCart() {
 
@@ -29,6 +30,9 @@ Page({
     let cartListStr = cartList.join(',')
     api.post("/facade/front/cart/cart2Prepare", {
       cartIdList: cartListStr
+    },
+    {
+      loading:true
     }).then(res => {
       let prepareId = res.data.prepareId
       wx.navigateTo({
@@ -76,12 +80,15 @@ Page({
       console.log(e)
     })
     api.post("/facade/front/cart/queryCart", {}).then(res => {
-      this.setData({
-        cartList: res.data,
-        selectAll:false
-      })
-    this.onSelectAllChange()
-
+     
+      if(!this.data.isLoad){
+        this.setData({
+          cartList: res.data,
+          selectAll:false,
+          isLoad:true
+        })
+      this.onSelectAllChange()
+      }
     }).catch(e => {
       console.log(e)
     })
