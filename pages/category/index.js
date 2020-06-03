@@ -14,6 +14,7 @@ Page({
     marketIndex: 0,
     categoryList: [],
     skuModel: null,
+    detailModel: null,
     goodsObj: {},
     selectSku: null,
     cartList: [],
@@ -36,6 +37,7 @@ Page({
       )
   },
   openSkuModel(e) {
+    console.log(e)
     let item = e.currentTarget.dataset.item
     let goodsId = item.goodsId
     // singleStatus 单品状态
@@ -56,6 +58,7 @@ Page({
 
       this.setData({
         skuModel: true,
+        detailModel: false,
         selectSku: this.data.goodsObj.skuList.length > 0 ? this.data.goodsObj.skuList[0] : null
       })
     }).catch(e => {
@@ -113,6 +116,35 @@ app.checkToken()
   }) {
     console.log(detail)
 
+  },
+  openDetailModel(e){
+    console.log(e)
+    let item = e.currentTarget.dataset.item
+    let goodsId = item.goodsId
+    api.post("/facade/front/goods/getGoodsDetail", {
+      goodsId: goodsId
+    }).then(res => {
+      this.setData({
+        goodsObj: Object.assign(res.data,{store:item.store})
+      })
+      this.setData({
+        detailModel: true
+      })
+      if (item.singleStatus) {
+        this.addCart(goodsId, 
+          this.data.goodsObj.skuList[0].skuId,
+          this.data.goodsObj.store.storeId
+          )
+        return
+      }
+    }).catch(e => {
+      console.log(e)
+    })
+  },
+  onDetailClose() {
+    this.setData({
+      detailModel: false
+    })
   },
   /**
    * 生命周期函数--监听页面加载
