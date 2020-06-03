@@ -38,7 +38,7 @@
 
 	</view>
 
-	<!-- 	<view class="user_menu_title  flex   flex-pack-justify">
+		<view class="user_menu_title  flex   flex-pack-justify">
 		<view>我的订单</view>
 		<view>查看全部<i class="iconfont iconshangxiazuoyou-"></i></view>
 	</view>
@@ -47,7 +47,7 @@
 			<image mode="widthFix" src="../../images/o{{index+1}}.png" style="width:6vw"></image>
 			<view>{{item}}</view>
 		</view>
-	</view> -->
+	</view>
 
 	<view class="user_menu_title  flex   flex-pack-justify">
 		<view>我的活动</view>

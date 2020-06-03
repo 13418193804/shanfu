@@ -4,6 +4,7 @@
   height: 100vh;
   overflow: auto;
   background-color: #f4f4f4;
+  
 }
 .category{
   background-color: #fff;
@@ -61,8 +62,10 @@
 
 .banner{
   text-align: center;
-  background-color: #fff;
+  /* background-color: #fff; */
   padding: 20rpx 30rpx;
+  margin-top: -21vh;
+
 }
 .home_market_address{
   color:#888888;

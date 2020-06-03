@@ -30,35 +30,57 @@
 
 	</view>
 
-
+		<view style="width:100vw;height: 20vh;background-color: #FFFFFF;">
+		<view style="width: 100vw;height: 100px;border:1px solid #FF7F00;background-color: #FF7F00;border-radius: 0px 0px 100vw 100vw;"></view> 
+		</view>
 	<view class="banner">
 		<image src="../../images/banner.png" mode="widthFix" style="width:100%;"></image>
 	</view>
-	<view class="category flex  flex-around-justify">
-		<view wx:for="{{hotBarList}}">
+	<view class="category flex">
+		<view wx:for="{{hotBarList}}" style="flaot:letf;padding-right:60rpx">
 			<view class="flex-1">
-				<image src="../../images/c{{index+1}}.png" mode="widthFix" style="width:100rpx"></image>
+				<image src="../../images/c{{index+1}}.png" mode="widthFix" style="width:80rpx"></image>
 			</view>
 			<view class="fontSize28" style="margin-top:10rpx;">{{item.title}}</view>
 		</view>
+
+				<view style="flaot:letf;padding-right:60rpx">
+			<view class="flex-1" style="">
+			<image src="../../images/c3.png" mode="widthFix" style="width:80rpx"></image>
+			</view>
+			<view class="fontSize28" style="margin-top:10rpx;">热门</view>
+		</view>
+
+						<view style="flaot:letf;">
+			<view class="flex-1" style="">
+			<image src="../../images/c3.png" mode="widthFix" style="width:80rpx"></image>
+			</view>
+			<view class="fontSize28" style="margin-top:10rpx;">热门</view>
+		</view>
+		<!-- <image src="../../images/c3.png" mode="widthFix" style="width:80rpx"></image> -->
+
 	</view>
 
 	<view class="around_shop ">
-		<view class="flex flex-pack-justify flex-align-center">
+		<view class="flex ">
 			<view class="fontSize32">我的附近</view>
-			<view class="fontSize28" style="color:#888888"><i class="iconfont icongonggao" style="color:#FF7F00"></i>今日促销满38元免配送费 ></view>
+			<!-- <view class="fontSize28" style="color:#FF3024;  padding-left: 59rpx;">
+			<i class="iconfont icongonggao" style="color:#FF3024;"></i>
+			今日促销满38元免配送费</view> -->
 		</view>
 
 		<view class="around_shop_item flex flex-align-center fontSize28 " style="position: relative;" wx:for="{{marketPlaceList}}" bindtap="goMarket" data-id="{{item.marketplaceId}}">
 			<view>
-				<image src="../../images/s{{index+1}}.png" mode="widthFix" style="width:13vw;margin:20rpx;"></image>
+				<image src="../../images/s{{index+1}}.png" mode="widthFix" 
+				style="width:13vw;margin:20rpx; border-radius: 5px;"></image>
 			</view>
 			<view class="flex-1">
 			<view class="home_market_merchant">
 				<view class="fontSize32">{{item.marketplaceName}}</view>
-				<view class="flex fontSize24">
-					<!-- <view class="taps" style="color:#FC5D5E;border-color:#FC5D5E;">{{item.remark}}</view> -->
-					<van-tag color="#FC5D5E" plain>{{item.remark}}</van-tag>
+				<view class="flex fontSize24" style="padding-top: 5px;">
+					<view class="taps" 
+					style="color:#FC5D5E;border-color:#FC5D5E;border-radius: 5px;">{{item.remark}}</view>
+					<!-- <van-tag color="#FC5D5E;" style="border-radius: 5px;" plain>{{item.remark}}</van-tag> -->
 				</view>
 				</view>
 				<view class="home_market_address van-multi-ellipsis--l2">{{item.address}} </view>
