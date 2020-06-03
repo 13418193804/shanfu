@@ -6,17 +6,14 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
-		"enhance": true,
 		"postcss": true,
 		"preloadBackgroundData": false,
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
-		"nodeModules": true,
-		"autoAudits": true,
+		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": true,
-		"uglifyFileName": false,
+		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -26,21 +23,16 @@
 			"outputPath": ""
 		},
 		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false,
-		"skeletonGenerateFilesWithoutConfirm": true
+		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.5",
+	"libVersion": "2.11.1",
 	"appid": "wx1369228bfc6534ff",
-	"projectname": "refueling_card_minapp",
-	"cloudfunctionTemplateRoot": "",
-	"watchOptions": {
-		"ignore": []
-	},
+	"projectname": "miniprogram-2",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
-	"scripts": {},
+	"isGameTourist": false,
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
@@ -57,6 +49,7 @@
 			"list": []
 		},
 		"game": {
+			"currentL": -1,
 			"list": []
 		},
 		"gamePlugin": {
@@ -68,30 +61,15 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "Contract/address/index",
-					"pathName": "Contract/address/index",
+					"name": "我的",
+					"pathName": "pages/personal/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "Contract/address_list/index",
-					"pathName": "Contract/address_list/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "Trade/confirm/index",
-					"pathName": "Trade/confirm/index",
-					"query": "prepareId=PRE717163475498958848",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "Trade/order_detail/index",
-					"pathName": "Trade/order_detail/index",
-					"query": "orderId=202006020353420616685568",
+					"name": "首页",
+					"pathName": "pages/home/index",
 					"scene": null
 				},
 				{
