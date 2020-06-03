@@ -33,3 +33,6 @@
   border-radius: 40rpx;
   margin: 0 auto;
 }
+.address_content{
+  
+}
