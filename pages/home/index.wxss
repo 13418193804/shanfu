@@ -16,6 +16,7 @@
 .around_shop_item{
   margin-top: 20rpx;
   background-color: #fff;
+  border-radius: 4rpx;
 }
 .go_shop{
   border-radius: 40rpx;
@@ -62,4 +63,15 @@
   text-align: center;
   background-color: #fff;
   padding: 20rpx 30rpx;
+}
+.home_market_address{
+  color:#888888;
+  font-size:24rpx; 
+  margin-top: 22%;
+}
+
+.home_market_merchant{
+  position: absolute;
+  top: 20rpx;
+  line-height: 44rpx;
 }

@@ -13,7 +13,6 @@
 
 .address_container_content_label {
   width: 6rem;
-  color: #888888;
 }
 
 .save_box {

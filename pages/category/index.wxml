@@ -1,8 +1,8 @@
 <view class="category_container">
 <include src="index.skeleton.wxml" wx:if="{{skeleton}}"/>
 
-	<view class="search_postion flex  flex-pack-justify">
-		 <picker class="postion flex  flex-align-center fontSize28" bindchange="bindPickerChange" value="{{marketIndex}}" range="{{marketPlaceList}}" range-key="marketplaceName">
+	<view class="search_postion flex flex-align-center flex-pack-justify">
+		 <picker class="postion flex  flex-align-center fontSize28" bindchange="bindMarketChange" value="{{marketIndex}}" range="{{marketPlaceList}}" range-key="marketplaceName">
 			<i class="iconfont icondingwei fontSize28" style="margin-right:10rpx;"></i>
 			<text>{{marketPlaceList[marketIndex].marketplaceName}}</text>
 			<i class="iconfont iconxia1" style=""></i>
@@ -19,10 +19,10 @@
 	<van-tree-select items="{{ categoryList }}" main-active-index="{{ mainActiveIndex }}"  bind:click-nav="onClickNav">
 		<view slot="content">
 			<view class="goods_item fontSize28 flex" wx:for="{{currentGoodsList}}">
-				<image mode="widthFix" src="{{item.goodsIcon}}" style="margin:0 20rpx;width:20vw;"></image>
+				<view class="flex flex-align-center category_image_box"><image mode="widthFix" src="{{item.goodsIcon}}" style="width:100%"></image></view>
 				<view style="line-height: 55rpx;">
-					<view class="fontSize28">
-						<text class="taps">{{item.merchantName}}</text>{{item.goodsName}}
+					<view class="fontSize28 van-multi-ellipsis--l2"> 
+						<van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>{{item.store.storeName}}</van-tag>{{item.goodsName}}
 					</view>
 					<view style="color:#888888" class="fontSize24">{{item.firstCatName}}</view>
 					<view class="flex">
@@ -75,14 +75,14 @@
 
 			<view class="sku_content">
 				<view class="flex sku_goods_content">
-					<view>
+					<view class="category_image_box flex flex-align-center">
 					<image mode="widthFix" src="{{selectSku && selectSku.skuImg ?selectSku.skuImg : goodsObj.goodsIcon}}" style="margin-right:20rpx;width:160rpx"/>
 					</view>
 					<view class="flex-1" style="position: relative;">
 						<view class="fontSize32 van-multi-ellipsis--l2" style="margin-right: 20rpx;">{{goodsObj.goodsName}}</view>
 						<view class="fontSize24" wx:if="{{selectSku}}" style="margin-top:10rpx;color:#666">已选：{{selectSku.skuName}}</view>
 
-							<view class="flex flex-align-center sku_price_view">
+							<view class="flex flex-align-center ">
 							<view style="color:red">
 								<text>￥</text>
 								<text style="font-size:38rpx">{{selectSku ? selectSku.skuSalePrice: goodsObj.salePrice}}</text>

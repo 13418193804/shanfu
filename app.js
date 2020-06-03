@@ -116,7 +116,7 @@ App({
     }
   
   },
-  reverseGeocoder(callback) {
+  reverseGeocoder(callback,location) {
     qqmapsdk.reverseGeocoder({
       //位置坐标，默认获取当前位置，非必须参数
       /**
@@ -132,7 +132,7 @@ App({
        //String格式
         location: '39.984060,116.307520',
       */
-      location: '', //获取表单传入的位置坐标,不填默认当前位置,示例为string格式
+      location: location ? location:'', //获取表单传入的位置坐标,不填默认当前位置,示例为string格式
       //get_poi: 1, //是否返回周边POI列表：1.返回；0不返回(默认),非必须参数
       success: (res) => { //成功后的回调
         

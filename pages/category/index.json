@@ -2,6 +2,7 @@
   "navigationBarTitleText": "全部分类",
 
   "usingComponents": {
+    "van-tag": "@vant/weapp/tag/index",
     "van-popup": "@vant/weapp/popup/index",
     "van-tree-select": "@vant/weapp/tree-select/index",
     "van-button": "@vant/weapp/button/index"

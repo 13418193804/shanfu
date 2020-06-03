@@ -70,6 +70,7 @@ Page({
       }
       wx.setStorageSync('uid', res.data.uid)
       wx.setStorageSync('token', res.data.token)
+      wx.setStorageSync('openId', res.data.openId)
       wx.showToast({
         title: '登录成功',
         duration:1000

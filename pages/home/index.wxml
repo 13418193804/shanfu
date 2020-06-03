@@ -49,19 +49,22 @@
 			<view class="fontSize28" style="color:#888888"><i class="iconfont icongonggao" style="color:#FF7F00"></i>今日促销满38元免配送费 ></view>
 		</view>
 
-		<view class="around_shop_item flex flex-align-center fontSize28" wx:for="{{marketPlaceList}}">
+		<view class="around_shop_item flex flex-align-center fontSize28 " style="position: relative;" wx:for="{{marketPlaceList}}" bindtap="goMarket" data-id="{{item.marketplaceId}}">
 			<view>
-				<image src="../../images/s{{index+1}}.png" mode="widthFix" style="width:20vw;margin:20rpx;"></image>
+				<image src="../../images/s{{index+1}}.png" mode="widthFix" style="width:13vw;margin:20rpx;"></image>
 			</view>
-			<view class="flex-1" style="line-height:60rpx;">
-				<view class="fontSize32">{{item.merchantName}}</view>
+			<view class="flex-1">
+			<view class="home_market_merchant">
+				<view class="fontSize32">{{item.marketplaceName}}</view>
 				<view class="flex fontSize24">
-					<view class="taps" style="color:#FC5D5E;border-color:#FC5D5E;">{{item.remark}}</view>
+					<!-- <view class="taps" style="color:#FC5D5E;border-color:#FC5D5E;">{{item.remark}}</view> -->
+					<van-tag color="#FC5D5E" plain>{{item.remark}}</van-tag>
 				</view>
-				<view style="color:#888888;">{{item.address}} </view>
+				</view>
+				<view class="home_market_address van-multi-ellipsis--l2">{{item.address}} </view>
 			</view>
 			<view>
-				<view class="go_shop" bindtap="goMarket" data-id="{{item.marketplaceId}}">去买菜</view>
+				<!-- <view class="go_shop" bindtap="goMarket" data-id="{{item.marketplaceId}}">去买菜</view> -->
 			</view>
 		</view>
 

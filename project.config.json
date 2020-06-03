@@ -25,7 +25,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"skeletonGenerateFilesWithoutConfirm": true
 	},
@@ -65,7 +65,36 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": -1,
+					"name": "Contract/address/index",
+					"pathName": "Contract/address/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "Contract/address_list/index",
+					"pathName": "Contract/address_list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "Trade/confirm/index",
+					"pathName": "Trade/confirm/index",
+					"query": "prepareId=PRE717163475498958848",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "Trade/order_detail/index",
+					"pathName": "Trade/order_detail/index",
+					"query": "orderId=202006020353420616685568",
+					"scene": null
+				}
+			]
 		}
 	}
 }

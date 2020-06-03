@@ -1,21 +1,22 @@
 <view class="cart_container">
 	<view wx:if="{{token}}">
-	<van-checkbox-group value="{{ selectCartList }}" bind:change="onChange" >
 		<view class="shop_width_goods" wx:for="{{cartObj}}">
 		
 		<view style="padding: 20rpx 30rpx;" class="fontSize28">
-			<van-checkbox  checked-color="#FF7F00"  name="{{index}}"  >{{index}}></van-checkbox>
+			<van-checkbox  checked-color="#FF7F00"  name="{{index}}" value="{{selectAll || selectStore[index]}}" bind:change="changeStore"  data-key="{{index}}">{{index}}></van-checkbox>
 		</view>
 
-		<view wx:for="{{cartObj[index]}}" wx:for-item="cart" style="background-color: #fff;">
+		<view wx:for="{{cartObj[index]}}" wx:for-item="cart" wx:for-index="idx" style="background-color: #fff;">
 			<van-swipe-cell right-width="{{ 65 }}">
 				<view class="good_info_item flex flex-align-center fontSize28">
-					<van-checkbox  checked-color="#FF7F00" name="{{cart.cartId}}" ></van-checkbox>
-						<image mode="widthFix" src="{{cart.goodsImg}}" style="width:20vw;margin:0 20rpx;"></image>
+						<van-checkbox  checked-color="#FF7F00" name="{{cart.cartId}}" value="{{selectAll ||selectCartObj[cart.cartId]}}" bind:change="changeItem" data-cartid="{{cart.cartId}}" data-key="{{index}}"></van-checkbox>
+						<view class="cart_image_box flex flex-align-center">
+						<image mode="widthFix" src="{{cart.goodsImg}}" ></image>
+						</view>
 					<view style="">
-						<view style="position: absolute;top: 20rpx;">
-							<view class="fontSize28">{{cart.goodsName}}</view>
-							<view style="color:#888888;" class="fontSize24">{{cart.skuKeyValue}}</view>
+						<view style="position: absolute;top: 20rpx;width: 65vw;">
+							<view class="fontSize28 van-multi-ellipsis--l2">{{cart.goodsName}}</view>
+							<view style="color:#888888;" class="fontSize24 van-ellipsis">{{cart.skuKeyValue}}</view>
 						</view>
 						<view class="flex flex-align-center cart_price_view">
 								<view style="color:red">
@@ -30,11 +31,11 @@
 						</view>
 					<view class="progress flex  flex-align-center">
 
-						<i class="iconfont iconjian " style="font-size:54rpx;color:#E5E5E5"></i>
+						<i class="iconfont iconjian " style="font-size:54rpx;color:#E5E5E5" bindtap="subCart" data-cart="{{cart}}"></i>
 
 						<text style="width:50rpx;text-align:center;">{{cart.num}}</text>
 
-						<i class="iconfont iconadd " style="font-size:54rpx;color:#009A44"></i>
+						<i class="iconfont iconadd " style="font-size:54rpx;color:#009A44" bindtap="addCart" data-cart="{{cart}}"></i>
 
 					</view>
 
@@ -43,13 +44,12 @@
 			</van-swipe-cell>
 		</view>
 	</view>
-		</van-checkbox-group>
 
     <view style="height:100rpx;"></view>
 
-	<van-submit-bar price="{{ 3050 }}" button-text="去支付" bind:submit="submitCart">
+	<van-submit-bar price="{{ totalAmount }}" button-text="去支付" bind:submit="submitCart">
 
-		<van-checkbox  checked-color="#FF7F00" value="{{ selectAll }}" bind:change="onSelectAllChange">全选</van-checkbox>
+		<van-checkbox  checked-color="#FF7F00" value="{{ selectAll }}" bind:change="onSelectAllChange" >全选</van-checkbox>
 	</van-submit-bar>
 </view>
 <view wx:else class="cart_empty  flex  flex-align-center flex-pack-center">

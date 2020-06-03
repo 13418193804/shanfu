@@ -18,7 +18,8 @@ Page({
     selectSku: null,
     cartList: [],
     cartEnum: {},
-    skeleton:true
+    skeleton:true,
+    queryMarketPlaceId:null
   },
   checkSkuItem(e) {
     let item = e.currentTarget.dataset.item
@@ -35,7 +36,6 @@ Page({
       )
   },
   openSkuModel(e) {
-
     let item = e.currentTarget.dataset.item
     let goodsId = item.goodsId
     // singleStatus 单品状态
@@ -118,8 +118,9 @@ app.checkToken()
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-
+    this.setData({
+      queryMarketPlaceId:options.marketPlaceId
+    })
   },
 
   /**
@@ -141,10 +142,15 @@ app.checkToken()
     this.getMarketPlaceList()
 
   },
-
+  bindMarketChange(e){
+    this.setData({
+      marketIndex: e.detail.value
+    })
+    this.getCategoryByMarket()
+    
+  },
   getCartList() {
     api.post("/facade/front/cart/queryCart", {}).then(res => {
-
       let obj = {}
       res.data.forEach(e => {
         if(obj[e.goodsId]){
@@ -170,12 +176,22 @@ app.checkToken()
     })
   },
   getMarketPlaceList() {
-
     api.post("/facade/front/portal/mainPage", {}).then(res => {
-      console.log(res.data.marketPlaceList, this.data.marketIndex)
       this.setData({
         marketPlaceList: res.data.marketPlaceList
       })
+      
+    if(this.data.queryMarketPlaceId){
+      this.data.marketPlaceList.forEach((e,index)=>{
+        if(e.marketplaceId == this.data.queryMarketPlaceId){
+          this.setData({
+            marketIndex :index,
+            queryMarketPlaceId:null
+          })
+        }
+      })
+    }
+
       this.getCategoryByMarket()
     }).catch(e => {
       console.log(e)

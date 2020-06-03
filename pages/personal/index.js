@@ -77,7 +77,18 @@ Page({
         }
       })
     }
-   
+  },
+  goAddressList(){
+    wx.navigateTo({
+      url: '/Contract/address_list/index',
+    })
+  },
+  clearStore(){
+    wx.clearStorage()
+    wx.clearStorageSync()
+    wx.showToast({
+      title: '清除成功',
+    })
   },
   getUserInfo: function (e) {
     app.getUserInfo();
