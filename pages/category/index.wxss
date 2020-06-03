@@ -80,8 +80,6 @@
   padding: 40rpx 20rpx 0;
 }
 .goods_content_same{
-  display: flex;
-  justify-content: space-between;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -105,7 +103,6 @@
   text-decoration: line-through;
 }
 .goods_content_addCart{
-  display: flex;
   border:1rpx solid #FF7F00;
   border-radius: 40rpx;
   color: #ffffff;

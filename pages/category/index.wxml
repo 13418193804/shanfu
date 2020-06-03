@@ -126,15 +126,19 @@
 						</swiper-item>
 					</swiper>
 				</view>
+				
 				<view class="goods_content">
-					<view class="goods_content_same">
+					<view class="flex flex-pack-justify goods_content_same">
 						<view>
-							<view class="goods_content_name">{{goodsObj.goodsName}}</view>
+							<view class="goods_content_name">
+								<van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>{{goodsObj.store.storeName}}</van-tag>{{goodsObj.goodsName}}
+							</view>
 							<view class="goods_content_jingle">{{goodsObj.jingle}}</view>
 						</view>
 						<!-- <i class="iconfont iconfenxiang " style="font-size: 40rpx;color:#888888;margin-right:10rpx;"></i> -->
 					</view>
-					<view class="goods_content_same">
+
+					<view class="flex flex-pack-justify goods_content_same">
 						<view style="display:flex">
 							<view class="goods_content_salePrice">￥{{goodsObj.salePrice}}</view>
 							<view class="goods_content_labelPrice">￥{{goodsObj.labelPrice}}</view>
@@ -144,15 +148,17 @@
 							<text style="width:50rpx;text-align:center;margin:0 10rpx;">{{cartEnum[goodsObj.goodsId]}}</text>
 							<i catchtap="openSkuModel" data-item="{{goodsObj}}" class="iconfont iconadd " style="font-size:34rpx;color:#009A44"></i>
 						</view>
-						<view wx:else class="goods_content_addCart" catchtap="openSkuModel" data-item="{{goodsObj}}">
+						<view wx:else class="flex goods_content_addCart" catchtap="openSkuModel" data-item="{{goodsObj}}">
 							<view><i class="iconfont iconjiahao" style="font-size: 28rpx;color:#ffffff;margin-right:10rpx;"></i></view>
 							<view>加入购物车</view>
 						</view>
 					</view>
+
 				</view>
+
 				<view>
 					<view class="goods_content_detail">商品详情</view>
-					<view><rich-text nodes="{{goodsObj.detail.detail}}"></rich-text></view>
+					<view style="text-align:center"><rich-text nodes="{{goodsObj.detail.detail}}"></rich-text></view>
 				</view>
 			</view>
 		</van-popup>
