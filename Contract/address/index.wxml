@@ -24,7 +24,7 @@
 	</picker>
 
 
-	<view class="address_container_content fontSize28 flex   flex-pack-justify flex-align-center">
+	<view class="address_container_content fontSize28 flex   flex-pack-justify flex-align-center" style="{{addressId ?'border: none' :''}}">
 		<view class="address_container_content_label">门牌号</view>
 		<view class="flex-1"><input placeholder="例：16号楼303" maxlength="50" model:value="{{address}}"></input></view>
 	</view>

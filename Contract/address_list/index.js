@@ -54,7 +54,7 @@ Page({
     const _self = this
     wx.showModal({
       title: '提示',
-      content: '确认删除该收获地址？',
+      content: '确认删除该收货地址？',
       success: (e) => {
         if (e.confirm) {
 

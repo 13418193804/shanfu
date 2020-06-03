@@ -42,16 +42,29 @@ Page({
       console.log(e)
     })
   },
-
+  deleteCart(e){
+    // let cart = e.currentTarget.dataset.cart
+    // api.post("/facade/front/cart/dec", {
+    //   num: cart.num,
+    //   cartId: cart.cartId
+    // },
+    // {
+    //   loading:true
+    // }).then(res => {
+    //   this.getCartList()
+    //   this.checkSelectAll()
+    // }).catch(e => {
+    //   console.log(e)
+    // })
+  },
   subCart(e) {
-
     let cart = e.currentTarget.dataset.cart
-
     api.post("/facade/front/cart/dec", {
       num: 1,
       cartId: cart.cartId
     }).then(res => {
       this.getCartList()
+      this.checkSelectAll()
     }).catch(e => {
       console.log(e)
     })
