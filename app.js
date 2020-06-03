@@ -10,6 +10,7 @@ var qqmapsdk = new QQMapWX({
   key: 'QKUBZ-MDHLF-DOVJU-N4ERM-6JSGE-P3BKQ' // 必填
 });
 
+var _CountDownTime = null;
 
 App({
 
@@ -148,11 +149,58 @@ App({
     })
   },
 
+  // 这里这么写，是要在其他界面监听，而不是在app.js中监听，而且这个监听方法，需要一个回调方法。
+  watch: function (method) {
+    var obj = this.globalData;
+    Object.defineProperty(obj, "countDownSecond", {
+      configurable: true,
+      enumerable: true,
+      set: function (value) {
+        this._countDownSecond = value;
+        method(value);
+      },
+      get: function () {
+        // 可以在这里打印一些东西，然后在其他界面调用getApp().globalData.countDownSecond的时候，这里就会执行。
+        return this._countDownSecond
+      }
+    })
+  },
+
+
+  setCountDownTime: function () {
+    var that = this
+    var totalSecond = that.globalData.countDownSecond
+    that.globalData._countDownEnd = false
+    if (_CountDownTime === null) {
+      _CountDownTime = setInterval(function () {
+        if (totalSecond < 0) {
+          that.globalData._countDownEnd = true
+          that.globalData.countDownSecond = 60
+          that.clearCountDownTime();
+          return;
+        }
+        var second = totalSecond;
+        var secStr = second.toString();
+        that.globalData.countDownSecond = secStr;
+        totalSecond--;
+      }, 1000);
+    }
+  },
+  clearCountDownTime: function () {
+    if (_CountDownTime != null) {
+      clearInterval(_CountDownTime);
+    }
+    _CountDownTime = null;
+  },
 
   globalData: {
     code:null,
     token: null,
     userId: null,
-    userInfo: null
+    userInfo: null,
+
+
+    _countDownSecond: 60,
+    _countDownEnd:true,
   }
 })
