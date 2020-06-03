@@ -76,3 +76,46 @@
   min-height:20vw;max-height:20vw;
   overflow: hidden;margin:0 20rpx;
 }
+.goods_content{
+  padding: 40rpx 20rpx 0;
+}
+.goods_content_same{
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.goods_content_name{
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.goods_content_jingle{
+  font-size: 24rpx;
+  color:#888888;
+  margin: 20rpx 0;
+}
+.goods_content_salePrice{
+  color: red;
+  font-size: 28rpx;
+}
+.goods_content_labelPrice{
+  color: #666;
+  font-size: 24rpx;
+  margin: 4rpx 0 0 10rpx;
+  text-decoration: line-through;
+}
+.goods_content_addCart{
+  display: flex;
+  border:1rpx solid #FF7F00;
+  border-radius: 40rpx;
+  color: #ffffff;
+  background-color: #FF7F00;
+  padding: 0 18rpx;
+  line-height: 50rpx;
+}
+.goods_content_detail{
+  font-size: 36rpx;
+  font-weight: bold;
+  margin: 40rpx 0;
+  padding-left: 20rpx;
+}

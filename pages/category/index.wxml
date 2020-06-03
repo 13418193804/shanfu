@@ -18,7 +18,7 @@
 
 	<van-tree-select items="{{ categoryList }}" main-active-index="{{ mainActiveIndex }}"  bind:click-nav="onClickNav">
 		<view slot="content">
-			<view class="goods_item fontSize28 flex" wx:for="{{currentGoodsList}}">
+			<view class="goods_item fontSize28 flex" wx:for="{{currentGoodsList}}" bindtap="openDetailModel"  data-item="{{item}}">
 				<view class="flex flex-align-center category_image_box"><image mode="widthFix" src="{{item.goodsIcon}}" style="width:100%"></image></view>
 				<view style="line-height: 55rpx;">
 					<view class="fontSize28 van-multi-ellipsis--l2"> 
@@ -43,16 +43,16 @@
 
 							<view class=""  wx:if="{{cartEnum[item.goodsId]}}">
 			 
-							<i bindtap="subCart" data-id="{{item.goodsId}}" class="iconfont iconjian " style="font-size:34rpx;color:#E5E5E5"></i>
+							<i catchtap="subCart" data-id="{{item.goodsId}}" class="iconfont iconjian " style="font-size:34rpx;color:#E5E5E5"></i>
 						
 							<text style="width:50rpx;text-align:center;margin:0 10rpx;">{{cartEnum[item.goodsId]}}</text>
 		 
 					
-								<i bindtap="openSkuModel" data-item="{{item}}" class="iconfont iconadd " style="font-size:34rpx;color:#009A44"></i>
+								<i catchtap="openSkuModel" data-item="{{item}}" class="iconfont iconadd " style="font-size:34rpx;color:#009A44"></i>
 								</view>
 
 						<view wx:else>
-							<i bindtap="openSkuModel" data-item="{{item}}" class="iconfont iconjiarugouwuche " style="font-size:50rpx;"></i>
+							<i catchtap="openSkuModel" data-item="{{item}}" class="iconfont iconjiarugouwuche " style="font-size:50rpx;"></i>
 						</view>
 
 					</view>
@@ -109,4 +109,51 @@
 			</view>
 		</van-popup>
 
+		<!-- 商品详情 -->
+		<van-popup
+			show="{{ detailModel }}"
+			closeable
+			z-index="{{999}}"
+			position="bottom"
+			custom-style="height: 100%"
+			bind:close="onDetailClose"
+		>
+			<view class="detail_content">
+				<view wx:for="{{goodsObj.detail.imageList}}">
+					<swiper autoplay="true">
+						<swiper-item>
+							<image src="{{item}}" style="width:100%;height:100%"/>
+						</swiper-item>
+					</swiper>
+				</view>
+				<view class="goods_content">
+					<view class="goods_content_same">
+						<view>
+							<view class="goods_content_name">{{goodsObj.goodsName}}</view>
+							<view class="goods_content_jingle">{{goodsObj.jingle}}</view>
+						</view>
+						<!-- <i class="iconfont iconfenxiang " style="font-size: 40rpx;color:#888888;margin-right:10rpx;"></i> -->
+					</view>
+					<view class="goods_content_same">
+						<view style="display:flex">
+							<view class="goods_content_salePrice">￥{{goodsObj.salePrice}}</view>
+							<view class="goods_content_labelPrice">￥{{goodsObj.labelPrice}}</view>
+						</view>
+						<view style="padding-right:2rpx"  wx:if="{{cartEnum[goodsObj.goodsId]}}">
+							<i catchtap="subCart" data-id="{{goodsObj.goodsId}}" class="iconfont iconjian " style="font-size:34rpx;color:#E5E5E5"></i>
+							<text style="width:50rpx;text-align:center;margin:0 10rpx;">{{cartEnum[goodsObj.goodsId]}}</text>
+							<i catchtap="openSkuModel" data-item="{{goodsObj}}" class="iconfont iconadd " style="font-size:34rpx;color:#009A44"></i>
+						</view>
+						<view wx:else class="goods_content_addCart" catchtap="openSkuModel" data-item="{{goodsObj}}">
+							<view><i class="iconfont iconjiahao" style="font-size: 28rpx;color:#ffffff;margin-right:10rpx;"></i></view>
+							<view>加入购物车</view>
+						</view>
+					</view>
+				</view>
+				<view>
+					<view class="goods_content_detail">商品详情</view>
+					<view><rich-text nodes="{{goodsObj.detail.detail}}"></rich-text></view>
+				</view>
+			</view>
+		</van-popup>
 </view>
