@@ -55,8 +55,8 @@
         "text": "购物车"
       },
       {
-        "iconPath": "./images/shop.png",
-        "selectedIconPath": "./images/shop_select.png",
+        "iconPath": "./images/order.png",
+        "selectedIconPath": "./images/order_select.png",
         "pagePath": "pages/order/index",
         "text": "订单"
       },

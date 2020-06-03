@@ -9,7 +9,7 @@
 		<view wx:for="{{cartObj[index]}}" wx:for-item="cart" wx:for-index="idx" style="background-color: #fff;">
 			<van-swipe-cell right-width="{{ 65 }}">
 				<view class="good_info_item flex flex-align-center fontSize28">
-					<van-checkbox  checked-color="#FF7F00" name="{{cart.cartId}}" value="{{selectAll ||selectCartObj[cart.cartId]}}" bind:change="changeItem" data-cartid="{{cart.cartId}}" data-key="{{index}}"></van-checkbox>
+						<van-checkbox  checked-color="#FF7F00" name="{{cart.cartId}}" value="{{selectAll ||selectCartObj[cart.cartId]}}" bind:change="changeItem" data-cartid="{{cart.cartId}}" data-key="{{index}}"></van-checkbox>
 						<view class="cart_image_box flex flex-align-center">
 						<image mode="widthFix" src="{{cart.goodsImg}}" ></image>
 						</view>
@@ -47,7 +47,7 @@
 
     <view style="height:100rpx;"></view>
 
-	<van-submit-bar price="{{ 3050 }}" button-text="去支付" bind:submit="submitCart">
+	<van-submit-bar price="{{ totalAmount }}" button-text="去支付" bind:submit="submitCart">
 
 		<van-checkbox  checked-color="#FF7F00" value="{{ selectAll }}" bind:change="onSelectAllChange" >全选</van-checkbox>
 	</van-submit-bar>

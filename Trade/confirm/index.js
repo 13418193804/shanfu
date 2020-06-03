@@ -11,14 +11,22 @@ Page({
     cartList:[],
     goodsNum:0,
     totalAmmount:0,
-    totalAmmountStr:0
+    totalAmmountStr:0,
+    remark:''
   },
   doSubmit(){
+    if(!this.data.address){
+        wx.showToast({
+          title: '请选择配送地址',
+          icon:'none'
+        })
+      return
+    }
+
     let openId =  wx.getStorageSync("openId") ? wx.getStorageSync("openId") : '';
     api.post("/facade/front/order/submitOrder", {
       prepareId :this.data.prepareId
     }).then(res => {
-      
         let payId = res.data.payId
       api.post("/facade/front/wechat/miniPay", {
         "payId": payId,

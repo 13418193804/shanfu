@@ -25,7 +25,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"useCompilerModule": false,
+		"useCompilerModule": true,
 		"userConfirmedUseCompilerModuleSwitch": false,
 		"skeletonGenerateFilesWithoutConfirm": true
 	},
@@ -68,8 +68,6 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "购物车",
-					"pathName": "pages/cart/index",
 					"name": "Contract/address/index",
 					"pathName": "Contract/address/index",
 					"query": "",
