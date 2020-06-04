@@ -113,29 +113,32 @@
 		<van-popup
 			show="{{ detailModel }}"
 			closeable
+			close-icon="arrow-down"
 			z-index="{{999}}"
 			position="bottom"
 			custom-style="height: 100%"
 			bind:close="onDetailClose"
 		>
 			<view class="detail_content">
-				<view wx:for="{{goodsObj.detail.imageList}}">
-					<swiper autoplay="true">
-						<swiper-item>
-							<image src="{{item}}" style="width:100%;height:100%"/>
-						</swiper-item>
+				<view>
+					<swiper autoplay="true" class="banner_swiper">
+						<block wx:for="{{goodsObj.detail.imageList}}" wx:key="key">
+							<swiper-item>
+								<image src="{{item}}" style="width:100%;height:100%"/>
+							</swiper-item>
+						</block>
 					</swiper>
 				</view>
 				
 				<view class="goods_content">
 					<view class="flex flex-pack-justify goods_content_same">
 						<view>
-							<view class="goods_content_name">
+							<view class="fontSize28 goods_content_name van-multi-ellipsis--l2">
 								<van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>{{goodsObj.store.storeName}}</van-tag>{{goodsObj.goodsName}}
 							</view>
-							<view class="goods_content_jingle">{{goodsObj.jingle}}</view>
+							<view class="fontSize24 goods_content_jingle van-multi-ellipsis--l2">{{goodsObj.jingle}}</view>
 						</view>
-						<!-- <i class="iconfont iconfenxiang " style="font-size: 40rpx;color:#888888;margin-right:10rpx;"></i> -->
+						<!-- <i class="iconfont iconfenxiang " style="font-size: 40rpx;color:#888888;margin:25rpx 0 0 25rpx;"></i> -->
 					</view>
 
 					<view class="flex flex-pack-justify goods_content_same">
@@ -143,10 +146,12 @@
 							<view class="goods_content_salePrice">￥{{goodsObj.salePrice}}</view>
 							<view class="goods_content_labelPrice">￥{{goodsObj.labelPrice}}</view>
 						</view>
-						<view style="padding-right:2rpx"  wx:if="{{cartEnum[goodsObj.goodsId]}}">
-							<i catchtap="subCart" data-id="{{goodsObj.goodsId}}" class="iconfont iconjian " style="font-size:34rpx;color:#E5E5E5"></i>
-							<text style="width:50rpx;text-align:center;margin:0 10rpx;">{{cartEnum[goodsObj.goodsId]}}</text>
-							<i catchtap="openSkuModel" data-item="{{goodsObj}}" class="iconfont iconadd " style="font-size:34rpx;color:#009A44"></i>
+						<view class="flex flex-align-center" wx:if="{{cartEnum[goodsObj.goodsId]}}">
+							<view style="padding-right:2rpx">
+								<i catchtap="subCart" data-id="{{goodsObj.goodsId}}" class="iconfont iconjian " style="font-size:40rpx;color:#E5E5E5"></i>
+								<text style="font-size:40rpx;width:80rpx;text-align:center;margin:0 10rpx;">{{cartEnum[goodsObj.goodsId]}}</text>
+								<i catchtap="openSkuModel" data-item="{{goodsObj}}" class="iconfont iconadd " style="font-size:40rpx;color:#009A44"></i>
+							</view>
 						</view>
 						<view wx:else class="flex goods_content_addCart" catchtap="openSkuModel" data-item="{{goodsObj}}">
 							<view><i class="iconfont iconjiahao" style="font-size: 28rpx;color:#ffffff;margin-right:10rpx;"></i></view>
@@ -158,7 +163,7 @@
 
 				<view>
 					<view class="goods_content_detail">商品详情</view>
-					<view style="text-align:center"><rich-text nodes="{{goodsObj.detail.detail}}"></rich-text></view>
+					<view style="text-align:center"><rich-text class="detail_rich_text" nodes="{{goodsObj.detail.detail}}"></rich-text></view>
 				</view>
 			</view>
 		</van-popup>
