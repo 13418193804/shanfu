@@ -36,6 +36,27 @@ Page({
       province: this.data.province,
       street: this.data.street
     }
+    if(params.contractName == ""){
+      return wx.showToast({
+        title: '请输入联系人',
+        icon:'none'
+      })
+    } else if(params.contractMobile == ''){
+      return wx.showToast({
+        title: '请输入手机号',
+        icon:'none'
+      })
+    } else if(params.street == ''){
+      return wx.showToast({
+        title: '请选择地址',
+        icon:'none'
+      })
+    } else if(params.address == ''){
+      return wx.showToast({
+        title: '请输入门牌号',
+        icon:'none'
+      })
+    }
     if (this.data.addressId) {
       params.addressId = this.data.addressId
       api.post("/facade/front/address/update", params, {
