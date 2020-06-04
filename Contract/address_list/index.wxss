@@ -46,7 +46,7 @@ overflow: auto;
   width: 75%;
 }
 .address_item_left_street{
-  font-weight: 600;
+  font-weight: bold;
   font-size: 30rpx;
 }
 .address_item_icon{
