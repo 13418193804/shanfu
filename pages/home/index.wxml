@@ -77,10 +77,12 @@
 			<view class="flex-1">
 			<view class="home_market_merchant">
 				<view class="fontSize32">{{item.marketplaceName}}</view>
-				<view class="flex fontSize24" style="padding-top: 5px;">
+				<view class=" flex ">
+				<view class="flex fontSize24" style="padding-top: 5px; flex-direction: row" wx:for="{{item.remarkList}}">
 					<view class="taps" 
-					style="color:#FC5D5E;border-color:#FC5D5E;border-radius: 5px;">{{item.remark}}</view>
+					style="color:#FC5D5E;border-color:#FC5D5E;border-radius: 5px;">{{item}}</view>
 					<!-- <van-tag color="#FC5D5E;" style="border-radius: 5px;" plain>{{item.remark}}</van-tag> -->
+				</view>
 				</view>
 				</view>
 				<view class="home_market_address van-multi-ellipsis--l2">{{item.address}} </view>
