@@ -2,16 +2,12 @@
 	<!-- 地址 -->
 	
 	<view class="address_tab fontSize28">
-		<!-- <view class="address_tab_title">送货地址</view> -->
-
-		<!-- <view class="address_tab_content  flex   flex-pack-center  flex-align-center" wx:if="{{!address}}">
-			<view class="add_address" bindtap="goAddAddress">+新增收货地址</view>
-		</view>
-		 -->
+	
 		<view class="flex flex-align-center" style="padding:20rpx" bindtap="changAddress">
 				<view class="flex-1" wx:if="{{address}}">
-					<view class="fontSize28"><van-tag color="#FC5D5E" style="margin:0 10rpx 10rpx 0" wx:if="{{address.isDefault}}" plain>默认</van-tag>{{address.contractName}} {{address.contractMobile}}</view>
-					<view class="fontSize24">{{address.province}}{{address.city}}{{address.country}}{{address.street}} {{address.address}}</view>
+					<view class="fontSize32">
+					<!-- <van-tag color="#FC5D5E" style="margin:0 10rpx 10rpx 0" wx:if="{{address.isDefault}}" plain>默认</van-tag> -->{{address.street}} {{address.address}}</view>
+					<view class="fontSize24" style="color:#666;margin-top:10rpx;">{{address.contractName}} {{address.contractMobile}}</view>
 				</view>
 				<view wx:else class="flex-1 fontSize32">
 					<view>选择配送地址</view>
@@ -39,7 +35,7 @@
 	</view>
 	<view class="flex-1">
 			<view class="confirm_goodsName van-multi-ellipsis--l2">{{cart.goodsName}}</view>
-			<view class="confirm_sku">{{cart.skuKeyValue}}</view>
+			<view class="confirm_sku ">{{cart.skuKeyValue}}</view>
 	</view>
 	<view  class="confirm_num_box" >
 		x{{cart.num}}

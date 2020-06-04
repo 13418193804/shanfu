@@ -57,6 +57,8 @@ class API {
             })
           })
           .then(res => {
+            console.log(`######MINA_AISI_CONSOLE:${rUrl}返回结果,Params:${JSON.stringify(params)} response:`, res);
+
             if (loading) {
               wx.hideLoading()
             }

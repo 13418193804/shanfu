@@ -55,7 +55,7 @@
 
           <view class="goods_info_list flex flex-pack-justify">
             <view>下单时间</view>
-            <view class="detail_desc">￥{{orderDetail.createTime}}</view>
+            <view class="detail_desc">{{orderDetail.createTime}}</view>
           </view>
 
 

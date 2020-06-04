@@ -2,34 +2,21 @@ import api from "../../utils/http_request.js"
 const app = getApp()
 Page({
       data: {
+        recommendAddress:'获取定位中...',
         shopList:["中心市场","城东市场","城西市场"],
         catList: ["限时秒杀", "天天特价", "应季果蔬"],
         hotBarList:[],
         marketPlaceList:[],
         // "邀请有奖", "下单减免 "
-          invitationReward: 0.00,
           invitationNum: 0.00,
           userId: null,
           openId: null,
           netWorkObj: {},
-          vendorEnum: {
-            CNPC: '中石油',
-            SINOEPC: '中石化'
-          },
-          depositLimitCycleEnum: {
-            'YEAR': '年',
-            'MONTH': '月',
-            'DAY': '天',
-            'HOUR': '小时',
-          },
-          oilList: [],
+   
           stationModel: false,
           selectCityModel: false,
           stationObjdect: {},
-          stationEnvironmentEnum: {
-            OUTDOOR: '露天',
-            INDOOR: '室内'
-          },
+       
           rechargeModel: false,
           stationList: [],
           latitude: null,
@@ -59,23 +46,12 @@ Page({
             GASOLINE: '汽油',
             DIESEL: '柴油'
           },
+
         },
         replaceStr(str) {
           return str.replace(/(.{4})/g, '$1 ');
         },
-        pushRechargeAmount(e) {
-          if (this.data.rechargeAmount >= (this.data.oilList[this.data.currentSwiperIndex].canRechargeAmount) || 0) {
-            wx.showToast({
-              title: "可充金额不足",
-              icon: 'none',
-              duration: 1500,
-            })
-            return
-          }
-          this.setData({
-            rechargeAmount: this.data.rechargeAmount += 100
-          })
-        },
+   
         removeRechargeAmount(e) {
           if (this.data.rechargeAmount <= 100) {
             wx.showToast({
@@ -95,15 +71,6 @@ Page({
           })
         },
 
-        onSwiperChange(e) {
-          let current = e.detail.current
-          if (current != this.data.oilList.length) {
-            this.setData({
-              currentSwiperIndex: current
-            })
-            this.getRechargeCardData(this.data.currentSwiperIndex)
-          }
-        },
         openBindModel() {
           this.setData({
             bindModel: true,
@@ -152,7 +119,6 @@ Page({
                   console.log('授权res', res)
                   wx.setStorageSync('token', res.token)
                   wx.setStorageSync('invitationCode', res.invitationCode) //自己的code
-                  wx.setStorageSync('invitationReward', res.invitationReward) //推荐人的code
                   wx.setStorageSync('openId', res.openId)
                   wx.setStorageSync('userId', res.userId)
                   wx.setStorageSync('loginName', res.loginName)
@@ -201,26 +167,7 @@ Page({
             rechargeModel: false
           })
         },
-        openRechargeModel(e) {
-
-          let rulesId = e.currentTarget.dataset.id
-          let rechargeObj = this.data.oilList[this.data.currentSwiperIndex].forSale.filter(es => {
-            return es.rulesId == rulesId
-          })[0]
-          this.setData({
-            rechargeModel: true,
-            rechargeObj: rechargeObj
-          })
-
-          app.getServerUserInfo(u => {
-            this.setData({
-              invitationRewardStr: u.invitationReward.toFixed(2),
-              invitationReward: u.invitationReward,
-              invitationNum: u.invitationNum
-            })
-          })
-
-        },
+    
         selectCity(e) {
           this.setData({
             cityActiveId: e.currentTarget.dataset.activeid
@@ -273,10 +220,9 @@ Page({
 
           app.reverseGeocoder((e) => {
             this.setData({
-              city: e.address_component.city,
-              regionName: e.address_component.province,
+              recommendAddress: e.formatted_addresses.recommend,
             })
-            // this.getNetWorkList()
+         
           })
           this.getMainPage()
           

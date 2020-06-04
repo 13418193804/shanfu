@@ -238,7 +238,11 @@ app.checkToken()
     api.post("/facade/front/goods/queryGoodsByMarket", {
       categoryId: this.data.categoryList[this.data.mainActiveIndex].catId,
       marketPlaceId: this.data.marketPlaceList[this.data.marketIndex].marketplaceId
-    }).then(res => {
+    },
+    {
+      loading:true
+    }
+    ).then(res => {
       this.setData({
         currentGoodsList: res.data,
         skeleton:false

@@ -1,10 +1,12 @@
 <view class="order_container">
-	<view wx:if="{{token}}">
+<include src="index.skeleton.wxml" wx:if="{{skeleton}}"/>
+
+	<view wx:if="{{loginStatus}}">
+
   <view class="order_title">
     我的订单
   </view>
   <view>
-
     <view wx:for="{{orderList}}" class="order_item" bindtap="goDetail" data-orderid="{{item.orderId}}">
           <view class="order_item_store_status flex   flex-pack-justify">
               <view class="flex-1">
