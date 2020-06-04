@@ -77,7 +77,7 @@
 			<view class="flex-1">
 			<view class="home_market_merchant">
 				<view class="fontSize32">{{item.marketplaceName}}</view>
-				<view class="flex fontSize24" style="padding-top: 5px;">
+				<view class="flex fontSize24">
 					<van-tag color="#FC5D5E" plain>{{item.remark}}</van-tag>
 				</view>
 				</view>

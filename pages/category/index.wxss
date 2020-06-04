@@ -144,7 +144,6 @@
 .detail_rich_text .wscnph {
   width: 100%;
 }
-
 .postion_store_select {
   max-width: 8rem;
   min-width: 8rem;
