@@ -1,3 +1,5 @@
+@import 'index.skeleton.wxss';
+
 .order_container {
   background-color: #F4F4F4;
   height: 100vh;

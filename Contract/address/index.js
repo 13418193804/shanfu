@@ -140,8 +140,7 @@ Page({
         street: res.data.street,
 
       })
-
-      console.log('--', res)
+ 
     })
   },
 

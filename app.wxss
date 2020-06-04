@@ -136,9 +136,11 @@ line-height: 1rem;
 .van-tree-select__nav{
   color: #E5E5E5!important;
   background-color: #F4F4F4!important;
-  max-width: 25vw!important;
+  max-width: 5rem!important;
 }
-
+.van-sidebar-item__text{
+  font-size: 24rpx!important;
+}
 .van-ellipsis {
   overflow: hidden;
   white-space: nowrap;
