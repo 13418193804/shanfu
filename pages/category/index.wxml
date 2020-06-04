@@ -142,7 +142,7 @@
 					</view>
 
 					<view class="flex flex-pack-justify goods_content_same">
-						<view style="display:flex">
+						<view class="flex">
 							<view class="goods_content_salePrice">￥{{goodsObj.salePrice}}</view>
 							<view class="goods_content_labelPrice">￥{{goodsObj.labelPrice}}</view>
 						</view>

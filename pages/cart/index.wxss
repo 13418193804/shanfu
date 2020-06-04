@@ -15,9 +15,9 @@
   min-height: 160rpx;
 }
 .progress{
-position: absolute;
-right: 0;
-bottom: 20rpx;
+  position: absolute;
+  right: 0;
+  bottom: 20rpx;
 }
 .cart_price_view{
   position: absolute;
