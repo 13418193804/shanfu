@@ -1,22 +1,22 @@
 <view class="address_container">
-
+<view class="address_content">
 
 	<view class="address_container_content fontSize28 flex   flex-pack-justify flex-align-center">
 		<view class="address_container_content_label">联系人</view>
-		<view class="flex-1"><input placeholder="请输入联系人" model:value="{{contractName}}"></input></view>
+		<view class="flex-1"><input placeholder="请输入联系人" maxlength="10"  model:value="{{contractName}}"></input></view>
 	</view>
 
 
 	<view class="address_container_content fontSize28 flex   flex-pack-justify flex-align-center">
 		<view class="address_container_content_label">手机号</view>
-		<view class="flex-1"><input placeholder="请输入手机号" model:value="{{contractMobile}}"></input></view>
+		<view class="flex-1"><input placeholder="请输入手机号" type="number" maxlength="11" model:value="{{contractMobile}}"></input></view>
 	</view>
 
 
 	<picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
 		<view class="address_container_content  fontSize28 flex   flex-pack-justify flex-align-center">
 			<view class="address_container_content_label">地址</view>
-			<view class="flex" bindtap="chooseAddress">
+			<view class="flex flex-1" bindtap="chooseAddress">
 				<view class="flex-1 van-ellipsis">{{street}}</view>
 				<view><i class="iconfont iconshangxiazuoyou-"></i></view>
 			</view>
@@ -24,21 +24,23 @@
 	</picker>
 
 
-	<view class="address_container_content fontSize28 flex   flex-pack-justify flex-align-center">
+	<view class="address_container_content fontSize28 flex   flex-pack-justify flex-align-center" style="{{addressId ?'border: none' :''}}">
 		<view class="address_container_content_label">门牌号</view>
-		<view class="flex-1"><input placeholder="例：16号楼303" model:value="{{address}}"></input></view>
+		<view class="flex-1"><input placeholder="例：16号楼303" maxlength="50" model:value="{{address}}"></input></view>
 	</view>
 
 
-	<view class="address_container_content fontSize28 flex   flex-pack-justify flex-align-center" wx:if="{{!addressId}}">
+	<view class="address_container_content fontSize28 flex   flex-pack-justify flex-align-center" style="border: none" wx:if="{{!addressId}}">
 		<view class="">设为默认地址</view>
 		<view>
 			<switch model:checked="{{isDefault}}"></switch>
 		</view>
 	</view>
 
+</view>
 
 	<view class="save_box">
-		<view class="save_address" bindtap="saveAddress">保存</view>
+	<button bindtap="saveAddress" class="save_address" type="primary">保存</button>
+		<!-- <view class="save_address" >保存</view> -->
 	</view>
 </view>

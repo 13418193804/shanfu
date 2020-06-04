@@ -73,6 +73,7 @@ padding: 20rpx;
 .confirm_sku{
   font-size: 24rpx;
   color:#666;
+  margin-top: 10rpx;
 }
 
 .confirm_num_box{

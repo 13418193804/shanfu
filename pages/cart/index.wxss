@@ -6,6 +6,12 @@
 .shop_width_goods{
   
 }
+.cart_delete_btn{
+  font-size: 24rpx;
+line-height: 20px;
+margin: 0 40rpx;
+color:red;
+}
 .good_info_item{
   margin: 0 30rpx;
   padding: 30rpx 0;

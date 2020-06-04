@@ -44,6 +44,8 @@
   color: #fff;
 }
 .postion{
+  max-width: 8rem;
+  min-width: 8rem;
   white-space: nowrap;
   color: #fff;
 }
@@ -58,6 +60,7 @@
    border-radius: 40rpx;
    padding: 10rpx 20rpx;
   background-color: #fff;
+  margin-left: 20rpx;
 }
 
 .banner{

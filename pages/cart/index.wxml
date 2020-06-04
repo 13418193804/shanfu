@@ -40,7 +40,7 @@
 					</view>
 
 				</view>
-				<view slot="right" class="delete_cart flex  flex-align-center flex-pack-center"><text>删除</text></view>
+				<view slot="right" bindtap="deleteCart" data-cart="{{cart}}" class="delete_cart flex  flex-align-center flex-pack-center"><text>删除</text></view>
 			</van-swipe-cell>
 		</view>
 	</view>
@@ -48,8 +48,11 @@
     <view style="height:100rpx;"></view>
 
 	<van-submit-bar price="{{ totalAmount }}" button-text="去支付" bind:submit="submitCart">
-
-		<van-checkbox  checked-color="#FF7F00" value="{{ selectAll }}" bind:change="onSelectAllChange" >全选</van-checkbox>
+			<view class="flex">
+				<van-checkbox  checked-color="#FF7F00" value="{{ selectAll }}" bind:change="onSelectAllChange" >全选</van-checkbox>
+				<view class="cart_delete_btn" wx:if="{{totalAmount>0}}">删除</view>
+			</view>
+		
 	</van-submit-bar>
 </view>
 <view wx:else class="cart_empty  flex  flex-align-center flex-pack-center">
