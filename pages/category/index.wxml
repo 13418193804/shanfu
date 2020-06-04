@@ -119,7 +119,7 @@
 			close-icon="arrow-down"
 			z-index="{{999}}"
 			position="bottom"
-			custom-style="height: 100%"
+			custom-style="height: 90%"
 			bind:close="onDetailClose"
 		>
 			<view class="detail_content">
