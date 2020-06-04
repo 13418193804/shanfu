@@ -25,7 +25,7 @@
    
 <view wx:else style="margin-top:30vh">
 
-<view class="userinfo">
+<view class="userinfo flex flex-align-center flex-v">
    <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nicknameF">{{userInfo.nickName}}</text>
 </view>

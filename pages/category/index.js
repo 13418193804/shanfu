@@ -118,7 +118,6 @@ app.checkToken()
 
   },
   openDetailModel(e){
-    console.log(e)
     let item = e.currentTarget.dataset.item
     let goodsId = item.goodsId
     api.post("/facade/front/goods/getGoodsDetail", {
@@ -127,16 +126,16 @@ app.checkToken()
       this.setData({
         goodsObj: Object.assign(res.data,{store:item.store})
       })
+      // if (item.singleStatus) {
+      //   this.addCart(goodsId, 
+      //     this.data.goodsObj.skuList[0].skuId,
+      //     this.data.goodsObj.store.storeId
+      //     )
+      //   return
+      // }
       this.setData({
         detailModel: true
       })
-      if (item.singleStatus) {
-        this.addCart(goodsId, 
-          this.data.goodsObj.skuList[0].skuId,
-          this.data.goodsObj.store.storeId
-          )
-        return
-      }
     }).catch(e => {
       console.log(e)
     })
