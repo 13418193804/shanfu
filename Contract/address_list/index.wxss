@@ -6,7 +6,6 @@ overflow: auto;
 
 .address_item {
   background-color: #fff;
-  padding: 20rpx;
   margin-top: 20rpx;
 }
 
@@ -58,6 +57,9 @@ overflow: auto;
   font-size:23px;
   margin-top: 70rpx;
   margin-left:100rpx;
+}
+.address_item_list{
+  padding: 20rpx;
 }
 .delete_cart{
   background-color: red;
