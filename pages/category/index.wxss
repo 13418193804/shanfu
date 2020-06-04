@@ -121,6 +121,10 @@
   margin: 40rpx 0;
   padding-left: 20rpx;
 }
+.introduce_detail{
+  margin:0 0 40rpx 20rpx;
+  color: #888888;
+}
 .detail_rich_text .wscnph {
   width: 100%;
 }

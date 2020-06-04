@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "全部分类",
+  "navigationBarTitleText": "商品中心",
 
   "usingComponents": {
     "van-tag": "@vant/weapp/tag/index",
