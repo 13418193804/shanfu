@@ -81,7 +81,7 @@
 }
 .banner_swiper{
   width: 100%;
-  height: 400rpx;
+  height: 600rpx;
 }
 .goods_content{
   padding: 40rpx 20rpx 0;
