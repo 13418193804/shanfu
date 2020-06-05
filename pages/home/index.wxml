@@ -81,7 +81,6 @@
 					<van-tag color="#FC5D5E" plain>{{item.remark}}</van-tag>
 				</view>
 				</view>
-				</view>
 				<view class="home_market_address van-multi-ellipsis--l2">{{item.address}} </view>
 			</view>
 			<view>
