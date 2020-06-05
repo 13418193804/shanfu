@@ -77,16 +77,8 @@
 			<view class="flex-1">
 			<view class="home_market_merchant">
 				<view class="fontSize32">{{item.marketplaceName}}</view>
-<<<<<<< HEAD
 				<view class="flex fontSize24">
 					<van-tag color="#FC5D5E" plain>{{item.remark}}</van-tag>
-=======
-				<view class=" flex ">
-				<view class="flex fontSize24" style="padding-top: 5px; flex-direction: row" wx:for="{{item.remarkList}}">
-					<view class="taps" 
-					style="color:#FC5D5E;border-color:#FC5D5E;border-radius: 5px;">{{item}}</view>
-					<!-- <van-tag color="#FC5D5E;" style="border-radius: 5px;" plain>{{item.remark}}</van-tag> -->
->>>>>>> 624ad312056fce3e21f3fab6a8e7f406f4f1bdfc
 				</view>
 				</view>
 				</view>

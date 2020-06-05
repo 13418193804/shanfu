@@ -1,10 +1,5 @@
 {
-<<<<<<< HEAD
   "usingComponents": {},
   "navigationBarTitleText":"我的订单",
   "disableScroll":true
-=======
-  "navigationBarTitleText": "我的订单",
-  "usingComponents": {}
->>>>>>> 624ad312056fce3e21f3fab6a8e7f406f4f1bdfc
 }

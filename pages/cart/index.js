@@ -65,9 +65,7 @@ Page({
     }).then(res => {
 
       this.getCartList(() => {
-        if(value){
           this.changeItemWidthCartId(cart.cartId, value, cart.storeName)
-        }
       })
     }).catch(e => {
       console.log(e)

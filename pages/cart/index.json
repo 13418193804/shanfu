@@ -1,10 +1,6 @@
 {
-<<<<<<< HEAD
   "navigationBarTitleText":"购物车",
   "disableScroll":true,
-=======
-  "navigationBarTitleText": "购物车",
->>>>>>> 624ad312056fce3e21f3fab6a8e7f406f4f1bdfc
   "usingComponents": {
     "van-submit-bar": "@vant/weapp/submit-bar/index",
     "van-checkbox-group": "@vant/weapp/checkbox-group/index",

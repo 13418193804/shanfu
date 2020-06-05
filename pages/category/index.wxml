@@ -23,14 +23,8 @@
 			<view class="goods_item fontSize28 flex" wx:for="{{currentGoodsList}}" bindtap="openDetailModel"  data-item="{{item}}">
 				<view class="flex flex-align-center category_image_box"><image mode="widthFix" src="{{item.goodsIcon}}" style="width:100%"></image></view>
 				<view style="line-height: 55rpx;">
-<<<<<<< HEAD
-					<view class="fontSize28 van-multi-ellipsis--l2 flex flex-align-center" style="margin-right:20rpx;line-height: 42rpx;"> 
-						<van-tag color="#009A44" class="fontSize24" style="margin-right:10rpx;" plain>{{item.store.storeName}}</van-tag>
-						<text>{{item.goodsName}}</text>
-=======
 					<view class="fontSize28 van-multi-ellipsis--l2" style="padding: 2rpx"> 
 						<van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>{{item.store.storeName}}</van-tag>{{item.goodsName}}
->>>>>>> 624ad312056fce3e21f3fab6a8e7f406f4f1bdfc
 					</view>
 					<view style="color:#888888" class="fontSize24">{{item.firstCatName}}</view>
 					<view class="flex flex-align-center">
