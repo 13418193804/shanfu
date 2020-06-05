@@ -1,7 +1,7 @@
 <view class="address_list_container" wx:if="{{addressList.length>0 }}">
 	<view class="address_item fontSize28" style="line-height: 54rpx;" wx:for="{{addressList}}" bindtap="selectAddress" data-id="{{item.addressId}}">
 		<van-swipe-cell right-width="{{ 65 }}">
-		<view class="flex">
+		<view class="flex address_item_list" bindtap="selectAddress" data-id="{{item.addressId}}">
 			<view class="address_item_left">
 				<view class="address_item_left_street">{{item.street}}</view>
 				<view>{{item.address}}</view>

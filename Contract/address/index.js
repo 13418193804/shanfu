@@ -24,6 +24,27 @@ Page({
   },
 
   saveAddress() {
+    if((this.data.contractName || '') == ''){
+      return wx.showToast({
+        title: '请输入联系人',
+        icon:'none'
+      })
+    } if((this.data.contractMobile || '') == ''){
+      return wx.showToast({
+        title: '请输入手机号',
+        icon:'none'
+      })
+    } if((this.data.street || '') == ''){
+      return wx.showToast({
+        title: '请选择地址',
+        icon:'none'
+      })
+    } if((this.data.address || '') == ''){
+      return wx.showToast({
+        title: '请输入门牌号',
+        icon:'none'
+      })
+    }
     let params = {
       address: this.data.address,
       city: this.data.city,
@@ -35,27 +56,6 @@ Page({
       lng: this.data.location.longitude,
       province: this.data.province,
       street: this.data.street
-    }
-    if(params.contractName == ""){
-      return wx.showToast({
-        title: '请输入联系人',
-        icon:'none'
-      })
-    } else if(params.contractMobile == ''){
-      return wx.showToast({
-        title: '请输入手机号',
-        icon:'none'
-      })
-    } else if(params.street == ''){
-      return wx.showToast({
-        title: '请选择地址',
-        icon:'none'
-      })
-    } else if(params.address == ''){
-      return wx.showToast({
-        title: '请输入门牌号',
-        icon:'none'
-      })
     }
     if (this.data.addressId) {
       params.addressId = this.data.addressId

@@ -17,21 +17,19 @@ Page({
     this.setData({
       prepareId: options.prepareId
     })
+    console.log(this.data.prepareId)
   },
 
   selectAddress(e) {
+    console.log("11",this.data.prepareId)
     if (!this.data.prepareId) {
       return
     }
-
-
     let id = e.currentTarget.dataset.id
   // wx.redirectTo({
   //   url: `/Trade/confirm/index?prepareId=${this.data.prepareId}&addressId=${id}`,
   // })
     this.prepareUpdateAddress(id)
-
-
   },
 
   prepareUpdateAddress(addressId){

@@ -2,5 +2,6 @@
   "usingComponents": {
     "van-tag": "@vant/weapp/tag/index",
     "van-submit-bar": "@vant/weapp/submit-bar/index"
-  }
+  },
+  "navigationBarTitleText": "填写订单"
 }
