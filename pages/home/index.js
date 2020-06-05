@@ -232,8 +232,14 @@ Page({
           }).then(res => {
               this.setData({
                 hotBarList:res.data.hotBarList,
-                marketPlaceList:res.data.marketPlaceList
+                marketPlaceList:res.data.marketPlaceList.map(e=>{
+                  return {
+                    ...e,
+                    remarkList:e.remark.split(',')
+                  }
+                })
               })
+              console.log(this.data.remarkList)
           }).catch(e => {
             console.log(e)
           })
@@ -243,6 +249,7 @@ Page({
         getNetWorkList() {
         
         },
+
      
         doPay() {
           const _self = this

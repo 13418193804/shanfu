@@ -165,17 +165,20 @@ app.checkToken()
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      skuModel: null,
+      detailModel: null
+    })
     const token = wx.getStorageSync("token") ? wx.getStorageSync("token") : '';
     const uid = wx.getStorageSync("uid") ? wx.getStorageSync("uid") : '';
     if(uid && token){
     this.getCartList()
     }
     this.getMarketPlaceList()
-
   },
   bindMarketChange(e){
     this.setData({
-      marketIndex: e.detail.value
+      marketIndex: e.detail.value,
     })
     this.getCategoryByMarket()
     

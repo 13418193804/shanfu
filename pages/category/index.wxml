@@ -23,9 +23,14 @@
 			<view class="goods_item fontSize28 flex" wx:for="{{currentGoodsList}}" bindtap="openDetailModel"  data-item="{{item}}">
 				<view class="flex flex-align-center category_image_box"><image mode="widthFix" src="{{item.goodsIcon}}" style="width:100%"></image></view>
 				<view style="line-height: 55rpx;">
+<<<<<<< HEAD
 					<view class="fontSize28 van-multi-ellipsis--l2 flex flex-align-center" style="margin-right:20rpx;line-height: 42rpx;"> 
 						<van-tag color="#009A44" class="fontSize24" style="margin-right:10rpx;" plain>{{item.store.storeName}}</van-tag>
 						<text>{{item.goodsName}}</text>
+=======
+					<view class="fontSize28 van-multi-ellipsis--l2" style="padding: 2rpx"> 
+						<van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>{{item.store.storeName}}</van-tag>{{item.goodsName}}
+>>>>>>> 624ad312056fce3e21f3fab6a8e7f406f4f1bdfc
 					</view>
 					<view style="color:#888888" class="fontSize24">{{item.firstCatName}}</view>
 					<view class="flex flex-align-center">
@@ -137,7 +142,7 @@
 					<view class="flex flex-pack-justify goods_content_same">
 						<view>
 							<view class="fontSize28 goods_content_name van-multi-ellipsis--l2">
-								<van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>{{goodsObj.store.storeName}}</van-tag>{{goodsObj.goodsName}}
+								<van-tag color="#009A44" size="large" style="font-size:36rpx;margin-right:10rpx;" plain>{{goodsObj.store.storeName}}</van-tag>{{goodsObj.goodsName}}
 							</view>
 							<view class="fontSize24 goods_content_jingle van-multi-ellipsis--l2">{{goodsObj.jingle}}</view>
 						</view>
@@ -145,7 +150,7 @@
 					</view>
 
 					<view class="flex flex-pack-justify goods_content_same">
-						<view style="display:flex">
+						<view class="flex">
 							<view class="goods_content_salePrice">￥{{goodsObj.salePrice}}</view>
 							<view class="goods_content_labelPrice">￥{{goodsObj.labelPrice}}</view>
 						</view>
@@ -166,6 +171,10 @@
 
 				<view>
 					<view class="goods_content_detail">商品详情</view>
+					<view class="flex fontSize24 introduce_detail">
+						<view style="margin-right:30rpx;">重量：{{goodsObj.goodsWeight}}kg</view>
+						<view>分类：{{goodsObj.secondCatName}}</view>
+					</view>
 					<view style="text-align:center"><rich-text class="detail_rich_text" nodes="{{goodsObj.detail.detail}}"></rich-text></view>
 				</view>
 			</view>
