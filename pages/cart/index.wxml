@@ -45,15 +45,19 @@
 		</view>
 	</view>
 
-    <view style="height:100rpx;"></view>
+    <view style="height:100rpx;" wx:if="{{cartList.length>0}}"></view>
 
-	<van-submit-bar price="{{ totalAmount }}" button-text="去支付" bind:submit="submitCart">
+	<van-submit-bar wx:if="{{cartList.length>0}}" price="{{ totalAmount }}" button-text="去支付" bind:submit="submitCart">
 			<view class="flex">
 				<van-checkbox  checked-color="#FF7F00" value="{{ selectAll }}" bind:change="onSelectAllChange" >全选</van-checkbox>
 				<view class="cart_delete_btn" wx:if="{{totalAmount>0}}">删除</view>
 			</view>
-		
 	</van-submit-bar>
+<view wx:else class="cart_empty  flex  flex-align-center flex-pack-center">
+	<view>
+		<view class="fontSize32" style="margin-bottom:30rpx;color:#666;">暂无商品</view>
+	</view>
+</view>
 </view>
 <view wx:else class="cart_empty  flex  flex-align-center flex-pack-center">
 <view>

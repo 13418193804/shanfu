@@ -14,12 +14,13 @@ Page({
     selectCartObj: {},
     selectStore: {},
     selectAll: false,
-    totalAmount:0,
-    isLoad:false
+    totalAmount: 0,
+    isLoad: false
   },
   submitCart() {
 
     let cartList = Object.keys(this.data.selectCartObj).filter(e => this.data.selectCartObj[e])
+
     if (cartList.length == 0) {
       wx.showToast({
         title: '请选择结算商品',
@@ -30,9 +31,8 @@ Page({
     let cartListStr = cartList.join(',')
     api.post("/facade/front/cart/cart2Prepare", {
       cartIdList: cartListStr
-    },
-    {
-      loading:true
+    }, {
+      loading: true
     }).then(res => {
       let prepareId = res.data.prepareId
       wx.navigateTo({
@@ -42,7 +42,7 @@ Page({
       console.log(e)
     })
   },
-  deleteCart(e){
+  deleteCart(e) {
     // let cart = e.currentTarget.dataset.cart
     // api.post("/facade/front/cart/dec", {
     //   num: cart.num,
@@ -63,8 +63,12 @@ Page({
       num: 1,
       cartId: cart.cartId
     }).then(res => {
-      this.getCartList()
-      this.checkSelectAll()
+
+      this.getCartList(() => {
+        if(value){
+          this.changeItemWidthCartId(cart.cartId, value, cart.storeName)
+        }
+      })
     }).catch(e => {
       console.log(e)
     })
@@ -77,14 +81,15 @@ Page({
       cartId: cart.cartId,
       num: 1,
     }).then(res => {
-
-      this.getCartList()
+      this.getCartList(() => {
+        this.exSumTotal()
+      })
     }).catch(e => {
       console.log(e)
     })
   },
 
-  getCartList() {
+  getCartList(callback) {
     api.post("/facade/front/cart/queryCartWithStore", {}).then(res => {
       this.setData({
         cartObj: res.data
@@ -93,14 +98,19 @@ Page({
       console.log(e)
     })
     api.post("/facade/front/cart/queryCart", {}).then(res => {
-     
-      if(!this.data.isLoad){
-        this.setData({
-          cartList: res.data,
-          selectAll:false,
-          isLoad:true
-        })
-      this.onSelectAllChange()
+      this.setData({
+        cartList: res.data,
+      })
+
+      // if (!this.data.isLoad) {
+      //   this.setData({
+      //     selectAll: false,
+      //     isLoad: true
+      //   })
+      //   this.onSelectAllChange()
+      // }
+      if (callback) {
+        callback()
       }
     }).catch(e => {
       console.log(e)
@@ -132,9 +142,15 @@ Page({
     //处理子元素
     let cartid = e.currentTarget.dataset.cartid
     let value = !this.data.selectCartObj[cartid] //本次操作即将赋值的操作  选中  取消
-    this.data.selectCartObj[cartid] = value // 先赋值
-    //处理店铺级别
     let key = e.currentTarget.dataset.key
+    this.changeItemWidthCartId(cartid, value, key)
+
+  },
+
+  changeItemWidthCartId(cartid, value, key) {
+    console.log(cartid, value, key)
+      this.data.selectCartObj[cartid] = value // 先赋值
+    //处理店铺级别
     for (let i = 0; i < this.data.cartObj[key].length; i++) {
       let cartId = this.data.cartObj[key][i].cartId
       //当有元素不是当前操作时则跳出
@@ -162,18 +178,29 @@ Page({
   },
 
   checkSelectAll() {
+    this.exSumTotal()
     let selectNum = 0
-    let totalAmount = 0
     this.data.cartList.forEach(e => {
       if (this.data.selectCartObj[e.cartId]) {
         selectNum += 1
+      }
+    })
+    this.setData({
+      selectAll:  selectNum == this.data.cartList.length,
+    });
+  },
+  
+
+  exSumTotal() {
+    let totalAmount = 0
+    this.data.cartList.forEach(e => {
+      if (this.data.selectCartObj[e.cartId]) {
         totalAmount += e.salePrice * e.num
       }
     })
     this.setData({
-      selectAll: !this.data.selectAll && selectNum == this.data.cartList.length,
-      totalAmount:totalAmount*100
-    });
+      totalAmount: totalAmount * 100
+    })
   },
   onSelectAllChange() {
     let value = !this.data.selectAll
@@ -212,8 +239,12 @@ Page({
   onShow: function () {
 
     if (this.data.token) {
-      this.getCartList()
+      this.getCartList(() => {
+        // this.exSumTotal()
+      })
     }
+
+
   },
   goLogin() {
     wx.navigateTo({
