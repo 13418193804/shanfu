@@ -171,11 +171,14 @@ app.checkToken()
     this.getCartList()
     }
     this.getMarketPlaceList()
-
+    this.setData({
+      skuModel: null,
+      detailModel: null
+    })
   },
   bindMarketChange(e){
     this.setData({
-      marketIndex: e.detail.value
+      marketIndex: e.detail.value,
     })
     this.getCategoryByMarket()
     
