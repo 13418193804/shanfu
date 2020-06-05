@@ -60,8 +60,6 @@ padding: 20rpx;
   width: 15vw;
   margin: 20rpx 20rpx 20rpx 0 ;
   overflow: hidden;
-  display: flex;
-  align-items: center;
 }
 .detail_goodsName{
   font-size: 24rpx;

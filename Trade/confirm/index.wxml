@@ -34,7 +34,7 @@
 		</view>
 		<view class="goods_info_list ">
 	<view wx:for="{{cartList[index]}}"  wx:for-item="cart" class="flex flex-align-center">
-	<view class="confirm_image">
+	<view class="confirm_image flex flex-align-center">
 						<image mode="widthFix" src="{{cart.goodsImg}}" style="width:100%"></image>
 	</view>
 	<view class="flex-1">
