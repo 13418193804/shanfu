@@ -124,7 +124,7 @@
 .goods_content_labelPrice{
   color: #666;
   font-size: 32rpx;
-  margin: 4rpx 0 0 10rpx;
+  margin: 6rpx 0 0 10rpx;
   text-decoration: line-through;
 }
 .goods_content_addCart{
