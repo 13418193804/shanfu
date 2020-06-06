@@ -10,6 +10,7 @@ Page({
     selectAll: false,
     token: null,
     cartObj: {},
+    storeCartList: [],
     cartList: {},
     selectCartObj: {},
     selectStore: {},
@@ -17,18 +18,22 @@ Page({
     totalAmount: 0,
     isLoad: false
   },
-  submitCart() {
+  submitCart() {  
 
-    let cartList = Object.keys(this.data.selectCartObj).filter(e => this.data.selectCartObj[e])
+    let submitList =[]
+    this.data.storeCartList.forEach(e=>{
+      submitList=submitList.concat(e.children.filter(es=>es.selected).map(es=>es.cartId))
+    })
 
-    if (cartList.length == 0) {
+    if (submitList.length == 0) {
       wx.showToast({
         title: '请选择结算商品',
         icon: 'none'
       })
       return
     }
-    let cartListStr = cartList.join(',')
+    let cartListStr = submitList.join(',')
+
     api.post("/facade/front/cart/cart2Prepare", {
       cartIdList: cartListStr
     }, {
@@ -64,9 +69,7 @@ Page({
       cartId: cart.cartId
     }).then(res => {
 
-      this.getCartList(() => {
-          this.changeItemWidthCartId(cart.cartId, value, cart.storeName)
-      })
+      this.getCartList()
     }).catch(e => {
       console.log(e)
     })
@@ -79,19 +82,33 @@ Page({
       cartId: cart.cartId,
       num: 1,
     }).then(res => {
-      this.getCartList(() => {
-        this.exSumTotal()
-      })
+      this.getCartList()
     }).catch(e => {
       console.log(e)
     })
   },
 
-  getCartList(callback) {
+  getCartList() {
     api.post("/facade/front/cart/queryCartWithStore", {}).then(res => {
-      this.setData({
-        cartObj: res.data
+      let storeCartList = Object.keys(res.data).map(e => {
+        return {
+          storeId: res.data[e][0].storeId,
+          storeName: e,
+          selected: true,
+          children: res.data[e].map(es => {
+            return {
+              ...es,
+              selected: true
+            }
+          })
+        }
       })
+
+      this.setData({
+        storeCartList: storeCartList
+      })
+    this.exSumTotal()
+
     }).catch(e => {
       console.log(e)
     })
@@ -107,9 +124,7 @@ Page({
       //   })
       //   this.onSelectAllChange()
       // }
-      if (callback) {
-        callback()
-      }
+   
     }).catch(e => {
       console.log(e)
     })
@@ -122,50 +137,67 @@ Page({
   },
 
   changeStore(e) {
-    let key = e.currentTarget.dataset.key
-    let value = !this.data.selectStore[key]
-    this.data.cartObj[key].forEach((e) => {
-      this.data.selectCartObj[e.cartId] = value //子元素紧跟店铺选择
+    let store = e.currentTarget.dataset.store
+    let value = !store.selected
+    this.data.storeCartList.forEach(e => {
+      if (e.storeId == store.storeId) {
+        e.selected = value
+        e.children.forEach(es => {
+          es.selected = value
+        })
+      }
     })
-    this.data.selectStore[key] = value
-
     this.setData({
-      selectCartObj: this.data.selectCartObj,
-      selectStore: this.data.selectStore
+      storeCartList: this.data.storeCartList
     });
-    this.checkSelectAll()
+    this.exSumTotal()
   },
 
   changeItem(e) {
     //处理子元素
-    let cartid = e.currentTarget.dataset.cartid
-    let value = !this.data.selectCartObj[cartid] //本次操作即将赋值的操作  选中  取消
-    let key = e.currentTarget.dataset.key
-    this.changeItemWidthCartId(cartid, value, key)
+    let cart = e.currentTarget.dataset.cart
+    let value = !cart.selected //本次操作即将赋值的操作  选中  取消
+    let store = e.currentTarget.dataset.store
+    // this.changeItemWidthCartId(cartid, value, key)
 
-  },
-
-  changeItemWidthCartId(cartid, value, key) {
-    console.log(cartid, value, key)
-      this.data.selectCartObj[cartid] = value // 先赋值
-    //处理店铺级别
-    for (let i = 0; i < this.data.cartObj[key].length; i++) {
-      let cartId = this.data.cartObj[key][i].cartId
-      //当有元素不是当前操作时则跳出
-      if (value != this.data.selectCartObj[cartId]) {
-        break;
+    let list = this.data.storeCartList
+    list.forEach(e => {
+      if (e.storeId == store.storeId) {
+        e.children.forEach(es => {
+          if (es.cartId == cart.cartId) {
+            es.selected = value
+            let selectLen = e.children.filter(ca => ca.selected).length
+            e.selected = selectLen == e.children.length
+          }
+        })
       }
-      if (i == this.data.cartObj[key].length - 1) {
-        //最后一项都通过了 说明店铺级别需要跟随这个值改变
-        this.data.selectStore[key] = value
-      }
-    }
+    })
     this.setData({
-      selectStore: this.data.selectStore,
-      selectCartObj: this.data.selectCartObj
-    });
-    this.checkSelectAll()
+      storeCartList: this.data.storeCartList
+    })
+    this.exSumTotal()
   },
+
+  // changeItemWidthCartId(cartid, value, key) {
+  //     this.data.selectCartObj[cartid] = value // 先赋值
+  //   //处理店铺级别
+  //   for (let i = 0; i < this.data.cartObj[key].length; i++) {
+  //     let cartId = this.data.cartObj[key][i].cartId
+  //     //当有元素不是当前操作时则跳出
+  //     if (value != this.data.selectCartObj[cartId]) {
+  //       break;
+  //     }
+  //     if (i == this.data.cartObj[key].length - 1) {
+  //       //最后一项都通过了 说明店铺级别需要跟随这个值改变
+  //       this.data.selectStore[key] = value
+  //     }
+  //   }
+  //   this.setData({
+  //     selectStore: this.data.selectStore,
+  //     selectCartObj: this.data.selectCartObj
+  //   });
+  //   this.checkSelectAll()
+  // },
   removeByValue(arr, val) {
     for (var i = 0; i < arr.length; i++) {
       if (arr[i] == val) {
@@ -175,44 +207,44 @@ Page({
     }
   },
 
-  checkSelectAll() {
-    this.exSumTotal()
-    let selectNum = 0
-    this.data.cartList.forEach(e => {
-      if (this.data.selectCartObj[e.cartId]) {
-        selectNum += 1
-      }
-    })
-    this.setData({
-      selectAll:  selectNum == this.data.cartList.length,
-    });
-  },
-  
+
+
 
   exSumTotal() {
     let totalAmount = 0
-    this.data.cartList.forEach(e => {
-      if (this.data.selectCartObj[e.cartId]) {
-        totalAmount += e.salePrice * e.num
+    let storeSelectLen = this.data.storeCartList.filter(e => e.selected).length
+    this.data.storeCartList.forEach(e => {
+      if (e.selected) {
+        e.children.forEach(es => {
+          if (es.selected) {
+            totalAmount += es.salePrice * es.num
+          }
+        })
       }
     })
+
     this.setData({
-      totalAmount: totalAmount * 100
+      totalAmount: totalAmount * 100,
+      selectAll: storeSelectLen == this.data.storeCartList.length
     })
+
   },
   onSelectAllChange() {
     let value = !this.data.selectAll
-    this.data.cartList.forEach(e => {
-      this.data.selectCartObj[e.cartId] = value
+    let totalAmount = 0
+    this.data.storeCartList.forEach(e => {
+      e.selected = value
+      e.children.forEach(es => {
+        es.selected = value
+          totalAmount += es.salePrice * es.num * 100
+      })
     })
-    Object.keys(this.data.cartObj).forEach(e => {
-      this.data.selectStore[e] = value
-    })
+
     this.setData({
-      selectCartObj: this.data.selectCartObj,
-      selectStore: this.data.selectStore
+      totalAmount:value? totalAmount:0,
+      storeCartList: this.data.storeCartList,
+      selectAll: value
     });
-    this.checkSelectAll()
   },
   /**
    * 生命周期函数--监听页面加载
@@ -234,15 +266,10 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: function (e) {
     if (this.data.token) {
-      this.getCartList(() => {
-        // this.exSumTotal()
-      })
+      this.getCartList()
     }
-
-
   },
   goLogin() {
     wx.navigateTo({

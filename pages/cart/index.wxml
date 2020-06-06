@@ -1,15 +1,15 @@
 <view class="cart_container">
 	<view wx:if="{{token}}">
-		<view class="shop_width_goods" wx:for="{{cartObj}}">
+		<view class="shop_width_goods" wx:for="{{storeCartList}}">
 		
 		<view style="padding: 20rpx 30rpx;" class="fontSize28">
-			<van-checkbox  checked-color="#FF7F00"  name="{{index}}" value="{{selectAll || selectStore[index]}}" bind:change="changeStore"  data-key="{{index}}">{{index}}></van-checkbox>
+			<van-checkbox  checked-color="#FF7F00"  name="{{item.storeId}}" value="{{selectAll || item.selected}}" bind:change="changeStore"  data-store="{{item}}">{{item.storeName}}></van-checkbox>
 		</view>
 
-		<view wx:for="{{cartObj[index]}}" wx:for-item="cart" wx:for-index="idx" style="background-color: #fff;">
+		<view wx:for="{{item.children}}" wx:for-item="cart" wx:for-index="idx" style="background-color: #fff;">
 			<van-swipe-cell right-width="{{ 65 }}">
 				<view class="good_info_item flex flex-align-center fontSize28">
-						<van-checkbox  checked-color="#FF7F00" name="{{cart.cartId}}" value="{{selectAll ||selectCartObj[cart.cartId]}}" bind:change="changeItem" data-cartid="{{cart.cartId}}" data-key="{{index}}"></van-checkbox>
+						<van-checkbox  checked-color="#FF7F00" name="{{cart.cartId}}" value="{{selectAll || item.selected ||  cart.selected}}" bind:change="changeItem" data-cart="{{cart}}" data-store="{{item}}"></van-checkbox>
 						<view class="cart_image_box flex flex-align-center">
 						<image mode="widthFix" src="{{cart.goodsImg}}" ></image>
 						</view>
