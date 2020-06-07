@@ -1,5 +1,5 @@
 <view class="category_container">
-<include src="index.skeleton.wxml" wx:if="{{skeleton}}"/>
+<!-- <include src="index.skeleton.wxml" wx:if="{{skeleton}}"/> -->
 
 	<view class="search_postion flex flex-align-center flex-pack-justify van-ellipsis">
 		 <picker class="postion flex  flex-align-center fontSize28" bindchange="bindMarketChange" value="{{marketIndex}}" range="{{marketPlaceList}}" range-key="marketplaceName">
@@ -18,8 +18,20 @@
 		</view>
 	</view>
 
-	<van-tree-select items="{{ categoryList }}" main-active-index="{{ mainActiveIndex }}"  bind:click-nav="onClickNav">
-		<view slot="content">
+	<!-- <van-tree-select items="{{ categoryList }}" main-active-index="{{ mainActiveIndex }}"  bind:click-nav="onClickNav"> -->
+		<view class="flex goods_cat_content">
+				<view class="goods_cat_list">
+						<view wx:for="{{categoryList}}" bindtap="bindCatIdChange" data-item="{{item}}" class=" {{catId == item.catId ?'goods_cat_item_active':''}}" >
+						<view class="goods_cat_item flex  flex-align-center">
+							<view class="goods_cat_item_catname">{{item.catName}}</view>
+						</view>	
+						<view class="goods_seccat_item flex  flex-align-center" wx:for="{{item.children}}" wx:if="{{catId == item.catId}}" wx:for-item="sec" wx:for-index="idx" bindtap="bindSecCatIdChange" data-item="{{sec}}"  >
+							  <view class="goods_seccat_item_catname  {{ secCatId == sec.catId  ?'goods_seccat_item_catname_active' :''}}">· {{sec.catName}}</view>
+							</view>
+						</view>
+				</view>
+
+				<view class="goods_list_content flex-1">
 			<view class="goods_item fontSize28 flex" wx:for="{{currentGoodsList}}" bindtap="openDetailModel"  data-item="{{item}}">
 				<view class="flex flex-align-center category_image_box"><image mode="widthFix" src="{{item.goodsIcon}}" style="width:100%"></image></view>
 				<view style="line-height: 55rpx;">
@@ -62,7 +74,10 @@
 			</view>
 
 		</view>
-	</van-tree-select>
+
+		</view>
+	
+	<!-- </van-tree-select> -->
 
 		<van-popup
 			show="{{ skuModel }}"

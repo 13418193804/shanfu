@@ -20,7 +20,9 @@ Page({
     cartList: [],
     cartEnum: {},
     skeleton:true,
-    queryMarketPlaceId:null
+    queryMarketPlaceId:null,
+    catId:null,
+    secCatId:null
   },
   checkSkuItem(e) {
     let item = e.currentTarget.dataset.item
@@ -105,18 +107,7 @@ app.checkToken()
       skuModel: false
     })
   },
-  onClickNav({
-    detail = {}
-  }) {
-    console.log(detail)
-  },
 
-  onClickItem({
-    detail = {}
-  }) {
-    console.log(detail)
-
-  },
   openDetailModel(e){
     let item = e.currentTarget.dataset.item
     let goodsId = item.goodsId
@@ -180,8 +171,7 @@ app.checkToken()
     this.setData({
       marketIndex: e.detail.value,
     })
-    this.getCategoryByMarket()
-    
+    this.getGoodsByCarId()
   },
   getCartList() {
     api.post("/facade/front/cart/queryCart", {}).then(res => {
@@ -225,8 +215,9 @@ app.checkToken()
         }
       })
     }
+    this.getCategoryByMarket()
 
-      this.getCategoryByMarket()
+
     }).catch(e => {
       console.log(e)
     })
@@ -239,7 +230,7 @@ app.checkToken()
   },
   getGoodsByCarId() {
     api.post("/facade/front/goods/queryGoodsByMarket", {
-      categoryId: this.data.categoryList[this.data.mainActiveIndex].catId,
+      categoryId: this.data.secCatId,
       marketPlaceId: this.data.marketPlaceList[this.data.marketIndex].marketplaceId
     },
     {
@@ -255,22 +246,48 @@ app.checkToken()
     })
 
   },
+  bindCatIdChange(e){
+    let item = e.currentTarget.dataset.item
+    let catId  = item.catId
+    if(this.data.catId == catId){
+      return
+    }
+    let secCatId = catId && item.children[0] ? item.children[0].catId :null
+    this.setData({
+      catId:catId,
+      secCatId:secCatId
+    })
+    this.getGoodsByCarId()
+  },
+
+  bindSecCatIdChange(e){
+    let item = e.currentTarget.dataset.item
+    let catId  = item.catId
+    if(this.data.secCatId == catId){
+      return
+    }
+    this.setData({
+      secCatId:catId
+    })
+    this.getGoodsByCarId()
+  },
   getCategoryByMarket() {
-    api.post("/facade/front/goods/queryCategoryPortal", {
-      marketPlaceId: this.data.marketPlaceList[this.data.marketIndex].marketplaceId
+    api.post("/facade/front/category/alltree", {
     }).then(res => {
+      let list = res.data
+         let catId  = list[0]?list[0].catId:null
+         let secCatId = catId && list[0].children[0] ? list[0].children[0].catId :null
       this.setData({
-        categoryList: res.data.categoryList.map(e => {
-          return {
-            ...e,
-            text: e.catName
-          }
-        })
+        categoryList: list,
+        catId:catId,
+        secCatId:secCatId
       })
       this.getGoodsByCarId()
     }).catch(e => {
       console.log(e)
     })
+
+
   },
   /**
    * 生命周期函数--监听页面隐藏

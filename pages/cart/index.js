@@ -18,11 +18,11 @@ Page({
     totalAmount: 0,
     isLoad: false
   },
-  submitCart() {  
+  submitCart() {
 
-    let submitList =[]
-    this.data.storeCartList.forEach(e=>{
-      submitList=submitList.concat(e.children.filter(es=>es.selected).map(es=>es.cartId))
+    let submitList = []
+    this.data.storeCartList.forEach(e => {
+      submitList = submitList.concat(e.children.filter(es => es.selected).map(es => es.cartId))
     })
 
     if (submitList.length == 0) {
@@ -47,20 +47,42 @@ Page({
       console.log(e)
     })
   },
-  deleteCart(e) {
-    // let cart = e.currentTarget.dataset.cart
-    // api.post("/facade/front/cart/dec", {
-    //   num: cart.num,
-    //   cartId: cart.cartId
-    // },
-    // {
-    //   loading:true
-    // }).then(res => {
-    //   this.getCartList()
-    //   this.checkSelectAll()
-    // }).catch(e => {
-    //   console.log(e)
-    // })
+  bindDeleteCart(e) {
+    let cart = e.currentTarget.dataset.cart
+    this.deleteCart(cart.cartId)
+  },
+  bindDeleteSelectCart(e) {
+  
+    
+    wx.showModal({
+      title:'提示',
+      content:'是否删除已选择的商品？',
+      success:(e)=>{
+        console.log(e)
+        if(e.confirm){
+          let submitList = []
+          this.data.storeCartList.forEach(e => {
+            submitList = submitList.concat(e.children.filter(es => es.selected).map(es => es.cartId))
+          })
+          let cartListStr = submitList.join(',')
+          this.deleteCart(cartListStr)
+        }
+      }
+    })
+  },
+  deleteCart(cartIdList) {
+    api.post("/facade/front/cart/delete", {
+      cartIdList: cartIdList
+    }, {
+      loading: true
+    }).then(res => {
+      this.getCartList()
+      wx.showToast({
+        title: '删除成功',
+      })
+    }).catch(e => {
+      console.log(e)
+    })
   },
   subCart(e) {
     let cart = e.currentTarget.dataset.cart
@@ -103,11 +125,15 @@ Page({
           })
         }
       })
-
+    //  if (!this.data.isLoad) {
+    //     this.setData({
+    //       isLoad: true
+    //     })
+      // }
       this.setData({
         storeCartList: storeCartList
       })
-    this.exSumTotal()
+      this.exSumTotal()
 
     }).catch(e => {
       console.log(e)
@@ -117,14 +143,8 @@ Page({
         cartList: res.data,
       })
 
-      // if (!this.data.isLoad) {
-      //   this.setData({
-      //     selectAll: false,
-      //     isLoad: true
-      //   })
-      //   this.onSelectAllChange()
-      // }
-   
+ 
+
     }).catch(e => {
       console.log(e)
     })
@@ -158,7 +178,7 @@ Page({
     let cart = e.currentTarget.dataset.cart
     let value = !cart.selected //本次操作即将赋值的操作  选中  取消
     let store = e.currentTarget.dataset.store
-    // this.changeItemWidthCartId(cartid, value, key)
+
 
     let list = this.data.storeCartList
     list.forEach(e => {
@@ -177,27 +197,6 @@ Page({
     })
     this.exSumTotal()
   },
-
-  // changeItemWidthCartId(cartid, value, key) {
-  //     this.data.selectCartObj[cartid] = value // 先赋值
-  //   //处理店铺级别
-  //   for (let i = 0; i < this.data.cartObj[key].length; i++) {
-  //     let cartId = this.data.cartObj[key][i].cartId
-  //     //当有元素不是当前操作时则跳出
-  //     if (value != this.data.selectCartObj[cartId]) {
-  //       break;
-  //     }
-  //     if (i == this.data.cartObj[key].length - 1) {
-  //       //最后一项都通过了 说明店铺级别需要跟随这个值改变
-  //       this.data.selectStore[key] = value
-  //     }
-  //   }
-  //   this.setData({
-  //     selectStore: this.data.selectStore,
-  //     selectCartObj: this.data.selectCartObj
-  //   });
-  //   this.checkSelectAll()
-  // },
   removeByValue(arr, val) {
     for (var i = 0; i < arr.length; i++) {
       if (arr[i] == val) {
@@ -206,28 +205,20 @@ Page({
       }
     }
   },
-
-
-
-
   exSumTotal() {
     let totalAmount = 0
     let storeSelectLen = this.data.storeCartList.filter(e => e.selected).length
     this.data.storeCartList.forEach(e => {
-      if (e.selected) {
-        e.children.forEach(es => {
-          if (es.selected) {
-            totalAmount += es.salePrice * es.num
-          }
-        })
-      }
+      e.children.forEach(es => {
+        if (es.selected) {
+          totalAmount += es.salePrice * es.num
+        }
+      })
     })
-
     this.setData({
       totalAmount: totalAmount * 100,
       selectAll: storeSelectLen == this.data.storeCartList.length
     })
-
   },
   onSelectAllChange() {
     let value = !this.data.selectAll
@@ -236,31 +227,21 @@ Page({
       e.selected = value
       e.children.forEach(es => {
         es.selected = value
-          totalAmount += es.salePrice * es.num * 100
+        totalAmount += es.salePrice * es.num * 100
       })
     })
-
     this.setData({
-      totalAmount:value? totalAmount:0,
+      totalAmount: value ? totalAmount : 0,
       storeCartList: this.data.storeCartList,
       selectAll: value
     });
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+
   onLoad: function (options) {
     const token = wx.getStorageSync("token") ? wx.getStorageSync("token") : '';
     this.setData({
       token: token
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
   },
 
   /**
@@ -276,20 +257,7 @@ Page({
       url: '/pages/authorization/index',
     })
   },
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
+  
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
