@@ -6,6 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    currentPage: 1,
+    total: '',
     orderStatusEnum:{
     WAITING_PAY:'等待支付',
 
@@ -44,17 +46,37 @@ Page({
   getOrderList(){
     api.post("/facade/front/order/queryOrder", {
       // orderStatus :'WAITING_PAY',
-      pageSize:200
+      currentPage: this.data.currentPage,
+      pageSize:3
     }).then(res => {
-
       this.setData({
-        orderList:res.data.list,
+        orderList:this.data.orderList.concat(res.data.list),
+        total:res.data.total,
         skeleton:false
       })
 
     }).catch(e => {
       console.log(e)
     })
+  },
+  // 监听用户滚动到顶部事件
+  scrollTop() {
+    this.setData({
+      currentPage:1,
+      orderList: []
+    })
+    this.getOrderList()
+  },
+  // 监听用户滚动到底部事件
+  scrollBottom() {
+    if(this.data.orderList.length < this.data.total){
+      this.setData({
+        currentPage:this.data.currentPage++
+      })
+      this.getOrderList()
+    }else{
+      console.log('1111')
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -85,21 +107,6 @@ Page({
   onUnload: function () {
 
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
   /**
    * 用户点击右上角分享
    */
