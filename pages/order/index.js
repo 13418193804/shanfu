@@ -8,6 +8,9 @@ Page({
   data: {
     currentPage: 1,
     total: '',
+    refresher: true,
+    loading: false,
+    loadingBottom: false,
     orderStatusEnum:{
     WAITING_PAY:'等待支付',
 
@@ -47,7 +50,7 @@ Page({
     api.post("/facade/front/order/queryOrder", {
       // orderStatus :'WAITING_PAY',
       currentPage: this.data.currentPage,
-      pageSize:3
+      pageSize:10
     }).then(res => {
       this.setData({
         orderList:this.data.orderList.concat(res.data.list),
@@ -61,21 +64,38 @@ Page({
   },
   // 监听用户滚动到顶部事件
   scrollTop() {
-    this.setData({
-      currentPage:1,
-      orderList: []
-    })
-    this.getOrderList()
+    setTimeout(()=>{
+      this.setData({
+        currentPage: 1,
+        orderList: [],
+        loadingBottom: false,
+        refresher: false
+      })
+      this.getOrderList()
+    },1500)
   },
   // 监听用户滚动到底部事件
   scrollBottom() {
+    this.setData({
+      loading:true
+    })
     if(this.data.orderList.length < this.data.total){
-      this.setData({
-        currentPage:this.data.currentPage++
-      })
-      this.getOrderList()
+      setTimeout(()=>{
+        this.setData({
+          currentPage:this.data.currentPage++
+        })
+        this.getOrderList()
+        this.setData({
+          loading:false
+        })
+      },1500)
     }else{
-      console.log('1111')
+      setTimeout(()=>{
+        this.setData({
+          loading:false,
+          loadingBottom: true
+        })
+      },1500)
     }
   },
   /**
