@@ -77,7 +77,8 @@ Page({
   // 监听用户滚动到底部事件
   scrollBottom() {
     this.setData({
-      loading:true
+      loading: true,
+      loadingBottom: false
     })
     if(this.data.orderList.length < this.data.total){
       setTimeout(()=>{
