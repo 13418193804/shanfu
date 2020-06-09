@@ -4,7 +4,6 @@
   height: 100vh;
   overflow: auto;
   background-color: #f4f4f4;
-  
 }
 .category{
   background-color: #fff;
@@ -51,23 +50,23 @@
 }
 .fresh_search {
   padding: 15rpx 20rpx;
-
-  background-color: #ff7f00;
+  color: #000;
+  background-color: #fff;
 }
 
 
 .search {
    border-radius: 40rpx;
    padding: 10rpx 20rpx;
-  background-color: #fff;
+  background-color: #f3f3f3;
   margin-left: 20rpx;
 }
 
 .banner{
   text-align: center;
-  /* background-color: #fff; */
+  background-color: #fff;
   padding: 20rpx 30rpx;
-  margin-top: -21vh;
+  /* margin-top: -21vh; */
 
 }
 .home_market_address{

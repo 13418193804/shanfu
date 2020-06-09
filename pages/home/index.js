@@ -46,6 +46,7 @@ Page({
             GASOLINE: '汽油',
             DIESEL: '柴油'
           },
+          statusBarHeight:0
 
         },
         replaceStr(str) {
@@ -327,9 +328,21 @@ Page({
           wx.showShareMenu({
             withShareTicket: true
           })
+          this.getSystemInfoMethods()
 
 
         },
+        getSystemInfoMethods:function(){
+                    let _this = this
+                    wx.getSystemInfo({
+                      success:function(res){
+                        console.log("111111111222222",res)
+                        _this.setData({
+                          statusBarHeight:res.statusBarHeight
+                        })
+                      }
+                    })
+                  },
       
         onShareAppMessage: function (res) {
           let invitationCode = wx.getStorageSync("invitationCode") || '';
