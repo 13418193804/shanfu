@@ -1,12 +1,18 @@
 @import 'index.skeleton.wxss';
 
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
 .order_container {
   background-color: #F4F4F4;
   height: 100vh;
   padding:0 20rpx;
-  overflow: auto;
 }
-
+.scroll_view {
+  height:100vh;
+}
 .order_title {
   padding: 20rpx 0;
   font-size: 32rpx
@@ -42,4 +48,12 @@
 .order_item_time {
   color: #666;
   margin-bottom: 20rpx;
+}
+.vant_loading{
+  text-align: center;
+}
+.vant_bottom{
+  text-align: center;
+  margin: 10rpx 0;
+  color: #969799;
 }

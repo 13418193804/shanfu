@@ -73,12 +73,20 @@
 					"id": -1,
 					"name": "首页",
 					"pathName": "pages/home/index",
+					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
 					"name": "商家",
 					"pathName": "pages/category/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "订单",
+					"pathName": "pages/order/index",
 					"scene": null
 				}
 			]
