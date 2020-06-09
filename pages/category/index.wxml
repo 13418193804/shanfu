@@ -133,10 +133,12 @@
 			close-icon="arrow-down"
 			z-index="{{999}}"
 			position="bottom"
-			custom-style="height: 90%"
+		
 			bind:close="onDetailClose"
 		>
-			<view class="detail_content">
+	 <scroll-view scroll-y="true" 
+	 style="height: 90vh;" 
+	 class="detail_content">
 				<view>
 					<swiper autoplay="true" class="banner_swiper">
 						<block wx:for="{{goodsObj.detail.imageList}}" wx:key="key">
@@ -186,6 +188,6 @@
 					</view>
 					<view style="text-align:center"><rich-text class="detail_rich_text" nodes="{{goodsObj.detail.detail}}"></rich-text></view>
 				</view>
-			</view>
+			</scroll-view>
 		</van-popup>
 </view>

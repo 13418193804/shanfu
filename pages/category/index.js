@@ -173,6 +173,7 @@ app.checkToken()
     })
     this.getGoodsByCarId()
   },
+ 
   getCartList() {
     api.post("/facade/front/cart/queryCart", {}).then(res => {
       let obj = {}
