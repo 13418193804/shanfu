@@ -14,7 +14,8 @@
       "name": "交易流程",
       "pages": [
         "confirm/index",
-        "order_detail/index"
+        "order_detail/index",
+        "goods_search/index"
       ]
     },
     {
