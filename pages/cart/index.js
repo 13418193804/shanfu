@@ -112,12 +112,12 @@ Page({
 
   getCartList() {
     api.post("/facade/front/cart/queryCartWithStore", {}).then(res => {
-      let storeCartList = Object.keys(res.data).map(e => {
+      let storeCartList =res.data.map(e => {
         return {
-          storeId: res.data[e][0].storeId,
-          storeName: e,
+          storeId: e.storeId,
+          storeName: e.storeName,
           selected: true,
-          children: res.data[e].map(es => {
+          children: e.cartList.map(es => {
             return {
               ...es,
               selected: true
