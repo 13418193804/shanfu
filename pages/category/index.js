@@ -290,6 +290,12 @@ app.checkToken()
 
 
   },
+  //商品搜索
+  handleSearch(){
+    wx.navigateTo({
+      url: '/Trade/goods_search/index',
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

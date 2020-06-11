@@ -6,9 +6,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    currentGoodsList: [],
+    skuModel: false,
   },
-
+  //模糊搜索
+  handleGoodsSearch(e){
+    api.post("/facade/front/goods/search", {content:e.detail.value}).then(res => {
+      this.setData({
+        currentGoodsList: res.data
+      })
+    }).catch(e => {
+      console.log(e)
+    })
+  },
+  openSkuModel(){
+    this.setData({
+      skuModel: true
+    })
+  },
+  //关闭
+  onClose() {
+    this.setData({
+      skuModel: false
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

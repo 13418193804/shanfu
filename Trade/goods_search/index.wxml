@@ -1,2 +1,80 @@
 <!--Trade/goods_search/index.wxml-->
-<text>Trade/goods_search/index.wxml</text>
+<view class="goods_search">
+    <view class="search_white">
+        <view class=" flex  flex-align-center fontSize28">
+            <i class="iconfont iconsousuo " style="font-size: 40rpx;color:#888888;margin-right:10rpx;"></i>
+            <input confirm-type="search" placeholder="输入商品名称" class="fontSize28 flex-1" placeholder-class="fontSize28" bindblur="handleGoodsSearch"></input>
+        </view>
+    </view>
+    <view style="margin-bottom:40rpx">
+        <view class="goods_item fontSize28 flex" wx:for="{{currentGoodsList}}" data-item="{{item}}">
+            <view class="flex flex-align-center category_image_box">
+                <image mode="widthFix" src="{{item.goodsIcon}}" style="width:100%"></image>
+            </view>
+            <view style="line-height: 55rpx;">
+                <view class="fontSize28 van-multi-ellipsis--l2" style="padding: 2rpx"> 
+                    <van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>{{item.store.storeName}}</van-tag>{{item.goodsName}}
+                </view>
+                <view style="color:#888888" class="fontSize24">{{item.firstCatName}}</view>
+                <view class="flex flex-align-center">
+                    <view style="color:red">
+                        <text>￥</text>
+                        <text style="font-size:38rpx">{{item.salePrice}}</text>
+                    </view>
+                    <view class="label_price">
+                        <text>￥</text>
+                        <text >{{item.labelPrice}}</text>
+                    </view>
+                </view>
+            </view>
+            <view class="plus flex  flex-align-center">
+                <!-- <view class=""  wx:if="{{cartEnum[item.goodsId]}}">
+                    <i catchtap="subCart" data-id="{{item.goodsId}}" class="iconfont iconjian " style="font-size:34rpx;color:#E5E5E5"></i>
+                    <text style="width:50rpx;text-align:center;margin:0 10rpx;">{{cartEnum[item.goodsId]}}</text>
+                    <i catchtap="openSkuModel" data-item="{{item}}" class="iconfont iconadd " style="font-size:34rpx;color:#009A44"></i>
+                </view> -->
+                <view>
+                    <i catchtap="openSkuModel" class="iconfont iconjiarugouwuche " style="font-size:50rpx;"></i>
+                </view>
+            </view>
+        </view>
+    </view>
+    <van-popup
+        show="{{ skuModel }}"
+        closeable
+        close-icon="close"
+        z-index="{{999}}"
+        position="bottom"
+        custom-style="height: 70%"
+        bind:close="onClose"
+    >
+        <view class="sku_content">
+            <view class="flex sku_goods_content">
+                <view class="category_image_boxs flex flex-align-center">
+                <image mode="widthFix" src="http://saas.aisishop.com/shanfu-file-service-dev/upload/goodsImage/20200603/small_file5ed74300f3c543704b2d61ad.png" style="margin-right:20rpx;width:160rpx"/>
+                </view>
+                <view class="flex-1" style="position: relative;">
+                    <view class="fontSize32 van-multi-ellipsis--l2" style="margin-right: 20rpx;">清远购物车</view>
+                    <view class="fontSize24" style="margin-top:10rpx;color:#666">已选：已选</view>
+
+                        <view class="flex flex-align-center ">
+                        <view style="color:red">
+                            <text>￥</text>
+                            <text style="font-size:38rpx">20</text>
+                        </view>
+                        <view class="label_price">
+                            <text>￥</text>
+                            <text >10</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="sku_content_list">
+                <view class="sku_content_item">购物车</view>
+            </view>
+			<view class="sku_content_submit">
+				 <button type="primary" style="width:100%">选好了</button>
+			</view>
+		</view>
+	</van-popup>
+</view>
