@@ -70,14 +70,15 @@
 
 		<view class="around_shop_item flex flex-align-center fontSize28 " style="position: relative;" wx:for="{{marketPlaceList}}" bindtap="goMarket" data-id="{{item.marketplaceId}}">
 			<view>
-				<image src="../../images/s{{index+1}}.png" mode="widthFix" style="width:13vw;margin:20rpx; border-radius: 5px;"></image>
+				<image src="../../images/s{{index+1}}.png" mode="widthFix" style="width:20vw;margin:20rpx; border-radius: 5px;"></image>
 			</view>
 			<view class="flex-1" style="width:0;">
 				<view class="home_market_merchant">
-					<view class="fontSize32">{{item.marketplaceName}}</view>
-					<view class="flex">
-						<view class="flex fontSize24" wx:for="{{item.remarkList}}" style="padding-right:10rpx;">
-							<van-tag color="#FC5D5E" plain round>{{item}}</van-tag>
+					<view class="fontSize32" class="around_shop_item_marketplaceName">{{item.marketplaceName}}</view>
+					<view class="flex" style="margin-top:15rpx">
+						<view class="flex fontSize24 home_market_merchant_item" wx:for="{{item.remarkList}}" wx:key="index" wx:if="{{index < 2}}" style="padding-right:10rpx;">
+							<!-- <van-tag  plain round>{{item}}</van-tag> -->
+							<view class="home_market_merchant_item_tag">{{item}}</view>
 						</view>
 					</view>
 				</view>

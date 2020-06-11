@@ -35,7 +35,7 @@
 	</view>
 	<view class="flex-1">
 			<view class="confirm_goodsName van-multi-ellipsis--l2">{{cart.goodsName}}</view>
-			<view class="confirm_sku ">{{cart.skuKeyValue}}</view>
+			<view class="confirm_sku">{{cart.skuKeyValue}}</view>
 	</view>
 	<view  class="confirm_num_box" >
 		x{{cart.num}}
@@ -57,7 +57,7 @@
 
 			<view class=" flex flex-pack-justify" style="padding:20rpx 0">
 				<view class="desc_box_label">订单备注</view>
-				<view class="flex-1"><input style="font-size:28rpx" model:value="{{remark}}" placeholder="填写备注可以给商家留言"></input></view>
+				<view class="flex-1"><input style="font-size:28rpx" model:value="{{remark}}" bindinput="inputRemark" placeholder="填写备注可以给商家留言"></input></view>
 			</view>
 
 			<!-- <view class=" flex flex-pack-justify" style="padding:20rpx 0;">

@@ -14,6 +14,11 @@ Page({
     totalAmmountStr:0,
     remark:''
   },
+  inputRemark(e){
+    this.setData({
+      remark:e.detail.value
+    })
+  },
   doSubmit(){
     if(!this.data.address){
         wx.showToast({
@@ -25,7 +30,8 @@ Page({
 
     let openId =  wx.getStorageSync("openId") ? wx.getStorageSync("openId") : '';
     api.post("/facade/front/order/submitOrder", {
-      prepareId :this.data.prepareId
+      prepareId:this.data.prepareId,
+      remark:this.data.remark
     }).then(res => {
         let payId = res.data.payId
       api.post("/facade/front/wechat/miniPay", {

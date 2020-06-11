@@ -13,11 +13,15 @@
 }
 .around_shop{
   padding: 30rpx 30rpx;
+  margin-bottom: 5vh;
 }
 .around_shop_item{
   margin-top: 20rpx;
   background-color: #fff;
   border-radius: 10rpx;
+}
+.around_shop_item_marketplaceName{
+  font-weight:bold;
 }
 .go_shop{
   border-radius: 40rpx;
@@ -85,4 +89,21 @@
   position: absolute;
   top: 20rpx;
   line-height: 44rpx;
+}
+.home_market_merchant_item{
+  /* overflow: hidden;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; 
+   width: 260rpx; */
+}
+.home_market_merchant_item_tag{
+  color:#FC5D5E;
+  border: 1px solid#FC5D5E;
+  font-size: 8pt;
+  line-clamp: 1;
+  line-height:30rpx;
+  border-radius: 2px;
+  padding: 0 3px 0 3px;
 }
