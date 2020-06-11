@@ -4,6 +4,7 @@
   height: 100vh;
   overflow: auto;
   background-color: #f4f4f4;
+  border-top:transparent;
 }
 .category{
   background-color: #fff;

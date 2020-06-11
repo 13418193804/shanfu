@@ -1,4 +1,4 @@
-<view class="page-body" style="padding-top:{{statusBarHeight}}px">
+<view class="page-body" style="border-top:{{statusBarHeight}}px solid">
 
 	<view class="fresh_search flex  flex-align-center  flex-pack-justify">
 		<view class=" flex flex-align-center">
