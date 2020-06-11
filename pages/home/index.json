@@ -4,5 +4,6 @@
   },
   "navigationBarBackgroundColor": "#FF7F00",
   "navigationBarTextStyle": "white",
+  "navigationStyle":"custom",
   "disableScroll":true
 }

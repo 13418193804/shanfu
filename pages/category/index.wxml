@@ -137,7 +137,7 @@
 			bind:close="onDetailClose"
 		>
 	 <scroll-view scroll-y="true" 
-	 style="height: 90vh;" 
+	 style="height: 100vh;" 
 	 class="detail_content">
 				<view>
 					<swiper autoplay="true" class="banner_swiper">

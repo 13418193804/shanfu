@@ -1,4 +1,4 @@
-<view class="page-body">
+<view class="page-body" style="padding-top:{{statusBarHeight}}px">
 
 	<view class="fresh_search flex  flex-align-center  flex-pack-justify">
 		<view class=" flex flex-align-center">
@@ -10,52 +10,51 @@
 					<image bindtap="bindViewTap" src="{{userInfo.avatarUrl}}" mode="widthFix" style="width:100%;height:100%"></image>
 				</button>
 			</view> -->
-			<view  style="line-height: 44rpx;">
+			<view style="line-height: 44rpx;">
 				<!-- <view class="nickName fontSize28">{{userInfo.nickName}}</view> -->
 				<view class="postion fontSize28 van-ellipsis">
-					<i class="iconfont icondingwei" style="margin-right:10rpx;color:#fff"></i>
-					<text class="fontSize28">{{recommendAddress}}</text>
-					<i class="iconfont iconxia1" style="color:#fff"></i>
+					<i class="iconfont icondingwei" style="margin-right:10rpx;color:#000"></i>
+					<text class="fontSize28" style="color:#000">{{recommendAddress}}</text>
+					<i class="iconfont iconxia1" style="color:#000"></i>
 				</view>
 			</view>
 		</view>
 
-		<view class="search flex-1">
+		<view class="search flex-1" style="margin-right:180rpx">
 			<view class=" flex  flex-align-center ">
 				<i class="iconfont iconsousuo" style="color:#888888;margin-right:10rpx;"></i>
-				<input placeholder="输入商品名称" placeholder-class="fontSize24"	 class="fontSize28 flex-1" placeholder-class="fontSize28"></input>
+				<input placeholder="输入商品名称" placeholder-class="fontSize24" class="fontSize28 flex-1" placeholder-class="fontSize28"></input>
 			</view>
 		</view>
 
 
 	</view>
 
-		<view style="width:100vw;height: 20vh;background-color: #FFFFFF;">
-		<view style="width: 100vw;height: 100px;border:1px solid #FF7F00;background-color: #FF7F00;border-radius: 0px 0px 100vw 100vw;"></view> 
-		</view>
+	<!-- <view style="width:100vw;height: 20vh;background-color: #FFFFFF;"> -->
+	<!-- <view style="width: 100vw;height: 100px;border:1px solid #FF7F00;background-color: #FF7F00;border-radius: 0px 0px 100vw 100vw;"></view>  -->
+	<!-- </view> -->
 	<view class="banner">
 		<image src="../../images/banner.png" mode="widthFix" style="width:100%;"></image>
 	</view>
-	<view class="category flex">
-		<view wx:for="{{hotBarList}}" style="flaot:letf;padding-right:60rpx">
+	<view class="category flex flex-align-center flex-pack-justify">
+		<view wx:for="{{hotBarList}}" style="flaot:letf;padding-right:50rpx">
 			<view class="flex-1">
 				<image src="../../images/c{{index+1}}.png" mode="widthFix" style="width:80rpx"></image>
 			</view>
-			<view class="fontSize28" style="margin-top:10rpx;">{{item.title}}</view>
+			<view class="fontSize26" style="margin-top:10rpx;">{{item.title}}</view>
+		</view>
+		<view style="flaot:letf;padding-right:50rpx">
+			<view class="flex-1">
+				<image src="../../images/c4.png" mode="widthFix" style="width:80rpx"></image>
+			</view>
+			<view class="fontSize28" style="margin-top:10rpx;">邀请有奖</view>
 		</view>
 
-				<view style="flaot:letf;padding-right:60rpx">
-			<view class="flex-1" style="">
-			<image src="../../images/c3.png" mode="widthFix" style="width:80rpx"></image>
+		<view style="flaot:right;">
+			<view class="flex-1" style="flaot:right">
+				<image src="../../images/c5.png" mode="widthFix" style="width:80rpx"></image>
 			</view>
-			<view class="fontSize28" style="margin-top:10rpx;">热门</view>
-		</view>
-
-						<view style="flaot:letf;">
-			<view class="flex-1" style="">
-			<image src="../../images/c3.png" mode="widthFix" style="width:80rpx"></image>
-			</view>
-			<view class="fontSize28" style="margin-top:10rpx;">热门</view>
+			<view class="fontSize28" style="margin-top:10rpx;">下单减免</view>
 		</view>
 		<!-- <image src="../../images/c3.png" mode="widthFix" style="width:80rpx"></image> -->
 
@@ -71,18 +70,20 @@
 
 		<view class="around_shop_item flex flex-align-center fontSize28 " style="position: relative;" wx:for="{{marketPlaceList}}" bindtap="goMarket" data-id="{{item.marketplaceId}}">
 			<view>
-				<image src="../../images/s{{index+1}}.png" mode="widthFix" 
-				style="width:13vw;margin:20rpx; border-radius: 5px;"></image>
+				<image src="../../images/s{{index+1}}.png" mode="widthFix" style="width:13vw;margin:20rpx; border-radius: 5px;"></image>
 			</view>
-			<view class="flex-1">
-			<view class="home_market_merchant">
-				<view class="fontSize32">{{item.marketplaceName}}</view>
-				<view class="flex fontSize24">
-					<van-tag color="#FC5D5E" plain>{{item.remark}}</van-tag>
-				</view>
+			<view class="flex-1" style="width:0;">
+				<view class="home_market_merchant">
+					<view class="fontSize32">{{item.marketplaceName}}</view>
+					<view class="flex">
+						<view class="flex fontSize24" wx:for="{{item.remarkList}}" style="padding-right:10rpx;">
+							<van-tag color="#FC5D5E" plain round>{{item}}</van-tag>
+						</view>
+					</view>
 				</view>
 				<view class="home_market_address van-multi-ellipsis--l2">{{item.address}} </view>
 			</view>
+						<view style="border: 1px solid #ff7f00;align-items: center;line-height: 60rpx; padding: 0 20rpx; margin-right: 20rpx; border-radius:25px;color:#ff7f00;">去买菜</view>
 			<view>
 			</view>
 		</view>
