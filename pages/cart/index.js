@@ -139,12 +139,18 @@ Page({
       console.log(e)
     })
     api.post("/facade/front/cart/queryCart", {}).then(res => {
+      let cartNum = 0
       this.setData({
         cartList: res.data,
       })
-
- 
-
+      for(let i = 0; i < res.data.length;i++){
+        cartNum += res.data[i].num
+        console.log("cartNum",cartNum)
+      }
+      wx.setTabBarBadge({
+        index: 2,
+        text: String(cartNum)
+      })
     }).catch(e => {
       console.log(e)
     })

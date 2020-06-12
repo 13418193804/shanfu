@@ -7,7 +7,7 @@
 			<view  class="flex flex-align-center" style="padding:20rpx" bindtap="changAddress">
 				<view class="flex-1">
 				<view class="fontSize28">{{orderDetail.contractName}} {{orderDetail.contractMobile}}</view>
-				<view class="fontSize24">{{orderDetail.province}}{{orderDetail.city}}{{orderDetail.country}}{{orderDetail.street}} {{orderDetail.address}}</view>
+				<view class="fontSize24">{{orderDetail.addressProvince}}{{orderDetail.addressCity}}{{orderDetail.addressCountry}}{{orderDetail.addressStreet}} {{orderDetail.addressInfo}}</view>
 				</view>
 		</view>
 	</view>
