@@ -184,13 +184,15 @@ app.checkToken()
           obj[e.goodsId] = e.num
         }
       })
-
       this.setData({
         cartList: res.data,
         cartEnum: obj
       })
-
-
+      console.log("res",res)
+      wx.setTabBarBadge({
+        index: 2,
+        text: String(res.data.length)
+      })
     }).catch(e => {
       console.log(e)
     })

@@ -142,9 +142,10 @@ Page({
       this.setData({
         cartList: res.data,
       })
-
- 
-
+      wx.setTabBarBadge({
+        index: 2,
+        text: String(res.data.length)
+      })
     }).catch(e => {
       console.log(e)
     })
