@@ -1,18 +1,27 @@
 <!--Trade/goods_search/index.wxml-->
 <view class="goods_search">
-    <view class="search_white">
-        <view class=" flex  flex-align-center fontSize28">
-            <i class="iconfont iconsousuo " style="font-size: 40rpx;color:#888888;margin-right:10rpx;"></i>
-            <input confirm-type="search" placeholder="输入商品名称" class="fontSize28 flex-1" placeholder-class="fontSize28" bindblur="handleGoodsSearch"></input>
-        </view>
-    </view>
+    <view class="search_postion flex flex-align-center flex-pack-justify van-ellipsis">
+		<picker class="postion flex  flex-align-center fontSize28" bindchange="bindMarketChange" value="{{marketIndex}}" range="{{marketPlaceList}}" range-key="marketplaceName">
+            <view class="postion_store_select van-ellipsis">
+                <i class="iconfont icondingwei fontSize28" style="margin-right:10rpx;"></i>
+                <text class="">{{marketPlaceList[marketIndex].marketplaceName}}</text>
+                <i class="iconfont iconxia1" style=""></i>
+            </view>
+        </picker>
+		<view class="search_white flex-1">
+			<view class=" flex  flex-align-center fontSize28">
+				<i class="iconfont iconsousuo " style="font-size: 40rpx;color:#888888;margin-right:10rpx;"></i>
+				<input placeholder="输入商品名称" data-name="content" value="{{content}}" bindinput='handleInpue' class="fontSize28 flex-1" bindblur="handleGoodsSearch" placeholder-class="fontSize28"></input>
+			</view>
+		</view>
+	</view>
     <view wx:if="{{currentGoodsList.length == 0}}" class="cart_empty flex flex-align-center flex-pack-center">
         <view>
             <view class="fontSize32" style="margin-bottom:30rpx;color:#666;">暂无商品</view>
         </view>
     </view>
     <view style="margin-bottom:40rpx" wx:else>
-        <view class="goods_item fontSize28 flex" wx:for="{{currentGoodsList}}" data-item="{{item}}">
+        <view class="goods_item fontSize28 flex" wx:for="{{currentGoodsList}}" bindtap="openDetailModel" data-item="{{item}}">
             <view class="flex flex-align-center category_image_box">
                 <image mode="widthFix" src="{{item.goods_icon}}" style="width:100%"></image>
             </view>
@@ -81,5 +90,69 @@
 				 <button type="primary" style="width:100%" bindtap="submitSku">选好了</button>
 			</view>
 		</view>
-	</van-popup>
+    </van-popup>
+    
+    <!-- 商品详情 -->
+    <van-popup
+        show="{{ detailModel }}"
+        closeable
+        close-icon="arrow-down"
+        z-index="{{999}}"
+        position="bottom"
+        bind:close="onDetailClose"
+    >
+        <scroll-view scroll-y="true" 
+        style="height: 100vh;" 
+        class="detail_content">
+            <view>
+                <swiper autoplay="true" class="banner_swiper">
+                    <block wx:for="{{goodsObj.detail.imageList}}" wx:key="key">
+                        <swiper-item>
+                            <image src="{{item}}" style="width:100%;height:100%"/>
+                        </swiper-item>
+                    </block>
+                </swiper>
+            </view>
+            
+            <view class="goods_content">
+                <view class="flex flex-pack-justify goods_content_same">
+                    <view>
+                        <view class="fontSize28 goods_content_name van-multi-ellipsis--l2">
+                            <van-tag color="#009A44" size="large" style="font-size:36rpx;margin-right:10rpx;" plain>{{goodsObj.store_name}}</van-tag>{{goodsObj.goodsName}}
+                        </view>
+                        <view class="fontSize24 goods_content_jingle van-multi-ellipsis--l2">{{goodsObj.jingle}}</view>
+                    </view>
+                    <!-- <i class="iconfont iconfenxiang " style="font-size: 40rpx;color:#888888;margin:25rpx 0 0 25rpx;"></i> -->
+                </view>
+
+                <view class="flex flex-pack-justify goods_content_same">
+                    <view class="flex">
+                        <view class="goods_content_salePrice">￥{{goodsObj.salePrice}}</view>
+                        <view class="goods_content_labelPrice">￥{{goodsObj.labelPrice}}</view>
+                    </view>
+                    <view class="flex flex-align-center" wx:if="{{cartEnum[goodsObj.goodsId]}}">
+                        <view style="padding-right:2rpx">
+                            <i catchtap="subCart" data-id="{{goodsObj.goodsId}}" class="iconfont iconjian " style="font-size:40rpx;color:#E5E5E5"></i>
+                            <text style="font-size:40rpx;width:80rpx;text-align:center;margin:0 10rpx;">{{cartEnum[goodsObj.goodsId]}}</text>
+                            <i catchtap="openDetaiSkuModel" data-item="{{goodsObj}}" class="iconfont iconadd " style="font-size:40rpx;color:#009A44"></i>
+                        </view>
+                    </view>
+                    <view wx:else class="flex goods_content_addCart" catchtap="openDetaiSkuModel" data-item="{{goodsObj}}">
+                        <view><i class="iconfont iconjiahao" style="font-size: 28rpx;color:#ffffff;margin-right:10rpx;"></i></view>
+                        <view>加入购物车</view>
+                    </view>
+                </view>
+
+            </view>
+
+            <view>
+                <view class="goods_content_detail">商品详情</view>
+                <view class="flex fontSize24 introduce_detail">
+                    <view style="margin-right:30rpx;">重量：{{goodsObj.goodsWeight}}kg</view>
+                    <view>分类：{{goodsObj.secondCatName}}</view>
+                </view>
+                <view style="text-align:center"><rich-text class="detail_rich_text" nodes="{{goodsObj.detail.detail}}"></rich-text></view>
+            </view>
+        </scroll-view>
+    </van-popup>
 </view>
