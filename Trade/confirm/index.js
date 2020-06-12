@@ -46,11 +46,12 @@ Page({
           signType: 'MD5',
           paySign: res.data.paySign,
           success(res) {
+
             wx.showToast({
               title: "支付成功",
               duration: 2000,
             })
-        
+           
           },
           fail(res) {
             wx.showToast({
@@ -61,6 +62,11 @@ Page({
           },
           complete(e) {
             console.log(e)
+            setTimeout(()=>{
+              wx.redirectTo({
+                url: '/pages/order/index',
+              })
+            },1500)
           }
         })
       }).catch(e => {
