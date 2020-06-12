@@ -1,41 +1,41 @@
 <view class="order_container">
-<include src="index.skeleton.wxml" wx:if="{{skeleton}}"/>
-
-	<view wx:if="{{loginStatus}}">
-  <scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresher}}" bindrefresherrefresh="scrollTop" bindscrolltolower="scrollBottom" class="scroll_view">
-    <view class="order_title">
-      我的订单
-    </view>
+  <view wx:if="{{loginStatus}}">
+    <include src="index.skeleton.wxml" wx:if="{{skeleton}}"/>
+      <view wx:if="{{loginStatus}}">
+        <scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresher}}" bindrefresherrefresh="scrollTop" bindscrolltolower="scrollBottom" class="scroll_view">
+          <view class="order_title">
+            我的订单
+          </view>
+          <view>
+            <view wx:for="{{orderList}}" class="order_item" bindtap="goDetail" data-orderid="{{item.orderId}}">
+              <view class="order_item_store_status flex   flex-pack-justify">
+                  <view class="flex-1">
+                  <view class="order_item_store">{{item.storeName}}<i class="iconfont iconshangxiazuoyou-"></i></view>
+                  <view class="order_item_time fontSize24">{{item.createTime}}</view>
+                  </view>
+                  <view class="order_item_store fontSize28">{{orderStatusEnum[item.orderStatus]}}</view>
+              </view>
+              <view class="order_item_content">
+                  <view class="flex   flex-pack-justify fontSize28" style="padding:20rpx 20rpx 0;">
+                    <view class="fontSize24">{{item.orderTitle}} 等{{item.goodsNum}}件</view>
+                    <view style="font-weight: 600;">￥{{item.orderAmount}}</view>
+                  </view>
+              </view>
+            </view>
+          </view>
+          <view class="vant_loading" wx:if="{{loading}}">
+            <van-loading type="spinner" size="24px">加载中</van-loading>
+          </view>
+          <view class="vant_bottom" wx:if="{{loadingBottom}}">到底了</view>
+        </scroll-view>
+      </view>
+  </view>
+  <view wx:else class="cart_empty  flex  flex-align-center flex-pack-center">
     <view>
-      <view wx:for="{{orderList}}" class="order_item" bindtap="goDetail" data-orderid="{{item.orderId}}">
-        <view class="order_item_store_status flex   flex-pack-justify">
-            <view class="flex-1">
-            <view class="order_item_store">{{item.storeName}}<i class="iconfont iconshangxiazuoyou-"></i></view>
-            <view class="order_item_time fontSize24">{{item.createTime}}</view>
-            </view>
-            <view class="order_item_store fontSize28">{{orderStatusEnum[item.orderStatus]}}</view>
-        </view>
-
-        <view class="order_item_content">
-            <view class="flex   flex-pack-justify fontSize28" style="padding:20rpx 20rpx 0;">
-              <view class="fontSize24">{{item.orderTitle}} 等{{item.goodsNum}}件</view>
-              <view style="font-weight: 600;">￥{{item.orderAmount}}</view>
-            </view>
+      <view class="fontSize32" style="margin-bottom:30rpx;color:#666;">还没有登录</view>
+        <view>
+          <button type="primary" plain size="mini" bindtap="goLogin">授权登录</button>
         </view>
       </view>
     </view>
-    <view class="vant_loading" wx:if="{{loading}}">
-      <van-loading type="spinner" size="24px">加载中</van-loading>
-    </view>
-    <view class="vant_bottom" wx:if="{{loadingBottom}}">到底了</view>
-  </scroll-view>
- </view>
- <view wx:else class="cart_empty  flex  flex-align-center flex-pack-center">
-<view>
-	<view class="fontSize32" style="margin-bottom:30rpx;color:#666;">还没有登录</view>
-	<view>
-		<button type="primary" plain size="mini" bindtap="goLogin">授权登录</button>
-	</view>
-	</view>
-</view>
 </view>

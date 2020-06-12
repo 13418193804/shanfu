@@ -22,6 +22,9 @@ Page({
    */
   onLoad: function (options) {
     // this.initInfo()
+    this.setData({
+      token: wx.getStorageSync("token") ? wx.getStorageSync("token") : ''
+    })
   },
   initInfo(){
     if (app.globalData.userInfo) {
@@ -218,6 +221,11 @@ Page({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
         self.doLogin(loginRes.code, encryptedData, iv)
       }
+    })
+  },
+  goLogin(){
+    wx.navigateTo({
+      url: '/pages/authorization/index',
     })
   },
 })

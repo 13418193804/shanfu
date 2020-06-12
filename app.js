@@ -51,10 +51,6 @@ App({
 
   onShow: function(options) {
     console.log('onshow', options)
-    wx.setTabBarBadge({
-      index: 2,
-      text: '4'
-    })
     // wx.setStorageSync('invitationCode', "123")
     let reUserCode = options.query.invitationCode
     if (reUserCode) {
@@ -63,7 +59,6 @@ App({
     }
   },
   getServerUserInfo(callback){
-    
     api.get("/user/info", {
     }).then(res => {
       callback(res)
