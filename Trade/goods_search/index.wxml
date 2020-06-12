@@ -6,35 +6,40 @@
             <input confirm-type="search" placeholder="输入商品名称" class="fontSize28 flex-1" placeholder-class="fontSize28" bindblur="handleGoodsSearch"></input>
         </view>
     </view>
-    <view style="margin-bottom:40rpx">
+    <view wx:if="{{currentGoodsList.length == 0}}" class="cart_empty flex flex-align-center flex-pack-center">
+        <view>
+            <view class="fontSize32" style="margin-bottom:30rpx;color:#666;">暂无商品</view>
+        </view>
+    </view>
+    <view style="margin-bottom:40rpx" wx:else>
         <view class="goods_item fontSize28 flex" wx:for="{{currentGoodsList}}" data-item="{{item}}">
             <view class="flex flex-align-center category_image_box">
-                <image mode="widthFix" src="{{item.goodsIcon}}" style="width:100%"></image>
+                <image mode="widthFix" src="{{item.goods_icon}}" style="width:100%"></image>
             </view>
             <view style="line-height: 55rpx;">
                 <view class="fontSize28 van-multi-ellipsis--l2" style="padding: 2rpx"> 
-                    <van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>{{item.store.storeName}}</van-tag>{{item.goodsName}}
+                    <van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>{{item.store_name}}</van-tag>{{item.goods_name}}
                 </view>
-                <view style="color:#888888" class="fontSize24">{{item.firstCatName}}</view>
+                <view style="color:#888888" class="fontSize24">{{item.first_cat_name}}</view>
                 <view class="flex flex-align-center">
                     <view style="color:red">
                         <text>￥</text>
-                        <text style="font-size:38rpx">{{item.salePrice}}</text>
+                        <text style="font-size:38rpx">{{item.sale_price}}</text>
                     </view>
                     <view class="label_price">
                         <text>￥</text>
-                        <text >{{item.labelPrice}}</text>
+                        <text >{{item.label_price}}</text>
                     </view>
                 </view>
             </view>
             <view class="plus flex  flex-align-center">
-                <!-- <view class=""  wx:if="{{cartEnum[item.goodsId]}}">
-                    <i catchtap="subCart" data-id="{{item.goodsId}}" class="iconfont iconjian " style="font-size:34rpx;color:#E5E5E5"></i>
-                    <text style="width:50rpx;text-align:center;margin:0 10rpx;">{{cartEnum[item.goodsId]}}</text>
+                <view class=""  wx:if="{{cartEnum[item.goods_id]}}">
+                    <i catchtap="subCart" data-id="{{item.goods_id}}" class="iconfont iconjian " style="font-size:34rpx;color:#E5E5E5"></i>
+                    <text style="width:50rpx;text-align:center;margin:0 10rpx;">{{cartEnum[item.goods_id]}}</text>
                     <i catchtap="openSkuModel" data-item="{{item}}" class="iconfont iconadd " style="font-size:34rpx;color:#009A44"></i>
-                </view> -->
-                <view>
-                    <i catchtap="openSkuModel" class="iconfont iconjiarugouwuche " style="font-size:50rpx;"></i>
+                </view>
+                <view wx:else>
+                    <i catchtap="openSkuModel" data-item="{{item}}" class="iconfont iconjiarugouwuche " style="font-size:50rpx;"></i>
                 </view>
             </view>
         </view>
@@ -51,29 +56,29 @@
         <view class="sku_content">
             <view class="flex sku_goods_content">
                 <view class="category_image_boxs flex flex-align-center">
-                <image mode="widthFix" src="http://saas.aisishop.com/shanfu-file-service-dev/upload/goodsImage/20200603/small_file5ed74300f3c543704b2d61ad.png" style="margin-right:20rpx;width:160rpx"/>
+                <image mode="widthFix" src="{{selectSku && selectSku.skuImg ?selectSku.skuImg : goodsObj.goodsIcon}}" style="margin-right:20rpx;width:160rpx"/>
                 </view>
                 <view class="flex-1" style="position: relative;">
-                    <view class="fontSize32 van-multi-ellipsis--l2" style="margin-right: 20rpx;">清远购物车</view>
-                    <view class="fontSize24" style="margin-top:10rpx;color:#666">已选：已选</view>
+                    <view class="fontSize32 van-multi-ellipsis--l2" style="margin-right: 20rpx;">{{goodsObj.goodsName}}</view>
+                    <view class="fontSize24" wx:if="{{selectSku}}" style="margin-top:10rpx;color:#666">已选：{{selectSku.skuName}}</view>
 
                         <view class="flex flex-align-center ">
                         <view style="color:red">
                             <text>￥</text>
-                            <text style="font-size:38rpx">20</text>
+                            <text style="font-size:38rpx">{{selectSku ? selectSku.skuSalePrice: goodsObj.salePrice}}</text>
                         </view>
                         <view class="label_price">
                             <text>￥</text>
-                            <text >10</text>
+                            <text >{{selectSku ? selectSku.skuLabelPrice: goodsObj.labelPrice}}</text>
                         </view>
                     </view>
                 </view>
             </view>
             <view class="sku_content_list">
-                <view class="sku_content_item">购物车</view>
+                <view wx:for="{{goodsObj.skuList}}" class="sku_content_item {{selectSku && selectSku.skuId == item.skuId  ?'sku_content_item_active':''}}" bindtap="checkSkuItem" data-item="{{item}}">{{item.skuName}}</view>
             </view>
 			<view class="sku_content_submit">
-				 <button type="primary" style="width:100%">选好了</button>
+				 <button type="primary" style="width:100%" bindtap="submitSku">选好了</button>
 			</view>
 		</view>
 	</van-popup>

@@ -292,8 +292,9 @@ app.checkToken()
   },
   //商品搜索
   handleSearch(){
+    let marketPlaceId = this.data.marketPlaceList[this.data.marketIndex].marketplaceId
     wx.navigateTo({
-      url: '/Trade/goods_search/index',
+      url: "/Trade/goods_search/index?marketPlaceId=" + marketPlaceId,
     })
   },
   /**
