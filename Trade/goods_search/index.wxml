@@ -53,6 +53,7 @@
             </view>
         </view>
     </view>
+    <!-- 购物选择 -->
     <van-popup
         show="{{ skuModel }}"
         closeable
