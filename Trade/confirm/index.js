@@ -27,57 +27,65 @@ Page({
         })
       return
     }
-
-    let openId =  wx.getStorageSync("openId") ? wx.getStorageSync("openId") : '';
+    if(this.data.payId){
+      this.doPayment()
+    }else{
     api.post("/facade/front/order/submitOrder", {
       prepareId:this.data.prepareId,
       remark:this.data.remark
     }).then(res => {
         let payId = res.data.payId
-      api.post("/facade/front/wechat/miniPay", {
-        "payId": payId,
-        "openId": openId,
-      }).then(res => {
-      
-        wx.requestPayment({
-          timeStamp: res.data.timeStamp,
-          nonceStr: res.data.nonceStr,
-          package: res.data.package,
-          signType: 'MD5',
-          paySign: res.data.paySign,
-          success(res) {
-
-            wx.showToast({
-              title: "支付成功",
-              duration: 2000,
-            })
-           
-          },
-          fail(res) {
-            wx.showToast({
-              title: "支付失败",
-              icon: 'none',
-              duration: 2000,
-            })
-          },
-          complete(e) {
-            console.log(e)
-            setTimeout(()=>{
-              wx.redirectTo({
-                url: '/pages/order/index',
-              })
-            },1500)
-          }
+        this.setData({
+          payId
         })
-      }).catch(e => {
-        console.log(e)
-      })
-
-
+      this.doPayment()
     }).catch(e => {
       console.log(e)
     })
+  }
+  },
+
+  doPayment(){
+    let openId =  wx.getStorageSync("openId") ? wx.getStorageSync("openId") : '';
+
+    api.post("/facade/front/wechat/miniPay", {
+      "payId": this.data.payId,
+      "openId": openId,
+    }).then(res => {
     
+      wx.requestPayment({
+        timeStamp: res.data.timeStamp,
+        nonceStr: res.data.nonceStr,
+        package: res.data.package,
+        signType: 'MD5',
+        paySign: res.data.paySign,
+        success(res) {
+          wx.showToast({
+            title: "支付成功",
+            duration: 2000,
+          })
+          setTimeout(()=>{
+            wx.switchTab({
+              url:'/pages/order/index',
+            })
+          },1500)
+        },
+        fail(res) {
+          wx.showToast({
+            title: "支付失败",
+            icon: 'none',
+            duration: 2000,
+          })
+        },
+        complete(e) {
+          console.log(e)
+        
+        }
+      })
+    }).catch(e => {
+      console.log(e)
+    })
+
   },
   changAddress(){
     wx.navigateTo({
@@ -88,7 +96,6 @@ Page({
     api.post("/facade/front/cart/prepare", {
       prepareId :this.data.prepareId
     }).then(res => {
-      
         this.setData({
           address:res.data.address,
           cartList:res.data.cartList,
@@ -125,7 +132,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
     this.getPrepareInfo()
+    
   },
 
   /**
