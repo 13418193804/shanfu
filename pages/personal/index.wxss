@@ -38,3 +38,8 @@ padding: 20rpx 0 30rpx;
   background-color:#fff ;
   border-bottom: 1px solid #F3F3F3;
 }
+.cart_empty{
+  height: 100vh;
+  background-color: #fff;
+  text-align: center;
+}
