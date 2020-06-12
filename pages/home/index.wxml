@@ -20,7 +20,7 @@
 			</view>
 		</view>
 
-		<view class="search flex-1" style="margin-right:180rpx">
+		<view class="search flex-1" style="margin-right:180rpx" bindtap="handleSearch">
 			<view class=" flex  flex-align-center ">
 				<i class="iconfont iconsousuo" style="color:#888888;margin-right:10rpx;"></i>
 				<input placeholder="输入商品名称" placeholder-class="fontSize24" class="fontSize28 flex-1" placeholder-class="fontSize28"></input>

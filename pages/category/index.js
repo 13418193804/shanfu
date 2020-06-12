@@ -117,18 +117,28 @@ app.checkToken()
       this.setData({
         goodsObj: Object.assign(res.data,{store:item.store})
       })
-      // if (item.singleStatus) {
-      //   this.addCart(goodsId, 
-      //     this.data.goodsObj.skuList[0].skuId,
-      //     this.data.goodsObj.store.storeId
-      //     )
-      //   return
-      // }
       this.setData({
         detailModel: true
       })
     }).catch(e => {
       console.log(e)
+    })
+  },
+  //商品详情增加
+  openDetaiSkuModel(e){
+    let item = e.currentTarget.dataset.item
+    let goodsId = item.goodsId
+    if (item.singleStatus) {
+      this.addCart(goodsId, 
+        this.data.goodsObj.skuList[0].skuId,
+        this.data.goodsObj.store.storeId
+        )
+      return
+    }
+    this.setData({
+      skuModel: true,
+      detailModel: false,
+      selectSku: this.data.goodsObj.skuList.length > 0 ? this.data.goodsObj.skuList[0] : null
     })
   },
   onDetailClose() {

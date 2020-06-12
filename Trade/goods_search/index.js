@@ -7,21 +7,56 @@ Page({
    */
   data: {
     currentGoodsList: [],
-    skuModel: false,
+    marketPlaceList: [],
+    marketIndex: 0,
+    skuModel: null,
+    detailModel: null,
     marketPlaceId: '',
+    queryMarketPlaceId:null,
+    content: '',
     cartList: [],
     cartEnum: {},
     selectSku: null,
   },
   //模糊搜索
-  handleGoodsSearch(e){
-    api.post("/facade/front/goods/search", {content:e.detail.value,marketPlaceId:this.data.marketPlaceId}).then(res => {
+  handleGoodsSearch(){
+    api.post("/facade/front/goods/search", {
+      content:this.data.content,
+      marketPlaceId:this.data.marketPlaceList[this.data.marketIndex].marketplaceId
+    }).then(res => {
       this.setData({
         currentGoodsList: res.data
       })
     }).catch(e => {
       console.log(e)
     })
+  },
+  //查询市场
+  getMarketPlaceList() {
+    api.post("/facade/front/portal/mainPage", {}).then(res => {
+      this.setData({
+        marketPlaceList: res.data.marketPlaceList
+      })
+      if(this.data.queryMarketPlaceId){
+        this.data.marketPlaceList.forEach((e,index)=>{
+          if(e.marketplaceId == this.data.queryMarketPlaceId){
+            this.setData({
+              marketIndex :index,
+              queryMarketPlaceId:null
+            })
+          }
+        })
+      }
+    }).catch(e => {
+      console.log(e)
+    })
+  },
+  //选择市场
+  bindMarketChange(e){
+    this.setData({
+      marketIndex: e.detail.value
+    })
+    this.handleGoodsSearch()
   },
   //查阅购物车
   getCartList() {
@@ -75,6 +110,7 @@ Page({
       }
       this.setData({
         skuModel: true,
+        detailModel: false,
         selectSku: this.data.goodsObj.skuList.length > 0 ? this.data.goodsObj.skuList[0] : null
       })
     }).catch(e => {
@@ -120,12 +156,63 @@ Page({
       skuModel: false
     })
   },
+  //打开商品详情
+  openDetailModel(e){
+    let item = e.currentTarget.dataset.item
+    let goodsId = item.goods_id
+    api.post("/facade/front/goods/getGoodsDetail", {
+      goodsId: goodsId
+    }).then(res => {
+      this.setData({
+        goodsObj: Object.assign(res.data,{storeId:item.store_id,marketplaceId:item.marketplace_id,store_name:item.store_name})
+      })
+      this.setData({
+        detailModel: true
+      })
+    }).catch(e => {
+      console.log(e)
+    })
+  },
+  //商品详情增加数量
+  openDetaiSkuModel(e) {
+    let item = e.currentTarget.dataset.item
+    let goodsId = item.goodsId
+    if (item.singleStatus) {
+      this.addCart(goodsId, 
+        this.data.goodsObj.skuList[0].skuId,
+        this.data.goodsObj.storeId,
+        this.data.goodsObj.marketplaceId
+      )
+      return
+    }
+    this.setData({
+      skuModel: true,
+      detailModel: false,
+      selectSku: this.data.goodsObj.skuList.length > 0 ? this.data.goodsObj.skuList[0] : null
+    })
+  },
+  //关闭商品详情
+  onDetailClose() {
+    this.setData({
+      detailModel: false
+    })
+  },
+  //获取输入框的值
+  handleInpue(e){
+    switch (e.currentTarget.dataset.name) {
+      case 'content':
+        this.setData({
+          content: e.detail.value
+        })
+        break
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
-      marketPlaceId:options.marketPlaceId
+      queryMarketPlaceId:options.marketPlaceId
     })
   },
 
@@ -141,13 +228,15 @@ Page({
    */
   onShow: function () {
     this.setData({
-      skuModel: null
+      skuModel: null,
+      detailModel: null
     })
     const token = wx.getStorageSync("token") ? wx.getStorageSync("token") : '';
     const uid = wx.getStorageSync("uid") ? wx.getStorageSync("uid") : '';
     if(uid && token){
       this.getCartList()
     }
+    this.getMarketPlaceList()
   },
 
   /**

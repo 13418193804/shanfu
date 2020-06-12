@@ -388,6 +388,12 @@ Page({
             url: '/PersonalContract/invite/index'
           })
         },
+        //商品搜索
+        handleSearch(){
+          wx.navigateTo({
+            url: '/Trade/goods_search/index',
+          })
+        },
         neverLoad() {
           wx.showToast({
             title: "敬请期待！",
@@ -424,6 +430,6 @@ Page({
               })
             }
           })
-        }
+        },
 
       })
