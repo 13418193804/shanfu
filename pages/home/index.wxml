@@ -1,5 +1,5 @@
 <view class="page-body" style="border-top:{{statusBarHeight}}px solid">
-
+<view style="position: fixed">
 	<view class="fresh_search flex  flex-align-center  flex-pack-justify">
 		<view class=" flex flex-align-center">
 			<!-- <view>
@@ -29,7 +29,7 @@
 
 
 	</view>
-
+</view>
 	<!-- <view style="width:100vw;height: 20vh;background-color: #FFFFFF;"> -->
 	<!-- <view style="width: 100vw;height: 100px;border:1px solid #FF7F00;background-color: #FF7F00;border-radius: 0px 0px 100vw 100vw;"></view>  -->
 	<!-- </view> -->
