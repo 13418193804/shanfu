@@ -34,6 +34,11 @@
     font-size: 24rpx;
     margin-left: 10rpx;
 }
+.cart_empty{
+    height: 100vh;
+    background-color: #fff;
+    text-align: center;
+}
 .sku_content {
     padding: 0 20px;
 }
