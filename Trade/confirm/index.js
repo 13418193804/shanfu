@@ -52,7 +52,6 @@ Page({
       "payId": this.data.payId,
       "openId": openId,
     }).then(res => {
-    
       wx.requestPayment({
         timeStamp: res.data.timeStamp,
         nonceStr: res.data.nonceStr,
