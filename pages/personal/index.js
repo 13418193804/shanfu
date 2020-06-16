@@ -26,6 +26,11 @@ Page({
       token: wx.getStorageSync("token") ? wx.getStorageSync("token") : ''
     })
   },
+  goOrder(){
+    wx.navigateTo({
+      url: '/Trade/order/index',
+    })
+  },
   initInfo(){
     if (app.globalData.userInfo) {
       this.setData({

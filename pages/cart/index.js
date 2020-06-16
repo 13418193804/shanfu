@@ -147,10 +147,16 @@ Page({
         cartNum += res.data[i].num
         console.log("cartNum",cartNum)
       }
-      wx.setTabBarBadge({
-        index: 2,
-        text: String(cartNum)
-      })
+      if(cartNum !== 0){
+        wx.setTabBarBadge({
+          index: 2,
+          text: String(cartNum)
+        })
+      } else{
+        wx.removeTabBarBadge({
+          index: 2
+        })
+      }
     }).catch(e => {
       console.log(e)
     })

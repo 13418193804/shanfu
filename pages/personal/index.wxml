@@ -16,7 +16,7 @@
 						</view>
 					</view>
 				</view>
-				<view class="y_line"></view>
+				<!-- <view class="y_line"></view>
 				<view style="width:20vw;text-align:center;">
 					<view>积分</view>
 					<view>0</view>
@@ -24,11 +24,11 @@
 				<view style="width:20vw;text-align:center;">
 					<view>优惠券</view>
 					<view>0</view>
-				</view>
+				</view> -->
 			</view>
 		</view>
-			<view class="user_menu_title  flex   flex-pack-justify">
-			<view>我的订单</view>
+			<view class="user_menu_title  flex   flex-pack-justify" bindtap="goOrder">
+			<view style="color:#232323">我的订单</view>
 			<view>查看全部<i class="iconfont iconshangxiazuoyou-"></i></view>
 		</view>
 		<view class="user_order fontSize28 flex flex-around-justify">
@@ -37,15 +37,15 @@
 				<view>{{item}}</view>
 			</view>
 		</view>
-		<view class="user_menu_title  flex   flex-pack-justify">
-			<view>我的活动</view>
+		<!-- <view class="user_menu_title  flex   flex-pack-justify">
+			<view style="color:#232323">我的活动</view>
 		</view>
 		<view class="user_active fontSize28 flex flex-around-justify">
 			<view wx:for="{{alist}}">
 				<image mode="widthFix" src="../../images/a{{index+1}}.png" style="width:8vw"></image>
 				<view>{{item}}</view>
 			</view>
-		</view>
+		</view> -->
 		<van-cell is-link title="地址管理" bindtap="goAddressList" />
 		<van-cell is-link title="问题反馈" link-type="navigateTo" />
 		<van-cell is-link title="关于我们" link-type="navigateTo" />

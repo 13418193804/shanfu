@@ -29,6 +29,54 @@ Page({
       orderId: options.orderId
     })
   },
+  nextpay(e){
+    let orderId  = e.currentTarget.dataset.id
+    api.post("/facade/front/order/continuePay", {
+      orderId :orderId 
+    }).then(res => {
+    this.doPayment(res.data.payId)
+    }).catch(e => {
+      console.log(e)
+    })
+      },
+    
+      doPayment(payId){
+        let openId =  wx.getStorageSync("openId") ? wx.getStorageSync("openId") : '';
+    
+        api.post("/facade/front/wechat/miniPay", {
+          "payId": payId,
+          "openId": openId,
+        }).then(res => {
+          wx.requestPayment({
+            timeStamp: res.data.timeStamp,
+            nonceStr: res.data.nonceStr,
+            package: res.data.package,
+            signType: 'MD5',
+            paySign: res.data.paySign,
+            success(res) {
+              wx.showToast({
+                title: "支付成功",
+                duration: 2000,
+              })
+            this.getOrderDetail()
+            },
+            fail(res) {
+              wx.showToast({
+                title: "支付失败",
+                icon: 'none',
+                duration: 2000,
+              })
+            },
+            complete(e) {
+             
+              
+            }
+          })
+        }).catch(e => {
+          console.log(e)
+        })
+    
+      },
   getOrderDetail() {
     api.post("/facade/front/order/getOrderInfo", {
       orderId: this.data.orderId,

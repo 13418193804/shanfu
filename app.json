@@ -1,9 +1,8 @@
 {
   "pages": [
-    "pages/category/index",
     "pages/home/index",
+    "pages/category/index",
     "pages/cart/index",
-    "pages/order/index",
     "pages/authorization/index",
     "pages/personal/index",
     "pages/login/index"
@@ -14,6 +13,7 @@
       "name": "交易流程",
       "pages": [
         "confirm/index",
+        "order/index",
         "order_detail/index",
         "goods_search/index"
       ]
@@ -55,12 +55,7 @@
         "pagePath": "pages/cart/index",
         "text": "购物车"
       },
-      {
-        "iconPath": "./images/order.png",
-        "selectedIconPath": "./images/order_select.png",
-        "pagePath": "pages/order/index",
-        "text": "订单"
-      },
+   
       {
         "iconPath": "./images/me.png",
         "selectedIconPath": "./images/me_select.png",

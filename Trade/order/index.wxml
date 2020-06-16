@@ -1,13 +1,13 @@
+
+<van-tabs active="{{ orderStatus }}" bind:change="onChange">
+  <van-tab wx:for="{{orderEnumList}}" title="{{item.title}}" name="{{item.name}}">
 <view class="order_container">
+
   <view wx:if="{{loginStatus}}">
-    <include src="index.skeleton.wxml" wx:if="{{skeleton}}"/>
       <view wx:if="{{loginStatus}}">
         <scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresher}}" bindrefresherrefresh="scrollTop" bindscrolltolower="scrollBottom" class="scroll_view">
-          <view class="order_title">
-            我的订单
-          </view>
           <view>
-            <view wx:for="{{orderList}}" class="order_item" bindtap="goDetail" data-orderid="{{item.orderId}}">
+            <view wx:for="{{orderList}}" class="order_item" bindtap="goDetail" data-orderid="{{item.orderId}}" style="{{index ==0 ?'margin-top: 20rpx':''}}">
               <view class="order_item_store_status flex   flex-pack-justify">
                   <view class="flex-1">
                   <view class="order_item_store">{{item.storeName}}<i class="iconfont iconshangxiazuoyou-"></i></view>
@@ -20,6 +20,9 @@
                     <view class="fontSize24">{{item.orderTitle}} 等{{item.goodsNum}}件</view>
                     <view style="font-weight: 600;">￥{{item.orderAmount}}</view>
                   </view>
+              </view>
+              <view class="order_item_content" style="text-align: right;margin-top: 20rpx;" wx:if="{{item.orderStatus == 'WAITING_PAY'}}">
+                    <van-button plain hairline type="primary" color="red" size="small" catchtap="nextpay" data-id="{{item.orderId}}">继续支付</van-button>
               </view>
             </view>
           </view>
@@ -39,3 +42,6 @@
       </view>
     </view>
 </view>
+  </van-tab>
+
+</van-tabs>

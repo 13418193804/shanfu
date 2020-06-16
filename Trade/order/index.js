@@ -24,7 +24,30 @@ Page({
     },
     orderList:[],
     loginStatus:true,
-    skeleton:true
+    skeleton:true,
+    orderStatus: "ALL",
+    orderEnumList:[
+      {
+        title:'全部',
+        name:'ALL'
+      },
+      {
+        title:'待支付',
+        name:'WAITING_PAY'
+      },
+      {
+        title:'待发货',
+        name:'WAITING_DELIVERY'
+      },
+      {
+        title:'待收货',
+        name:'IN_DELIVERY'
+      },
+      {
+        title:'已完成',
+        name:'ORDER_FINISH'
+      },
+    ]
   },
   goLogin(){
     wx.navigateTo({
@@ -46,16 +69,80 @@ Page({
       url: `/Trade/order_detail/index?orderId=${orderId}`,
     })
   },
-  getOrderList(){
-    api.post("/facade/front/order/queryOrder", {
-      // orderStatus :'WAITING_PAY',
-      currentPage: this.data.currentPage,
-      pageSize:10
+  nextpay(e){
+let orderId  = e.currentTarget.dataset.id
+api.post("/facade/front/order/continuePay", {
+  orderId :orderId 
+}).then(res => {
+this.doPayment(res.data.payId)
+}).catch(e => {
+  console.log(e)
+})
+  },
+onChange(e){
+
+    this.setData({
+      orderStatus:e.detail.name,
+      orderList:[],
+      
+    })
+
+    this.getOrderList()
+
+},
+  doPayment(payId){
+    let openId =  wx.getStorageSync("openId") ? wx.getStorageSync("openId") : '';
+
+    api.post("/facade/front/wechat/miniPay", {
+      "payId": payId,
+      "openId": openId,
     }).then(res => {
+      wx.requestPayment({
+        timeStamp: res.data.timeStamp,
+        nonceStr: res.data.nonceStr,
+        package: res.data.package,
+        signType: 'MD5',
+        paySign: res.data.paySign,
+        success(res) {
+          wx.showToast({
+            title: "支付成功",
+            duration: 2000,
+          })
+        this.getOrderList()
+        },
+        fail(res) {
+          wx.showToast({
+            title: "支付失败",
+            icon: 'none',
+            duration: 2000,
+          })
+        },
+        complete(e) {
+         
+          
+        }
+      })
+    }).catch(e => {
+      console.log(e)
+    })
+
+  },
+  getOrderList(){
+    let params = {
+      currentPage: this.data.currentPage,
+      pageSize:10,
+      orderStatus :this.data.orderStatus
+    }
+    console.log(this.data.orderStatus)
+    if(this.data.orderStatus == 'ALL'){
+      delete params.orderStatus
+    }
+    api.post("/facade/front/order/queryOrder",params).then(res => {
+  
+  console.log(res)
       this.setData({
         orderList:this.data.orderList.concat(res.data.list),
         total:res.data.total,
-        skeleton:false
       })
 
     }).catch(e => {
@@ -110,9 +197,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (this.data.loginStatus) {
       this.getOrderList()
-    }
   },
 
   /**
