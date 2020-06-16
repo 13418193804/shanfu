@@ -41,9 +41,9 @@
 			<view class="flex-1">
 				<image src="../../images/c{{index+1}}.png" mode="widthFix" style="width:80rpx"></image>
 			</view>
-			<view class="fontSize26" style="margin-top:10rpx;">{{item.title}}</view>
+			<view class="fontSize26" style="margin-top:10rpx;">{{item.columnName}}</view>
 		</view>
-		<view style="flaot:letf;padding-right:50rpx">
+		<!-- <view style="flaot:letf;padding-right:50rpx">
 			<view class="flex-1">
 				<image src="../../images/c4.png" mode="widthFix" style="width:80rpx"></image>
 			</view>
@@ -55,7 +55,7 @@
 				<image src="../../images/c5.png" mode="widthFix" style="width:80rpx"></image>
 			</view>
 			<view class="fontSize28" style="margin-top:10rpx;">下单减免</view>
-		</view>
+		</view> -->
 		<!-- <image src="../../images/c3.png" mode="widthFix" style="width:80rpx"></image> -->
 
 	</view>

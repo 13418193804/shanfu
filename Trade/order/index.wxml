@@ -5,7 +5,7 @@
 
   <view wx:if="{{loginStatus}}">
       <view wx:if="{{loginStatus}}">
-        <scroll-view scroll-y="true" refresher-enabled="true" refresher-triggered="{{refresher}}" bindrefresherrefresh="scrollTop" bindscrolltolower="scrollBottom" class="scroll_view">
+        <scroll-view scroll-y="true" upper-threshold="5" refresher-enabled="true" bindscrolltoupper="scrollTop" bindscrolltolower="scrollBottom" class="scroll_view">
           <view>
             <view wx:for="{{orderList}}" class="order_item" bindtap="goDetail" data-orderid="{{item.orderId}}" style="{{index ==0 ?'margin-top: 20rpx':''}}">
               <view class="order_item_store_status flex   flex-pack-justify">
