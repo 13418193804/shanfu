@@ -233,14 +233,25 @@ Page({
             })
          
           })
+          this.getColumnList()
           this.getMainPage()
-          
+        },
+        //栏目
+        getColumnList(){
+          api.post("/facade/front/operationColumn/list", {
+          }).then(res => {
+              this.setData({
+                hotBarList:res.data
+              })
+              console.log(this.data.hotBarList)
+          }).catch(e => {
+            console.log(e)
+          })
         },
         getMainPage(){
           api.post("/facade/front/portal/mainPage", {
           }).then(res => {
               this.setData({
-                hotBarList:res.data.hotBarList,
                 marketPlaceList:res.data.marketPlaceList.map(e=>{
                   return {
                     ...e,

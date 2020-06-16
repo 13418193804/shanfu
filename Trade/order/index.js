@@ -8,8 +8,7 @@ Page({
   data: {
     currentPage: 1,
     pageSize: 20,
-    refresher: true,
-    noThing: null,
+    noThing: false,
     orderStatusEnum:{
     WAITING_PAY:'等待支付',
 
@@ -155,7 +154,7 @@ onChange(e){
   scrollTop() {
     this.setData({
       pageSize: 20,
-      refresher: false
+      noThing: false
     })
     this.getOrderList()
   },
