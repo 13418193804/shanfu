@@ -11,7 +11,7 @@
 				</view>
 		</view>
 	</view>
-	<view class="order_width_shop" wx:for="{{orderDetail.details}}">
+	<view class="order_width_shop" >
 		<view class="order_width_shop_title">
 		  {{orderDetail.storeName}}
 		</view>
@@ -40,8 +40,18 @@
 		</view>
 		<view class=" ">
 			<view class=" goods_info_list flex flex-pack-justify">
+				<view>运费</view>
+				<view class="detail_desc">0.00</view>
+			</view>
+
+						<view class=" goods_info_list flex flex-pack-justify">
 				<view>合计</view>
 				<view class="order_price">￥{{orderDetail.orderAmount}}</view>
+			</view>
+
+				<view class=" goods_info_list flex flex-pack-justify">
+				<view>订单号</view>
+				<view class="detail_desc">{{orderDetail.orderId}}</view>
 			</view>
 
 			<view class="goods_info_list flex flex-pack-justify">
@@ -53,6 +63,15 @@
 				<view class="detail_desc" wx:if="{{!orderDetail.orderRemark}}">无</view>
 				<view class="detail_desc" wx:else>{{orderDetail.orderRemark}}</view>
 			</view>
+
+				<view class="goods_info_list flex flex-pack-justify" wx:if="{{orderDetail.orderStatus == 'WAITING_PAY'}}">
+					<view></view>
+					<view class="detail_desc" >
+                    <van-button plain hairline type="primary" color="red" size="small" catchtap="nextpay" data-id="{{orderDetail.orderId}}">继续支付</van-button>
+					</view>
+				 
+				</view>
+			  
 		</view>
 	</view>
 </view>

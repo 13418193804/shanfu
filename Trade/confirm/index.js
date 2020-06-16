@@ -47,7 +47,7 @@ Page({
 
   doPayment(){
     let openId =  wx.getStorageSync("openId") ? wx.getStorageSync("openId") : '';
-
+    const _self = this
     api.post("/facade/front/wechat/miniPay", {
       "payId": this.data.payId,
       "openId": openId,
@@ -63,11 +63,7 @@ Page({
             title: "支付成功",
             duration: 2000,
           })
-          setTimeout(()=>{
-            wx.switchTab({
-              url:'/pages/order/index',
-            })
-          },1500)
+        
         },
         fail(res) {
           wx.showToast({
@@ -77,8 +73,12 @@ Page({
           })
         },
         complete(e) {
-          console.log(e)
-        
+          _self.setData({
+              prepareId:null
+            })
+            wx.switchTab({
+              url:'/pages/order/index',
+            })
         }
       })
     }).catch(e => {
@@ -92,6 +92,10 @@ Page({
     })
   },
   getPrepareInfo(){
+    if(!this.data.prepareId)
+{
+  return
+}
     api.post("/facade/front/cart/prepare", {
       prepareId :this.data.prepareId
     }).then(res => {
