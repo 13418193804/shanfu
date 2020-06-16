@@ -3,7 +3,7 @@
     "van-tag": "@vant/weapp/tag/index"
   },
   "navigationBarBackgroundColor": "#FF7F00",
-  "navigationBarTextStyle": "white",
+  "navigationBarTextStyle": "black",
   "navigationStyle":"custom",
   "disableScroll":true
 }

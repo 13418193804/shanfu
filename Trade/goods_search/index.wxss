@@ -22,7 +22,7 @@
     margin-top: 20rpx;
 }
 .goods_item:active{
-    background-color: #F6F6F8;
+    /* background-color: #F6F6F8; */
 }
 .plus {
     position: absolute;

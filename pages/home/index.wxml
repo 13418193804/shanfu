@@ -1,6 +1,7 @@
-<view class="page-body" style="border-top:{{statusBarHeight}}px solid">
-<view style="position: fixed">
-	<view class="fresh_search flex  flex-align-center  flex-pack-justify">
+<view class="page-body" >
+<view style="position: fixed;top:0;background-color:#fff;width:100%;height:{{customBar}}px;">
+	<view class="statusbox">
+		<view class="fresh_search flex  flex-align-center  flex-pack-justify" style="position: absolute;top:{{capsuleTop}}px;width:{{searchWidth}}px;heigt:{{capsuleHeight}}px;line-heigt:{{capsuleHeight}}px;">
 		<view class=" flex flex-align-center">
 			<!-- <view>
 				<button class="userinfo-avatar" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" data-nextmethodname="goPersonalContract">
@@ -20,14 +21,15 @@
 			</view>
 		</view>
 
-		<view class="search flex-1" style="margin-right:180rpx" bindtap="handleSearch">
+		<view class="search flex-1"  bindtap="handleSearch">
 			<view class=" flex  flex-align-center ">
 				<i class="iconfont iconsousuo" style="color:#888888;margin-right:10rpx;"></i>
-				<input placeholder="输入商品名称" placeholder-class="fontSize24" class="fontSize28 flex-1" placeholder-class="fontSize28"></input>
+				<input placeholder="输入商品名称" disabled placeholder-class="fontSize24" class="fontSize28 flex-1" placeholder-class="fontSize28"></input>
 			</view>
 		</view>
 
 
+	</view>
 	</view>
 </view>
 	<!-- <view style="width:100vw;height: 20vh;background-color: #FFFFFF;"> -->

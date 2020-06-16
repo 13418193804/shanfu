@@ -13,7 +13,7 @@
     <view class="search_white flex-1" bindtap="handleSearch">
 			<view class=" flex  flex-align-center fontSize28">
 				<i class="iconfont iconsousuo " style="font-size: 40rpx;color:#888888;margin-right:10rpx;"></i>
-				<input placeholder="输入商品名称" class="fontSize28 flex-1" placeholder-class="fontSize28"></input>
+				<input placeholder="输入商品名称" disabled class="fontSize28 flex-1" placeholder-class="fontSize28"></input>
 			</view>
 		</view>
 	</view>
@@ -54,15 +54,14 @@
 
 					<view class="plus flex  flex-align-center">
 
-							<view class=""  wx:if="{{cartEnum[item.goodsId]}}">
+							<view  wx:if="{{cartEnum[item.goodsId]}}">
 			 
 							<i catchtap="subCart" data-id="{{item.goodsId}}" class="iconfont iconjian " style="font-size:34rpx;color:#E5E5E5"></i>
 						
 							<text style="width:50rpx;text-align:center;margin:0 10rpx;">{{cartEnum[item.goodsId]}}</text>
-		 
 					
-								<i catchtap="openSkuModel" data-item="{{item}}" class="iconfont iconadd " style="font-size:34rpx;color:#009A44"></i>
-								</view>
+							<i catchtap="openSkuModel" data-item="{{item}}" class="iconfont iconadd " style="font-size:34rpx;color:#009A44"></i>
+							</view>
 
 						<view wx:else>
 							<i catchtap="openSkuModel" data-item="{{item}}" class="iconfont iconjiarugouwuche " style="font-size:50rpx;"></i>

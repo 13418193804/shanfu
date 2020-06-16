@@ -2,6 +2,14 @@ import api from "../../utils/http_request.js"
 const app = getApp()
 Page({
       data: {
+        capsuleWidth: 0, //胶囊宽度
+        capsuleHeight: 0, //胶囊宽度
+        capsuleTop: 0,
+        customBar: 0,
+        searchWidth: 0,
+        windowWidth:0,
+        screenHeight: 0,
+        windowHeight: 0,
         recommendAddress:'获取定位中...',
         shopList:["中心市场","城东市场","城西市场"],
         catList: ["限时秒杀", "天天特价", "应季果蔬"],
@@ -331,6 +339,23 @@ Page({
 
         },
         onLoad: function () {
+          const _self = this
+          wx.getSystemInfo({
+            success(res) {
+              let obj = wx.getMenuButtonBoundingClientRect()
+              _self.setData({
+                capsuleWidth: obj.width, //胶囊宽度
+                capsuleHeight: obj.height, //胶囊宽度
+                capsuleTop: obj.top,
+                customBar: obj.bottom + obj.top - res.statusBarHeight,
+                searchWidth: obj.left - 40,
+                windowWidth: res.windowWidth,
+                screenHeight: res.screenHeight,
+                windowHeight: res.windowHeight
+              })
+            }
+          })
+
           this.setData({
             userId: wx.getStorageSync("userId") ? wx.getStorageSync("userId") : null,
             openId: wx.getStorageSync("openId") ? wx.getStorageSync("openId") : null,
