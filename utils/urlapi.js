@@ -1,8 +1,8 @@
 var apidomain = {
   // 基础接口
   base: {
-    // prod: 'https://apigateway.aisishop.com/shanfu-user-service-dev',
-    prod: 'http://192.168.1.193:7788',
+    prod: 'https://apigateway.aisishop.com/shanfu-user-service-dev',
+    // prod: 'http://192.168.1.193:7788',
     debug: 'http://120.24.70.202:9000',
     huidu: 'https://gfhapi.zkungfu.com/v29'
   },
