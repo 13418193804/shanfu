@@ -167,23 +167,25 @@
 }
 .goods_cat_item{
   font-size: 24rpx!important;
-  height: 2.5rem;
+  min-height: 2.5rem;
 }
 .goods_seccat_item{
   font-size: 22rpx!important;
-  height: 2.5rem;
+  min-height: 2.5rem;
   text-align: left;
-  padding-left: 10rpx;
+  margin-left: 10rpx;
 }
 .goods_cat_item_catname{
   border-left: 6rpx solid #F4F4F4;
   font-size: 31rpx;
   padding: 10rpx 10rpx 10rpx 20rpx;
+  text-align: left;
 
 }
 .goods_cat_item_catname_active{
   font-weight: bold;
   color:rgba(35,35,35,1);
+  text-align: left;
 }
 .goods_cat_item_active{
   background-color: #fff;
@@ -193,8 +195,10 @@ border-left: 6rpx solid #FF7F00;
 }
 .goods_seccat_item_catname{
   font-size: 28rpx;
+  text-align: left;
 }
 .goods_seccat_item_catname_active{
   color: #FF7F00;
+  text-align: left;
 
 }
