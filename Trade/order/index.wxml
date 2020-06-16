@@ -26,10 +26,6 @@
               </view>
             </view>
           </view>
-          <view class="vant_loading" wx:if="{{loading}}">
-            <van-loading type="spinner" size="24px">加载中</van-loading>
-          </view>
-          <view class="vant_bottom" wx:if="{{loadingBottom}}">到底了</view>
         </scroll-view>
       </view>
   </view>

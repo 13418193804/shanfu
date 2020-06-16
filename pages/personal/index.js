@@ -13,7 +13,24 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     hasUserInfo: false,
     token: null,
-    olist:["待支付","待发货","待收货","已收货",],
+    olist:[
+      {
+        title:'待支付',
+        name:'WAITING_PAY'
+      },
+      {
+        title:'待发货',
+        name:'WAITING_DELIVERY'
+      },
+      {
+        title:'待收货',
+        name:'IN_DELIVERY'
+      },
+      {
+        title:'已完成',
+        name:'ORDER_FINISH'
+      },
+    ],
     alist:["邀请有奖","我的收藏","下单减免","在线客服"]
   },
 
@@ -29,6 +46,12 @@ Page({
   goOrder(){
     wx.navigateTo({
       url: '/Trade/order/index',
+    })
+  },
+  goOneOrder(e){
+    let orderStatus = e.currentTarget.dataset.name
+    wx.navigateTo({
+      url: "/Trade/order/index?orderStatus=" + orderStatus
     })
   },
   initInfo(){
