@@ -12,7 +12,7 @@
 						</block>
 						<view style="margin-left:20rpx;">
 							<view >{{userInfo.nickName||'点击头像授权'}}</view>
-							<view class="fontSize24">13456545678</view>
+							<!-- <view class="fontSize24">13456545678</view> -->
 						</view>
 					</view>
 				</view>
