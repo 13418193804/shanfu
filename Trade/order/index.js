@@ -7,10 +7,9 @@ Page({
    */
   data: {
     currentPage: 1,
-    total: '',
+    pageSize: 20,
     refresher: true,
-    loading: false,
-    loadingBottom: false,
+    noThing: null,
     orderStatusEnum:{
     WAITING_PAY:'等待支付',
 
@@ -60,7 +59,8 @@ Page({
   onLoad: function (options) {
     const token = wx.getStorageSync("token") ? wx.getStorageSync("token") : '';
     this.setData({
-      loginStatus: token
+      loginStatus: token,
+      orderStatus: options.orderStatus
     })
   },
   goDetail(e){
@@ -80,11 +80,9 @@ this.doPayment(res.data.payId)
 })
   },
 onChange(e){
-
     this.setData({
       orderStatus:e.detail.name,
-      orderList:[],
-      
+      pageSize: 20
     })
 
     this.getOrderList()
@@ -130,61 +128,46 @@ onChange(e){
   getOrderList(){
     let params = {
       currentPage: this.data.currentPage,
-      pageSize:10,
+      pageSize: this.data.pageSize,
       orderStatus :this.data.orderStatus
     }
     console.log(this.data.orderStatus)
     if(this.data.orderStatus == 'ALL'){
       delete params.orderStatus
     }
-    api.post("/facade/front/order/queryOrder",params).then(res => {
-  
-  console.log(res)
+    api.post("/facade/front/order/queryOrder",params,{
+      loading:true
+    }).then(res => {
+      console.log(res)
+      if(res.data.list.length != this.data.pageSize){
+        this.setData({
+          noThing: true
+        })
+      }
       this.setData({
-        orderList:this.data.orderList.concat(res.data.list),
-        total:res.data.total,
+        orderList: res.data.list
       })
-
     }).catch(e => {
       console.log(e)
     })
   },
-  // 监听用户滚动到顶部事件
+  // 自定义下拉刷新被触发
   scrollTop() {
-    setTimeout(()=>{
-      this.setData({
-        currentPage: 1,
-        orderList: [],
-        loadingBottom: false,
-        refresher: false
-      })
-      this.getOrderList()
-    },1500)
+    this.setData({
+      pageSize: 20,
+      refresher: false
+    })
+    this.getOrderList()
   },
   // 监听用户滚动到底部事件
   scrollBottom() {
-    this.setData({
-      loading: true,
-      loadingBottom: false
-    })
-    if(this.data.orderList.length < this.data.total){
-      setTimeout(()=>{
-        this.setData({
-          currentPage:this.data.currentPage++
-        })
-        this.getOrderList()
-        this.setData({
-          loading:false
-        })
-      },1500)
-    }else{
-      setTimeout(()=>{
-        this.setData({
-          loading:false,
-          loadingBottom: true
-        })
-      },1500)
+    if(this.data.noThing){
+      return
     }
+    this.setData({
+      pageSize: this.data.pageSize += 20
+    })
+    this.getOrderList()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

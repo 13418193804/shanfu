@@ -11,7 +11,7 @@
   padding:0 20rpx;
 }
 .scroll_view {
-  height:100vh;
+  height:93vh;
 }
 .order_title {
   padding: 20rpx 0;
@@ -48,12 +48,4 @@
 .order_item_time {
   color: #666;
   margin-bottom: 20rpx;
-}
-.vant_loading{
-  text-align: center;
-}
-.vant_bottom{
-  text-align: center;
-  margin: 10rpx 0;
-  color: #969799;
 }
