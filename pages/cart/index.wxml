@@ -55,6 +55,10 @@
 	</van-submit-bar>
 <view wx:else class="cart_empty  flex  flex-align-center flex-pack-center">
 	<view>
+
+		<view>
+		
+		</view>
 		<view class="fontSize32" style="margin-bottom:30rpx;color:#666;">暂无商品</view>
 	</view>
 </view>
