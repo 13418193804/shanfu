@@ -1,9 +1,14 @@
 <view class="detail_container fontSize28">
 	<!-- 地址 -->
+
+
 	<view class="detail_order_status">
     {{orderStatusEnum[orderDetail.orderStatus]}}
   </view>
 	<view class="address_tab fontSize28">
+		<view class="fontSize28" style="padding:20rpx;border-bottom:0.5px solid #F4F4F4">
+			送货地址
+		</view>
 			<view  class="flex flex-align-center" style="padding:20rpx" bindtap="changAddress">
 				<view class="flex-1">
 				<view class="fontSize28">{{orderDetail.contractName}} {{orderDetail.contractMobile}}</view>
@@ -40,26 +45,26 @@
 		</view>
 		<view class=" ">
 			<view class=" goods_info_list flex flex-pack-justify">
-				<view>运费</view>
+				<view style="font-size: 24rpx;">运费</view>
 				<view class="detail_desc">0.00</view>
 			</view>
 
 						<view class=" goods_info_list flex flex-pack-justify">
-				<view>合计</view>
+				<view  style="font-size: 24rpx;">合计</view>
 				<view class="order_price">￥{{orderDetail.orderAmount}}</view>
 			</view>
 
 				<view class=" goods_info_list flex flex-pack-justify">
-				<view>订单号</view>
+				<view  style="font-size: 24rpx;">订单号</view>
 				<view class="detail_desc">{{orderDetail.orderId}}</view>
 			</view>
 
 			<view class="goods_info_list flex flex-pack-justify">
-				<view>下单时间</view>
+				<view  style="font-size: 24rpx;">下单时间</view>
 				<view class="detail_desc">{{orderDetail.createTime}}</view>
 			</view>
 			<view class="goods_info_list flex flex-pack-justify">
-				<view>备注</view>
+				<view  style="font-size: 24rpx;">备注</view>
 				<view class="detail_desc" wx:if="{{!orderDetail.orderRemark}}">无</view>
 				<view class="detail_desc" wx:else>{{orderDetail.orderRemark}}</view>
 			</view>

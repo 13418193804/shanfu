@@ -76,8 +76,8 @@ Page({
           _self.setData({
               prepareId:null
             })
-            wx.switchTab({
-              url:'/pages/order/index',
+            wx.redirectTo({
+              url:'/Trade/order/index',
             })
         }
       })

@@ -2,7 +2,7 @@
 	<!-- 地址 -->
 	
 	<view class="address_tab fontSize28" style="border-radius: 8rpx;">
-			<view class="fontSize28" style="padding:20rpx;border-bottom:0.5px solid #F4F4F4">
+		<view class="fontSize28" style="padding:20rpx;border-bottom:0.5px solid #F4F4F4">
 			送货地址
 		</view>
 		<view class="flex flex-align-center" style="padding:20rpx;" bindtap="changAddress">

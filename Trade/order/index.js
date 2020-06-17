@@ -11,9 +11,11 @@ Page({
     noThing: false,
     orderStatusEnum:{
     WAITING_PAY:'等待支付',
-
+    
+    WAITING_MERCHANT_CONFIRM :'等待商家确认', 
+    WAITING_RIDER_CONFIRM :'等待骑手确认', 
     WAITING_DELIVERY:'等待递送',
-
+    WAITING_RIDER_TAKE: '等待骑手取货',
     IN_DELIVERY:'配送中',
 
     ORDER_CANCEL:'订单取消',
