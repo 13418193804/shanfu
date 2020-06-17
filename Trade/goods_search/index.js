@@ -8,6 +8,7 @@ Page({
   data: {
     currentGoodsList: [],
     marketPlaceList: [],
+    columnId: '',
     marketIndex: 0,
     skuModel: null,
     detailModel: null,
@@ -17,12 +18,88 @@ Page({
     cartList: [],
     cartEnum: {},
     selectSku: null,
+    searchRecordShow: true,
+    searchRecordItem: []  //搜索历史
   },
   //模糊搜索
   handleGoodsSearch(){
+    let searchRecordList = (wx.getStorageSync('searchRecord') == undefined || wx.getStorageSync('searchRecord') == '') ? [] : wx.getStorageSync('searchRecord')
+    if (this.data.content == "") {
+      wx.showToast({
+        title: '请输入商品名',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    //如果记录中已存在，则往前提，如果没有就直接头部添加
+    if(searchRecordList.indexOf(this.data.content) >= 0) {
+      //如果内找到该名字则说明缓存中已经存在，须将其提到第一个同时将原来位置的数据删除
+      searchRecordList.splice(searchRecordList.indexOf(this.data.content), 1)
+      //如果对缓存的个数有限制，超出的个数从尾部删除即可
+      if(searchRecordList.unshift(this.data.content) > 20) {
+        searchRecordList.pop()
+      }
+    } else {
+      if(searchRecordList.unshift(this.data.content) > 20) {
+        searchRecordList.pop()
+      }
+    }
+    //将处理好的数据重新存入缓存中
+    wx.setStorageSync('searchRecord', searchRecordList);
+    this.setData({
+      searchRecordItem: searchRecordList,
+      searchRecordShow: false,
+    })
     api.post("/facade/front/goods/search", {
       content:this.data.content,
       marketPlaceId:this.data.marketPlaceList[this.data.marketIndex].marketplaceId
+    },{
+      loading: true
+    }).then(res => {
+      this.setData({
+        currentGoodsList: res.data
+      })
+    }).catch(e => {
+      console.log(e)
+    })
+  },
+  //选择历史记录搜索
+  selectRecord(e){
+    this.setData({
+      content:e.currentTarget.dataset.item,
+      searchRecordShow: false
+    })
+    this.handleGoodsSearch()
+  },
+  //清空搜索记录
+  clearRecord(){
+    let self = this
+    wx.showModal({
+      title: '提示',
+      cancelText:'取消',
+      confirmText:'确定',
+      content: '是否清空历史记录',
+      success(res) {
+        if(res.confirm) {
+          let searchRecordList = wx.getStorageSync('searchRecord')
+          searchRecordList = []
+          wx.setStorageSync('searchRecord', searchRecordList)
+          self.setData({
+            searchRecordItem: searchRecordList
+          })
+        }else if(res.cancel){
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  //查询栏目列表
+  getColumnList(){
+    api.post("/facade/front/goods/queryOperationColumn", {
+      operationColumnId: this.data.columnId
+    },{
+      loading: true
     }).then(res => {
       this.setData({
         currentGoodsList: res.data
@@ -93,14 +170,14 @@ Page({
   //增加数量
   openSkuModel(e) {
     let item = e.currentTarget.dataset.item
-    let goodsId = item.goods_id
+    let goodsId = item.goodsId
     api.post("/facade/front/goods/getGoodsDetail", {
       goodsId: goodsId
     }).then(res => {
       this.setData({
-        goodsObj: Object.assign(res.data,{storeId:item.store_id,marketplaceId:item.marketplace_id})
+        goodsObj: Object.assign(res.data,{storeId:item.storeId,marketplaceId:item.marketplaceId})
       })
-      if (item.single_status) {
+      if (item.singleStatuss) {
         this.addCart(goodsId, 
           this.data.goodsObj.skuList[0].skuId,
           this.data.goodsObj.storeId,
@@ -159,12 +236,12 @@ Page({
   //打开商品详情
   openDetailModel(e){
     let item = e.currentTarget.dataset.item
-    let goodsId = item.goods_id
+    let goodsId = item.goodsId
     api.post("/facade/front/goods/getGoodsDetail", {
       goodsId: goodsId
     }).then(res => {
       this.setData({
-        goodsObj: Object.assign(res.data,{storeId:item.store_id,marketplaceId:item.marketplace_id,store_name:item.store_name})
+        goodsObj: Object.assign(res.data,{storeId:item.storeId,marketplaceId:item.marketplaceId,storeName:item.storeName})
       })
       this.setData({
         detailModel: true
@@ -199,20 +276,25 @@ Page({
   },
   //获取输入框的值
   handleInpue(e){
-    switch (e.currentTarget.dataset.name) {
-      case 'content':
-        this.setData({
-          content: e.detail.value
-        })
-        break
+    if(e.detail.value == ''){
+      this.setData({
+        searchRecordShow: true,
+        currentGoodsList: []
+      })
     }
+    this.setData({
+      content: e.detail.value
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let searchRecordItem = (wx.getStorageSync('searchRecord') == undefined || wx.getStorageSync('searchRecord') == '') ? [] : wx.getStorageSync('searchRecord');
     this.setData({
-      queryMarketPlaceId:options.marketPlaceId
+      queryMarketPlaceId:options.marketPlaceId,
+      columnId: options.columnId,
+      searchRecordItem: searchRecordItem
     })
   },
 
@@ -220,7 +302,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
@@ -236,7 +318,11 @@ Page({
     if(uid && token){
       this.getCartList()
     }
-    this.getMarketPlaceList()
+    if(this.data.columnId == '' || this.data.columnId == undefined){
+      this.getMarketPlaceList()
+    }else{
+      this.getColumnList()
+    }
   },
 
   /**

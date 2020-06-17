@@ -38,14 +38,14 @@
 	<view class="banner">
 		<image src="../../images/banner.png" mode="widthFix" style="width:100%;"></image>
 	</view>
-	<view class="category flex flex-align-center flex-pack-justify">
-		<view wx:for="{{hotBarList}}" style="flaot:letf;padding-right:50rpx">
+	<view class="category flex flex-align-center flex-pack-justify flex-warp-justify">
+		<view wx:for="{{hotBarList}}" style="width:20%;margin-bottom:30rpx" data-columnId="{{item.columnId}}" bindtap="hotBarSearch">
 			<view class="flex-1">
 				<image src="../../images/c{{index+1}}.png" mode="widthFix" style="width:80rpx"></image>
 			</view>
 			<view class="fontSize26" style="margin-top:10rpx;">{{item.columnName}}</view>
 		</view>
-		<!-- <view style="flaot:letf;padding-right:50rpx">
+		<!-- <view style="width:20%">
 			<view class="flex-1">
 				<image src="../../images/c4.png" mode="widthFix" style="width:80rpx"></image>
 			</view>
