@@ -1,50 +1,59 @@
 <!--Trade/goods_search/index.wxml-->
 <view class="goods_search">
-    <view class="search_postion flex flex-align-center flex-pack-justify van-ellipsis">
-		<picker class="postion flex  flex-align-center fontSize28" bindchange="bindMarketChange" value="{{marketIndex}}" range="{{marketPlaceList}}" range-key="marketplaceName">
-            <view class="postion_store_select van-ellipsis">
-                <i class="iconfont icondingwei fontSize28" style="margin-right:10rpx;"></i>
-                <text class="">{{marketPlaceList[marketIndex].marketplaceName}}</text>
-                <i class="iconfont iconxia1" style=""></i>
+    <view wx:if="{{columnId == ''}}">
+        <view class="search_postion flex flex-align-center flex-pack-justify van-ellipsis">
+            <picker class="postion flex  flex-align-center fontSize28" bindchange="bindMarketChange" value="{{marketIndex}}" range="{{marketPlaceList}}" range-key="marketplaceName">
+                <view class="postion_store_select van-ellipsis">
+                    <i class="iconfont icondingwei fontSize28" style="margin-right:10rpx;"></i>
+                    <text class="">{{marketPlaceList[marketIndex].marketplaceName}}</text>
+                    <i class="iconfont iconxia1" style=""></i>
+                </view>
+            </picker>
+            <view class="search_white flex-1">
+                <view class=" flex  flex-align-center fontSize28">
+                    <i class="iconfont iconsousuo " style="font-size: 40rpx;color:#888888;margin-right:10rpx;"></i>
+                    <input confirm-type="search" placeholder="输入商品名称" data-name="content" value="{{content}}" bindinput='handleInpue' class="fontSize28 flex-1" bindconfirm="handleGoodsSearch" placeholder-class="fontSize28"></input>
+                </view>
             </view>
-        </picker>
-		<view class="search_white flex-1">
-			<view class=" flex  flex-align-center fontSize28">
-				<i class="iconfont iconsousuo " style="font-size: 40rpx;color:#888888;margin-right:10rpx;"></i>
-				<input placeholder="输入商品名称" data-name="content" value="{{content}}" bindinput='handleInpue' class="fontSize28 flex-1" bindblur="handleGoodsSearch" placeholder-class="fontSize28"></input>
-			</view>
-		</view>
-	</view>
-    <view wx:if="{{currentGoodsList.length == 0}}" class="cart_empty flex flex-align-center flex-pack-center">
-        <view>
-            <view class="fontSize32" style="margin-bottom:30rpx;color:#666;">暂无商品</view>
+        </view>
+
+        <view class="search_record" wx:if="{{searchRecordShow && searchRecordItem.length != 0}}">
+            <view class="flex flex-pack-justify">
+                <view>历史记录</view>
+                <view bindtap="clearRecord" style="color:#888888">清空<i class="iconfont iconshanchu " style="font-size: 32rpx;margin-left:5rpx;"></i></view>
+            </view>
+            <view class="flex flex-warp-justify">
+                <view style="margin-right:2%;" wx:for="{{searchRecordItem}}" bindtap="selectRecord" data-item="{{item}}">
+                    <view class="search_record_list">{{item}}</view>
+                </view>
+            </view>
         </view>
     </view>
-    <view style="margin-bottom:40rpx" wx:else>
+    <view style="margin-bottom:40rpx">
         <view class="goods_item fontSize28 flex" wx:for="{{currentGoodsList}}" bindtap="openDetailModel" data-item="{{item}}">
             <view class="flex flex-align-center category_image_box">
-                <image mode="widthFix" src="{{item.goods_icon}}" style="width:100%"></image>
+                <image mode="widthFix" src="{{item.goodsIcon}}" style="width:100%"></image>
             </view>
             <view style="line-height: 55rpx;">
                 <view class="fontSize28 van-multi-ellipsis--l2" style="padding: 2rpx"> 
-                    <van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>{{item.store_name}}</van-tag>{{item.goods_name}}
+                    <van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>{{item.storeName}}</van-tag>{{item.goodsName}}
                 </view>
-                <view style="color:#888888" class="fontSize24">{{item.first_cat_name}}</view>
+                <view style="color:#888888" class="fontSize24">{{item.firstCatName}}</view>
                 <view class="flex flex-align-center">
                     <view style="color:red">
                         <text>￥</text>
-                        <text style="font-size:38rpx">{{item.sale_price}}</text>
+                        <text style="font-size:38rpx">{{item.salePrice}}</text>
                     </view>
                     <view class="label_price">
                         <text>￥</text>
-                        <text >{{item.label_price}}</text>
+                        <text >{{item.labelPrice}}</text>
                     </view>
                 </view>
             </view>
             <view class="plus flex  flex-align-center">
-                <view class=""  wx:if="{{cartEnum[item.goods_id]}}">
-                    <i catchtap="subCart" data-id="{{item.goods_id}}" class="iconfont iconjian " style="font-size:34rpx;color:#E5E5E5"></i>
-                    <text style="width:50rpx;text-align:center;margin:0 10rpx;">{{cartEnum[item.goods_id]}}</text>
+                <view class=""  wx:if="{{cartEnum[item.goodsId]}}">
+                    <i catchtap="subCart" data-id="{{item.goodsId}}" class="iconfont iconjian " style="font-size:34rpx;color:#E5E5E5"></i>
+                    <text style="width:50rpx;text-align:center;margin:0 10rpx;">{{cartEnum[item.goodsId]}}</text>
                     <i catchtap="openSkuModel" data-item="{{item}}" class="iconfont iconadd " style="font-size:34rpx;color:#009A44"></i>
                 </view>
                 <view wx:else>
@@ -119,7 +128,7 @@
                 <view class="flex flex-pack-justify goods_content_same">
                     <view>
                         <view class="fontSize28 goods_content_name van-multi-ellipsis--l2">
-                            <van-tag color="#009A44" size="large" style="font-size:36rpx;margin-right:10rpx;" plain>{{goodsObj.store_name}}</van-tag>{{goodsObj.goodsName}}
+                            <van-tag color="#009A44" size="large" style="font-size:36rpx;margin-right:10rpx;" plain>{{goodsObj.storeName}}</van-tag>{{goodsObj.goodsName}}
                         </view>
                         <view class="fontSize24 goods_content_jingle van-multi-ellipsis--l2">{{goodsObj.jingle}}</view>
                     </view>

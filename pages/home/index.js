@@ -240,10 +240,9 @@ Page({
         getColumnList(){
           api.post("/facade/front/operationColumn/list", {
           }).then(res => {
-              this.setData({
-                hotBarList:res.data
-              })
-              console.log(this.data.hotBarList)
+            this.setData({
+              hotBarList:res.data
+            })
           }).catch(e => {
             console.log(e)
           })
@@ -428,6 +427,13 @@ Page({
         handleSearch(){
           wx.navigateTo({
             url: '/Trade/goods_search/index',
+          })
+        },
+        //栏目跳转商品搜索
+        hotBarSearch(e){
+          let columnId = e.currentTarget.dataset.columnid
+          wx.navigateTo({
+            url: '/Trade/goods_search/index?columnId=' + columnId,
           })
         },
         neverLoad() {
