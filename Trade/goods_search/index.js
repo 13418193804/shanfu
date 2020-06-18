@@ -133,7 +133,10 @@ Page({
     this.setData({
       marketIndex: e.detail.value
     })
-    this.handleGoodsSearch()
+    if(this.data.content != ''){
+      this.handleGoodsSearch()
+    }
+    
   },
   //查阅购物车
   getCartList() {

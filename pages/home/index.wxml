@@ -41,6 +41,7 @@
 	<view class="category flex flex-align-center flex-pack-justify flex-warp-justify">
 		<view wx:for="{{hotBarList}}" style="width:20%;margin-bottom:30rpx" data-columnId="{{item.columnId}}" bindtap="hotBarSearch">
 			<view class="flex-1">
+				<!-- item.columnImg -->
 				<image src="../../images/c{{index+1}}.png" mode="widthFix" style="width:80rpx"></image>
 			</view>
 			<view class="fontSize26" style="margin-top:10rpx;">{{item.columnName}}</view>
