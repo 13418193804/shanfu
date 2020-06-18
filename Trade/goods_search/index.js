@@ -177,7 +177,7 @@ Page({
       this.setData({
         goodsObj: Object.assign(res.data,{storeId:item.storeId,marketplaceId:item.marketplaceId})
       })
-      if (item.singleStatuss) {
+      if (item.singleStatus) {
         this.addCart(goodsId, 
           this.data.goodsObj.skuList[0].skuId,
           this.data.goodsObj.storeId,
