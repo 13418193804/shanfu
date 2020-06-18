@@ -32,11 +32,11 @@ Page({
       })
       return;
     }
-    //如果记录中已存在，则往前提，如果没有就直接头部添加
+    //记录中存在，往前提，没有就头部添加
     if(searchRecordList.indexOf(this.data.content) >= 0) {
-      //如果内找到该名字则说明缓存中已经存在，须将其提到第一个同时将原来位置的数据删除
+      //缓存中已存在，将其提到第一个同时将原来位置的删除
       searchRecordList.splice(searchRecordList.indexOf(this.data.content), 1)
-      //如果对缓存的个数有限制，超出的个数从尾部删除即可
+      //如缓存的个数的限制，超出从尾部删除
       if(searchRecordList.unshift(this.data.content) > 20) {
         searchRecordList.pop()
       }
@@ -45,7 +45,7 @@ Page({
         searchRecordList.pop()
       }
     }
-    //将处理好的数据重新存入缓存中
+    //将处理好的数据存入缓存中
     wx.setStorageSync('searchRecord', searchRecordList);
     this.setData({
       searchRecordItem: searchRecordList,
@@ -177,7 +177,7 @@ Page({
       this.setData({
         goodsObj: Object.assign(res.data,{storeId:item.storeId,marketplaceId:item.marketplaceId})
       })
-      if (item.singleStatuss) {
+      if (item.singleStatus) {
         this.addCart(goodsId, 
           this.data.goodsObj.skuList[0].skuId,
           this.data.goodsObj.storeId,
