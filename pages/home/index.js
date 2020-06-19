@@ -348,7 +348,7 @@ Page({
                 capsuleHeight: obj.height, //胶囊宽度
                 capsuleTop: obj.top,
                 customBar: obj.bottom + obj.top - res.statusBarHeight,
-                searchWidth: obj.left - 40,
+                searchWidth: obj.left - 20,
                 windowWidth: res.windowWidth,
                 screenHeight: res.screenHeight,
                 windowHeight: res.windowHeight
