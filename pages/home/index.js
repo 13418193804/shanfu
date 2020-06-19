@@ -235,6 +235,7 @@ Page({
           })
           this.getColumnList()
           this.getMainPage()
+          this.getCartList()
         },
         //栏目
         getColumnList(){
@@ -471,6 +472,39 @@ Page({
                 duration: 1500,
               })
             }
+          })
+        },
+        getCartList() {
+          api.post("/facade/front/cart/queryCart", {}).then(res => {
+            let obj = {}
+            let cartNum = 0
+            res.data.forEach(e => {
+              if(obj[e.goodsId]){
+                obj[e.goodsId] += e.num
+              }else{
+                obj[e.goodsId] = e.num
+              }
+            })
+            this.setData({
+              cartList: res.data,
+              cartEnum: obj
+            })
+            for(let i = 0; i < res.data.length;i++){
+              cartNum += res.data[i].num
+              console.log("cartNum",cartNum)
+            }
+            if(cartNum !== 0){
+              wx.setTabBarBadge({
+                index: 2,
+                text: String(cartNum)
+              })
+            } else{
+              wx.removeTabBarBadge({
+                index: 2
+              })
+            }
+          }).catch(e => {
+            console.log(e)
           })
         },
 
