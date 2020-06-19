@@ -47,7 +47,9 @@
 			</view>
 		</view> -->
 		<van-cell is-link title="地址管理" bindtap="goAddressList" />
-		<van-cell is-link title="问题反馈" link-type="navigateTo" />
+		<button open-type="feedback" class="feedback">
+			<van-cell is-link title="问题反馈" link-type="navigateTo"/>
+		</button>
 		<van-cell is-link title="关于我们" link-type="navigateTo" />
 		<van-cell title="清除登录信息" bindtap="clearStore" />
 	</view>

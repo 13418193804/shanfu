@@ -1,5 +1,5 @@
 <view class="page-body" >
-<view style="position: fixed;top:0;background-color:#fff;width:100%;height:{{customBar}}px;">
+<view style="position: fixed;top:0;background-color:#fff;width:100%;height:{{customBar}}px;z-index:99">
 	<view class="statusbox">
 		<view class="fresh_search flex  flex-align-center  flex-pack-justify" style="position: absolute;top:{{capsuleTop}}px;width:{{searchWidth}}px;heigt:{{capsuleHeight}}px;line-heigt:{{capsuleHeight}}px;">
 		<view class=" flex flex-align-center">
@@ -24,7 +24,7 @@
 		<view class="search flex-1"  bindtap="handleSearch">
 			<view class=" flex  flex-align-center ">
 				<i class="iconfont iconsousuo" style="color:#888888;margin-right:10rpx;"></i>
-				<input placeholder="输入商品名称" disabled placeholder-class="fontSize24" class="fontSize28 flex-1" placeholder-class="fontSize28"></input>
+				<input placeholder="搜索商品" disabled placeholder-class="fontSize24" class="fontSize28 flex-1" placeholder-class="fontSize28"></input>
 			</view>
 		</view>
 
@@ -73,7 +73,7 @@
 
 		<view class="around_shop_item flex flex-align-center fontSize28 " style="position: relative;" wx:for="{{marketPlaceList}}" bindtap="goMarket" data-id="{{item.marketplaceId}}">
 			<view>
-				<image src="../../images/s{{index+1}}.png" mode="widthFix" style="width:20vw;margin:20rpx; border-radius: 5px;"></image>
+				<image src="{{item.marketplaceImg}}" style="width:20vw;height:20vw;margin:20rpx; border-radius: 5px;"></image>
 			</view>
 			<view class="flex-1" style="width:0;">
 				<view class="home_market_merchant">
