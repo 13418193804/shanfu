@@ -180,6 +180,7 @@
 					<view class="goods_content_detail">商品详情</view>
 					<view class="flex fontSize24 introduce_detail">
 						<view style="margin-right:30rpx;">重量：{{goodsObj.goodsWeight}}kg</view>
+						<view style="margin-right:30rpx;">包装费：{{goodsObj.packagePrice}}元</view>
 						<view>分类：{{goodsObj.secondCatName}}</view>
 					</view>
 					<view style="text-align:center"><rich-text class="detail_rich_text" nodes="{{goodsObj.detail.detail}}"></rich-text></view>
