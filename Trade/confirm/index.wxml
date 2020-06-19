@@ -61,6 +61,10 @@
 				<view class="desc_box_label">运费</view>
 				<view class="flex-1" style="text-align:right">0.00 元</view>
 			</view>
+			<view class=" flex flex-pack-justify" style="padding:20rpx 0">
+				<view class="desc_box_label">包装费</view>
+				<view class="flex-1" style="text-align:right">0.00 元</view>
+			</view>
 
 					<view class=" flex flex-pack-justify" style="padding:20rpx 0">
 				<view class="desc_box_label">备注</view>

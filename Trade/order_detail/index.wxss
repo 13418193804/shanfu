@@ -92,6 +92,11 @@ padding: 20rpx;
   font-size:32rpx;
   font-weight: 600;
 }
+.detail_mobile{
+  font-size: 30rpx;
+  color: #4e6ef2;
+  margin-top: 10rpx;
+}
 .detail_desc{
   font-size: 24rpx;
   color:#666;

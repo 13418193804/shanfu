@@ -90,7 +90,17 @@ Page({
       console.log(e)
     })
   },
-
+  contactStore(){
+    wx.makePhoneCall({
+      phoneNumber: '10086',
+      success:function(){
+        console.log('拨打成功')
+      },
+      fail:function(){
+        console.log('已取消')
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
