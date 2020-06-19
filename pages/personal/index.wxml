@@ -10,8 +10,8 @@
 						<block wx:else>
 							<image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
 						</block>
-						<view style="margin-left:20rpx;">
-							<view >{{userInfo.nickName||'点击头像授权'}}</view>
+						<view style="margin-left:20rpx">
+							<view>{{userInfo.nickName||'点击头像授权'}}</view>
 							<!-- <view class="fontSize24">13456545678</view> -->
 						</view>
 					</view>
@@ -27,9 +27,9 @@
 				</view> -->
 			</view>
 		</view>
-			<view class="user_menu_title  flex   flex-pack-justify" bindtap="goOrder">
-			<view style="color:#232323">我的订单</view>
-			<view>查看全部<i class="iconfont iconshangxiazuoyou-"></i></view>
+			<view class="user_menu_title flex flex-pack-justify" bindtap="goOrder">
+			<view style="color:#232323;font-weight: bold;">我的订单</view>
+			<view class="user_menu_title_bill">查看全部<i class="iconfont iconshangxiazuoyou-"></i></view>
 		</view>
 		<view class="user_order fontSize28 flex flex-around-justify flex-align-center">
 			<view wx:for="{{olist}}" data-name="{{item.name}}" bindtap="goOneOrder" style="position: relative;">
