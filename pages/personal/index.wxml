@@ -31,8 +31,9 @@
 			<view style="color:#232323">我的订单</view>
 			<view>查看全部<i class="iconfont iconshangxiazuoyou-"></i></view>
 		</view>
-		<view class="user_order fontSize28 flex flex-around-justify">
-			<view wx:for="{{olist}}" data-name="{{item.name}}" bindtap="goOneOrder">
+		<view class="user_order fontSize28 flex flex-around-justify flex-align-center">
+			<view wx:for="{{olist}}" data-name="{{item.name}}" bindtap="goOneOrder" style="position: relative;">
+				<!-- <view class="user_order_number">01</view> -->
 				<image mode="widthFix" src="../../images/o{{index+1}}.png" style="width:6vw"></image>
 				<view>{{item.title}}</view>
 			</view>

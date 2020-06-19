@@ -63,7 +63,12 @@ Page({
             title: "支付成功",
             duration: 2000,
           })
-        
+          _self.setData({
+            prepareId:null
+          })
+          wx.redirectTo({
+            url:'/Trade/order/index?orderStatus=WAITING_DELIVERY',
+          })
         },
         fail(res) {
           wx.showToast({
@@ -71,15 +76,21 @@ Page({
             icon: 'none',
             duration: 2000,
           })
-        },
-        complete(e) {
           _self.setData({
-              prepareId:null
-            })
-            wx.redirectTo({
-              url:'/Trade/order/index',
-            })
-        }
+            prepareId:null
+          })
+          wx.redirectTo({
+            url:'/Trade/order/index?orderStatus=WAITING_PAY',
+          })
+        },
+        // complete(e) {
+        //   _self.setData({
+        //       prepareId:null
+        //     })
+        //     wx.redirectTo({
+        //       url:'/Trade/order/index?orderStatus=WAITING_PAY',
+        //     })
+        // }
       })
     }).catch(e => {
       console.log(e)

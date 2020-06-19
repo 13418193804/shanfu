@@ -19,7 +19,7 @@ Page({
         name:'WAITING_PAY'
       },
       {
-        title:'待发货',
+        title:'待接单',
         name:'WAITING_DELIVERY'
       },
       {
@@ -27,7 +27,7 @@ Page({
         name:'IN_DELIVERY'
       },
       {
-        title:'已完成',
+        title:'收货成功',
         name:'ORDER_FINISH'
       },
     ],

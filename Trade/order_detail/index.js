@@ -40,7 +40,57 @@ Page({
     }).catch(e => {
       console.log(e)
     })
-      },
+  },
+  //取消支付
+  cancelpay(e){
+    wx.showModal({
+      title:'提示',
+      content:'是否取消订单?',
+      success:(res)=>{
+        if(res.confirm){
+          let orderId  = e.currentTarget.dataset.id
+          api.post("/facade/front/order/userCancelOrder", {
+            orderId :orderId 
+          }).then(res => {
+            wx.showToast({
+              title: "取消成功",
+              duration: 2000,
+            })
+            wx.redirectTo({
+              url:'/Trade/order/index',
+            })
+          }).catch(e => {
+            console.log(e)
+          })
+        }
+      }
+    })
+  },
+  //删除订单
+  delpay(e){
+    wx.showModal({
+      title:'提示',
+      content:'是否删除订单?',
+      success:(res)=>{
+        if(res.confirm){
+          let orderId  = e.currentTarget.dataset.id
+          api.post("/facade/front/order/userDeleteOrder", {
+            orderId :orderId 
+          }).then(res => {
+            wx.showToast({
+              title: "删除成功",
+              duration: 2000,
+            })
+            wx.redirectTo({
+              url:'/Trade/order/index',
+            })
+          }).catch(e => {
+            console.log(e)
+          })
+        }
+      }
+    })
+  },
     
       doPayment(payId){
         let openId =  wx.getStorageSync("openId") ? wx.getStorageSync("openId") : '';

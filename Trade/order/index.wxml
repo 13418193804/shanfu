@@ -22,7 +22,12 @@
                   </view>
               </view>
               <view class="order_item_content" style="text-align: right;margin-top: 20rpx;" wx:if="{{item.orderStatus == 'WAITING_PAY'}}">
-                    <van-button plain hairline type="primary" color="red" size="small" catchtap="nextpay" data-id="{{item.orderId}}">继续支付</van-button>
+                <van-button plain hairline type="primary" color="red" size="small" catchtap="nextpay" data-id="{{item.orderId}}">继续支付</van-button>
+                <text style="margin-right:30rpx"></text>
+                <van-button plain hairline type="primary" color="black" size="small" catchtap="cancelpay" data-id="{{item.orderId}}">取消订单</van-button>
+              </view>
+              <view class="order_item_content" style="text-align: right;margin-top: 20rpx;" wx:if="{{item.orderStatus == 'USER_CANCEL' || item.orderStatus == 'ORDER_FINISH'}}">
+                <van-button plain hairline type="primary" color="red" size="small" catchtap="delpay" data-id="{{item.orderId}}">删除订单</van-button>
               </view>
             </view>
           </view>

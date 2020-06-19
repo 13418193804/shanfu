@@ -22,9 +22,19 @@
 
 }
 .user_order{
-background-color:#fff ;
-text-align: center;
-padding: 20rpx 0 30rpx;
+  background-color:#fff ;
+  text-align: center;
+  padding: 20rpx 0 30rpx;
+}
+.user_order_number{
+  position: absolute;
+  top:-8rpx;
+  right: 0;
+  width: 1rem;
+  border: 2rpx solid red;
+  border-radius: 50%;
+  font-size: 20rpx;
+  color: red;
 }
 .user_active{
   background-color:#fff ;

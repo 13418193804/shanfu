@@ -18,7 +18,7 @@ Page({
     WAITING_RIDER_TAKE: '等待骑手取货',
     IN_DELIVERY:'配送中',
 
-    ORDER_CANCEL:'订单取消',
+    USER_CANCEL:'订单取消',
 
     ORDER_FINISH:'订单完成'
     },
@@ -36,7 +36,7 @@ Page({
         name:'WAITING_PAY'
       },
       {
-        title:'待发货',
+        title:'待接单',
         name:'WAITING_DELIVERY'
       },
       {
@@ -44,7 +44,7 @@ Page({
         name:'IN_DELIVERY'
       },
       {
-        title:'已完成',
+        title:'收货成功',
         name:'ORDER_FINISH'
       },
     ]
@@ -71,24 +71,68 @@ Page({
     })
   },
   nextpay(e){
-let orderId  = e.currentTarget.dataset.id
-api.post("/facade/front/order/continuePay", {
-  orderId :orderId 
-}).then(res => {
-this.doPayment(res.data.payId)
-}).catch(e => {
-  console.log(e)
-})
+    let orderId  = e.currentTarget.dataset.id
+    api.post("/facade/front/order/continuePay", {
+      orderId :orderId 
+    }).then(res => {
+    this.doPayment(res.data.payId)
+    }).catch(e => {
+      console.log(e)
+    })
   },
-onChange(e){
+  //取消支付
+  cancelpay(e){
+    wx.showModal({
+      title:'提示',
+      content:'是否取消订单?',
+      success:(res)=>{
+        if(res.confirm){
+          let orderId  = e.currentTarget.dataset.id
+          api.post("/facade/front/order/userCancelOrder", {
+            orderId :orderId 
+          }).then(res => {
+            wx.showToast({
+              title: "取消成功",
+              duration: 2000,
+            })
+            this.getOrderList()
+          }).catch(e => {
+            console.log(e)
+          })
+        }
+      }
+    })
+  },
+  //删除订单
+  delpay(e){
+    wx.showModal({
+      title:'提示',
+      content:'是否删除订单?',
+      success:(res)=>{
+        if(res.confirm){
+          let orderId  = e.currentTarget.dataset.id
+          api.post("/facade/front/order/userDeleteOrder", {
+            orderId :orderId 
+          }).then(res => {
+            wx.showToast({
+              title: "删除成功",
+              duration: 2000,
+            })
+            this.getOrderList()
+          }).catch(e => {
+            console.log(e)
+          })
+        }
+      }
+    })
+  },
+  onChange(e){
     this.setData({
       orderStatus:e.detail.name,
       pageSize: 20
     })
-
     this.getOrderList()
-
-},
+  },
   doPayment(payId){
     let openId =  wx.getStorageSync("openId") ? wx.getStorageSync("openId") : '';
 

@@ -101,3 +101,8 @@ padding: 20rpx;
   font-size: 24rpx;
   color:#666;
 }
+.order_bottom{
+  background-color: #F4F4F4;
+  padding-top: 30rpx;
+  text-align: center;
+}
