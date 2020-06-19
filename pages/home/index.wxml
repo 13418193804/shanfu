@@ -35,7 +35,7 @@
 	<!-- <view style="width:100vw;height: 20vh;background-color: #FFFFFF;"> -->
 	<!-- <view style="width: 100vw;height: 100px;border:1px solid #FF7F00;background-color: #FF7F00;border-radius: 0px 0px 100vw 100vw;"></view>  -->
 	<!-- </view> -->
-	<view class="banner" style="padding-top:{{capsuleTop + capsuleHeight}}px;margin-top:10rpx">
+	<view class="banner" style="padding-top:{{capsuleTop + capsuleHeight}}px;margin-top:28rpx">
 		<image src="../../images/banner.png" mode="widthFix" style="width:100%;"></image>
 	</view>
 	<view class="category flex flex-align-center flex-pack-justify flex-warp-justify">
