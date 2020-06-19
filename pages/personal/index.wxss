@@ -37,6 +37,9 @@ padding: 20rpx 0 30rpx;
   padding: 20rpx 30rpx;
   background-color:#fff ;
 }
+.user_menu_title_bill{
+  font-size: 28rpx;
+}
 .cart_empty{
   height: 100vh;
   background-color: #fff;

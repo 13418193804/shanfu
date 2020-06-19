@@ -42,7 +42,7 @@
 		<view wx:for="{{hotBarList}}" style="width:20%;margin-bottom:30rpx" data-columnId="{{item.columnId}}" bindtap="hotBarSearch">
 			<view class="flex-1">
 				<!-- item.columnImg -->
-				<image src="../../images/c{{index+1}}.png" mode="widthFix" style="width:80rpx"></image>
+				<image src="{{item.columnImg}}" mode="widthFix" style="width:80rpx"></image>
 			</view>
 			<view class="fontSize26" style="margin-top:10rpx;">{{item.columnName}}</view>
 		</view>
@@ -65,7 +65,7 @@
 
 	<view class="around_shop ">
 		<view class="flex ">
-			<view class="fontSize32">我的附近</view>
+			<view class="fontSize32 around_shop_context">我的附近</view>
 			<!-- <view class="fontSize28" style="color:#FF3024;  padding-left: 59rpx;">
 			<i class="iconfont icongonggao" style="color:#FF3024;"></i>
 			今日促销满38元免配送费</view> -->
