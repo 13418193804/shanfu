@@ -37,7 +37,7 @@ Page({
       },
       {
         title:'待接单',
-        name:'WAITING_DELIVERY'
+        name:'WAITING_MERCHANT_CONFIRM'
       },
       {
         title:'待收货',

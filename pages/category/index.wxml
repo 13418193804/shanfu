@@ -13,7 +13,7 @@
     <view class="search_white flex-1" bindtap="handleSearch">
 			<view class=" flex  flex-align-center fontSize28">
 				<i class="iconfont iconsousuo " style="font-size: 40rpx;color:#888888;margin-right:10rpx;"></i>
-				<input placeholder="输入商品名称" disabled class="fontSize28 flex-1" placeholder-class="fontSize28"></input>
+				<input placeholder="搜索商品" disabled class="fontSize28 flex-1" placeholder-class="fontSize28"></input>
 			</view>
 		</view>
 	</view>

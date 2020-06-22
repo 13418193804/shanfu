@@ -296,6 +296,7 @@ app.checkToken()
   },
   getCategoryByMarket() {
     api.post("/facade/front/category/alltree", {
+      marketPlaceId: this.data.marketPlaceList[this.data.marketIndex].marketplaceId
     }).then(res => {
       let list = res.data
          let catId  = list[0]?list[0].catId:null

@@ -89,7 +89,7 @@
 					<i class="iconfont iconaddress_icon" style="color:#888888;font-size:24rpx;"></i>
 					{{item.address}} </view>
 			</view>
-						<view style="border: 1px solid #ff7f00;align-items: center;line-height: 60rpx; padding: 0 20rpx; margin-right: 20rpx; border-radius:25px;color:#ff7f00;">去买菜</view>
+						<view style="border: 1px solid #ff7f00;align-items: center;line-height: 60rpx; padding: 0 20rpx; margin-right: 20rpx; border-radius:25px;color:#ff7f00;">去逛逛</view>
 			<view>
 			</view>
 		</view>

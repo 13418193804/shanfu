@@ -29,7 +29,7 @@
 .user_order_number{
   position: absolute;
   top:-8rpx;
-  right: 0;
+  right: 20%;
   width: 1rem;
   border: 2rpx solid red;
   border-radius: 50%;

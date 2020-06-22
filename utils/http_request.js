@@ -35,8 +35,8 @@ class API {
         const token = wx.getStorageSync("token") ? wx.getStorageSync("token") : '';
         const uid = wx.getStorageSync("uid") ? wx.getStorageSync("uid") : '';
         
-        params['token'] = token;
-        params['uid'] = uid;
+        // params['token'] = token;
+        // params['uid'] = uid;
         var rUrl = urlapi.getUrl(url);
         // 校验参数（不可传undefined和null），过滤空格
         for (let index in params) {

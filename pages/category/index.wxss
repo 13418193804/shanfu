@@ -164,6 +164,7 @@
   background-color: #F4F4F4!important;
   width: 6rem!important;
   text-align: center;
+  overflow: auto;
 }
 .goods_cat_item{
   font-size: 24rpx!important;

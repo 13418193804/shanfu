@@ -142,7 +142,7 @@ Page({
   },
   contactStore(){
     wx.makePhoneCall({
-      phoneNumber: '10086',
+      phoneNumber: this.data.orderDetail.storeMobile,
       success:function(){
         console.log('拨打成功')
       },

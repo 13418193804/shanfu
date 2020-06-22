@@ -32,8 +32,10 @@
 			<view class="user_menu_title_bill">查看全部<i class="iconfont iconshangxiazuoyou-"></i></view>
 		</view>
 		<view class="user_order fontSize28 flex flex-around-justify flex-align-center">
-			<view wx:for="{{olist}}" data-name="{{item.name}}" bindtap="goOneOrder" style="position: relative;">
-				<!-- <view class="user_order_number">01</view> -->
+			<view wx:for="{{olist}}" data-name="{{item.name}}" bindtap="goOneOrder" class="flex-1" style="position: relative;">
+				<view class="user_order_number" wx:if="{{item.name == 'WAITING_PAY'&& waitingPayNum>0}}">{{waitingPayNum}}</view>
+				<view class="user_order_number" wx:if="{{item.name == 'WAITING_MERCHANT_CONFIRM'&& waitingMerchantConfirmNum>0}}">{{waitingMerchantConfirmNum}}</view>
+				<view class="user_order_number" wx:if="{{item.name == 'IN_DELIVERY' && inDeliveryNum>0}}">{{inDeliveryNum}}</view>
 				<image mode="widthFix" src="../../images/o{{index+1}}.png" style="width:6vw"></image>
 				<view>{{item.title}}</view>
 			</view>

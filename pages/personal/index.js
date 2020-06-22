@@ -13,6 +13,10 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     hasUserInfo: false,
     token: null,
+        inDeliveryNum:0,
+        orderFinishNum:0,
+        waitingMerchantConfirmNum:0,
+        waitingPayNum:0,
     olist:[
       {
         title:'待支付',
@@ -20,7 +24,7 @@ Page({
       },
       {
         title:'待接单',
-        name:'WAITING_DELIVERY'
+        name:'WAITING_MERCHANT_CONFIRM'
       },
       {
         title:'待收货',
@@ -39,9 +43,7 @@ Page({
    */
   onLoad: function (options) {
     // this.initInfo()
-    this.setData({
-      token: wx.getStorageSync("token") ? wx.getStorageSync("token") : ''
-    })
+   
   },
   goOrder(){
     wx.navigateTo({
@@ -81,7 +83,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
- 
+    this.setData({
+      token: wx.getStorageSync("token") ? wx.getStorageSync("token") : ''
+    })
+
+    if(this.data.token){
+      this.getOrderNum()
+    }
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -108,6 +116,25 @@ Page({
         }
       })
     }
+  },
+  getOrderNum(){
+    
+
+    api.post("/facade/front/order/getOrderNum", {}).then(res => {
+      console.log('---',res)
+      let { inDeliveryNum,
+        orderFinishNum,
+        waitingMerchantConfirmNum,
+        waitingPayNum} = res.data
+      this.setData({
+        inDeliveryNum,
+        orderFinishNum,
+        waitingMerchantConfirmNum,
+        waitingPayNum
+      })
+    }).catch(e => {
+      console.log(e)
+    })
   },
   goAddressList(){
     wx.navigateTo({
