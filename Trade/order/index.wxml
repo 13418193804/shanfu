@@ -1,48 +1,46 @@
 
 <van-tabs active="{{ orderStatus }}" bind:change="onChange">
   <van-tab wx:for="{{orderEnumList}}" title="{{item.title}}" name="{{item.name}}">
-<view class="order_container">
-
-  <view wx:if="{{loginStatus}}">
+    <view class="order_container">
       <view wx:if="{{loginStatus}}">
-        <scroll-view scroll-y="true" upper-threshold="4" refresher-enabled="true" bindscrolltoupper="scrollTop" bindscrolltolower="scrollBottom" class="scroll_view">
-          <view>
-            <view wx:for="{{orderList}}" class="order_item" bindtap="goDetail" data-orderid="{{item.orderId}}" style="{{index ==0 ?'margin-top: 20rpx':''}}">
-              <view class="order_item_store_status flex   flex-pack-justify">
-                  <view class="flex-1">
-                  <view class="order_item_store">{{item.storeName}}<i class="iconfont iconshangxiazuoyou-"></i></view>
-                  <view class="order_item_time fontSize24">{{item.createTime}}</view>
+          <view wx:if="{{loginStatus}}">
+            <scroll-view scroll-y="true" upper-threshold="4" refresher-enabled="true" bindscrolltoupper="scrollTop" bindscrolltolower="scrollBottom" class="scroll_view">
+              <view>
+                <view wx:for="{{orderList}}" class="order_item" bindtap="goDetail" data-orderid="{{item.orderId}}" style="{{index ==0 ?'margin-top: 20rpx':''}}">
+                  <view class="order_item_store_status flex   flex-pack-justify">
+                      <view class="flex-1">
+                      <view class="order_item_store">{{item.storeName}}<i class="iconfont iconshangxiazuoyou-"></i></view>
+                      <view class="order_item_time fontSize24">{{item.createTime}}</view>
+                      </view>
+                      <view class="order_item_store fontSize28">{{orderStatusEnum[item.orderStatus]}}</view>
                   </view>
-                  <view class="order_item_store fontSize28">{{orderStatusEnum[item.orderStatus]}}</view>
-              </view>
-              <view class="order_item_content">
-                  <view class="flex   flex-pack-justify fontSize28" style="padding:20rpx 20rpx 0;">
-                    <view class="fontSize24">{{item.orderTitle}} 等{{item.goodsNum}}件</view>
-                    <view style="font-weight: 600;">￥{{item.orderAmount}}</view>
+                  <view class="order_item_content">
+                      <view class="flex   flex-pack-justify fontSize28" style="padding:20rpx 20rpx 0;">
+                        <view class="fontSize24">{{item.orderTitle}} 等{{item.goodsNum}}件</view>
+                        <view style="font-weight: 600;">￥{{item.orderAmount}}</view>
+                      </view>
                   </view>
+                  <view class="order_item_content" style="text-align: right;margin-top: 20rpx;" wx:if="{{item.orderStatus == 'WAITING_PAY'}}">
+                    <van-button plain hairline type="primary" color="red" size="small" catchtap="nextpay" data-id="{{item.orderId}}">继续支付</van-button>
+                    <text style="margin-right:30rpx"></text>
+                    <van-button plain hairline type="primary" color="black" size="small" catchtap="cancelpay" data-id="{{item.orderId}}">取消订单</van-button>
+                  </view>
+                  <view class="order_item_content" style="text-align: right;margin-top: 20rpx;" wx:if="{{item.orderStatus == 'USER_CANCEL' || item.orderStatus == 'ORDER_FINISH'}}">
+                    <van-button plain hairline type="primary" color="red" size="small" catchtap="delpay" data-id="{{item.orderId}}">删除订单</van-button>
+                  </view>
+                </view>
               </view>
-              <view class="order_item_content" style="text-align: right;margin-top: 20rpx;" wx:if="{{item.orderStatus == 'WAITING_PAY'}}">
-                <van-button plain hairline type="primary" color="red" size="small" catchtap="nextpay" data-id="{{item.orderId}}">继续支付</van-button>
-                <text style="margin-right:30rpx"></text>
-                <van-button plain hairline type="primary" color="black" size="small" catchtap="cancelpay" data-id="{{item.orderId}}">取消订单</van-button>
-              </view>
-              <view class="order_item_content" style="text-align: right;margin-top: 20rpx;" wx:if="{{item.orderStatus == 'USER_CANCEL' || item.orderStatus == 'ORDER_FINISH'}}">
-                <van-button plain hairline type="primary" color="red" size="small" catchtap="delpay" data-id="{{item.orderId}}">删除订单</van-button>
-              </view>
-            </view>
+            </scroll-view>
           </view>
-        </scroll-view>
       </view>
-  </view>
-  <view wx:else class="cart_empty  flex  flex-align-center flex-pack-center">
-    <view>
-      <view class="fontSize32" style="margin-bottom:30rpx;color:#666;">还没有登录</view>
+      <view wx:else class="cart_empty  flex  flex-align-center flex-pack-center">
         <view>
-          <button type="primary" plain size="mini" bindtap="goLogin">授权登录</button>
+          <view class="fontSize32" style="margin-bottom:30rpx;color:#666;">还没有登录</view>
+          <view>
+            <button type="primary" plain size="mini" bindtap="goLogin">授权登录</button>
+          </view>
         </view>
       </view>
     </view>
-</view>
   </van-tab>
-
 </van-tabs>

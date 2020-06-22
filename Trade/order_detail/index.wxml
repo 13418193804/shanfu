@@ -93,15 +93,16 @@
 				<view class="order_price">￥{{orderDetail.orderAmount}}</view>
 			</view>
 		</view>
-		<view class="flex flex-pack-center order_bottom" wx:if="{{orderDetail.orderStatus == 'WAITING_PAY'}}">
-			<view class="detail_desc" style="margin-right: 30rpx;">
+		<view class="flex flex-pack-justify order_bottom" wx:if="{{orderDetail.orderStatus == 'WAITING_PAY'}}">
+			<view></view>
+			<view class="detail_desc">
 				<van-button plain hairline type="primary" color="red" size="small" catchtap="nextpay" data-id="{{orderDetail.orderId}}">继续支付</van-button>
-			</view>
-			<view>
+				<text style="margin-right:30rpx;"></text>
 				<van-button plain hairline type="primary" color="black" size="small" catchtap="cancelpay" data-id="{{orderDetail.orderId}}">取消订单</van-button>
 			</view>
 		</view>
-		<view class="order_bottom"  wx:if="{{orderDetail.orderStatus == 'USER_CANCEL' || orderDetail.orderStatus == 'ORDER_FINISH'}}">
+		<view class="order_bottom flex flex-pack-justify"  wx:if="{{orderDetail.orderStatus == 'USER_CANCEL' || orderDetail.orderStatus == 'ORDER_FINISH'}}">
+			<view></view>
 			<view class="detail_desc" >
 				<van-button plain hairline type="primary" color="red" size="small" catchtap="delpay" data-id="{{orderDetail.orderId}}">删除订单</van-button>
 			</view>
