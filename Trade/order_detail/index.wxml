@@ -76,7 +76,7 @@
 			</view>
 			<view class=" goods_info_list flex flex-pack-justify">
 				<view style="font-size: 24rpx;">包装费</view>
-				<view class="detail_desc">{{orderDetail.packagePrice}}</view>
+				<view class="detail_desc">{{orderDetail.packagePrice ? orderDetail.packagePrice : 0 }}</view>
 			</view>
 			<view class="goods_info_list flex flex-pack-justify" wx:if="{{orderDetail.orderStatus != 'WAITING_PAY'}}">
 				<view class="flex detail_mobile" bindtap="contactStore">
