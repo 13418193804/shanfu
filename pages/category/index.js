@@ -19,10 +19,10 @@ Page({
     selectSku: null,
     cartList: [],
     cartEnum: {},
-    skeleton:true,
-    queryMarketPlaceId:null,
-    catId:null,
-    secCatId:null
+    skeleton: true,
+    queryMarketPlaceId: null,
+    catId: null,
+    secCatId: null
   },
   checkSkuItem(e) {
     let item = e.currentTarget.dataset.item
@@ -33,10 +33,10 @@ Page({
   submitSku() {
 
     this.addCart(
-      this.data.goodsObj.goodsId, 
+      this.data.goodsObj.goodsId,
       this.data.selectSku.skuId,
       this.data.goodsObj.store.storeId
-      )
+    )
   },
   openSkuModel(e) {
     console.log(e)
@@ -47,14 +47,16 @@ Page({
       goodsId: goodsId
     }).then(res => {
       this.setData({
-        goodsObj: Object.assign(res.data,{store:item.store})
+        goodsObj: Object.assign(res.data, {
+          store: item.store
+        })
       })
 
       if (item.singleStatus) {
-        this.addCart(goodsId, 
+        this.addCart(goodsId,
           this.data.goodsObj.skuList[0].skuId,
           this.data.goodsObj.store.storeId
-          )
+        )
         return
       }
 
@@ -85,8 +87,8 @@ Page({
   },
 
 
-  addCart(goodsId, skuId,storeId) {
-app.checkToken()
+  addCart(goodsId, skuId, storeId) {
+    app.checkToken()
     api.post("/facade/front/cart/addCart", {
       goodsId: goodsId,
       num: 1,
@@ -108,31 +110,26 @@ app.checkToken()
     })
   },
 
-  openDetailModel(e){
+  openDetailModel(e) {
     let item = e.currentTarget.dataset.item
     let goodsId = item.goodsId
-    api.post("/facade/front/goods/getGoodsDetail", {
-      goodsId: goodsId
-    }).then(res => {
-      this.setData({
-        goodsObj: Object.assign(res.data,{store:item.store})
-      })
-      this.setData({
-        detailModel: true
-      })
-    }).catch(e => {
-      console.log(e)
+
+    wx.navigateTo({
+      url: `/Trade/goods_detail/index?id=${goodsId}`,
     })
+
+
+
   },
   //商品详情增加
-  openDetaiSkuModel(e){
+  openDetaiSkuModel(e) {
     let item = e.currentTarget.dataset.item
     let goodsId = item.goodsId
     if (item.singleStatus) {
-      this.addCart(goodsId, 
+      this.addCart(goodsId,
         this.data.goodsObj.skuList[0].skuId,
         this.data.goodsObj.store.storeId
-        )
+      )
       return
     }
     this.setData({
@@ -141,18 +138,16 @@ app.checkToken()
       selectSku: this.data.goodsObj.skuList.length > 0 ? this.data.goodsObj.skuList[0] : null
     })
   },
-  onDetailClose() {
-    this.setData({
-      detailModel: false
-    })
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
-      queryMarketPlaceId:options.marketPlaceId
+      queryMarketPlaceId: options.marketPlaceId
     })
+    this.getMarketPlaceList()
+
   },
 
   /**
@@ -172,26 +167,25 @@ app.checkToken()
     })
     const token = wx.getStorageSync("token") ? wx.getStorageSync("token") : '';
     const uid = wx.getStorageSync("uid") ? wx.getStorageSync("uid") : '';
-    if(uid && token){
-    this.getCartList()
+    if (uid && token) {
+      this.getCartList()
     }
-    this.getMarketPlaceList()
   },
-  bindMarketChange(e){
+  bindMarketChange(e) {
     this.setData({
       marketIndex: e.detail.value,
     })
     this.getGoodsByCarId()
   },
- 
+
   getCartList() {
     api.post("/facade/front/cart/queryCart", {}).then(res => {
       let obj = {}
       let cartNum = 0
       res.data.forEach(e => {
-        if(obj[e.goodsId]){
+        if (obj[e.goodsId]) {
           obj[e.goodsId] += e.num
-        }else{
+        } else {
           obj[e.goodsId] = e.num
         }
       })
@@ -199,16 +193,16 @@ app.checkToken()
         cartList: res.data,
         cartEnum: obj
       })
-      for(let i = 0; i < res.data.length;i++){
+      for (let i = 0; i < res.data.length; i++) {
         cartNum += res.data[i].num
-        console.log("cartNum",cartNum)
+        console.log("cartNum", cartNum)
       }
-      if(cartNum !== 0){
+      if (cartNum !== 0) {
         wx.setTabBarBadge({
           index: 2,
           text: String(cartNum)
         })
-      } else{
+      } else {
         wx.removeTabBarBadge({
           index: 2
         })
@@ -227,18 +221,18 @@ app.checkToken()
       this.setData({
         marketPlaceList: res.data.marketPlaceList
       })
-      
-    if(this.data.queryMarketPlaceId){
-      this.data.marketPlaceList.forEach((e,index)=>{
-        if(e.marketplaceId == this.data.queryMarketPlaceId){
-          this.setData({
-            marketIndex :index,
-            queryMarketPlaceId:null
-          })
-        }
-      })
-    }
-    this.getCategoryByMarket()
+
+      if (this.data.queryMarketPlaceId) {
+        this.data.marketPlaceList.forEach((e, index) => {
+          if (e.marketplaceId == this.data.queryMarketPlaceId) {
+            this.setData({
+              marketIndex: index,
+              queryMarketPlaceId: null
+            })
+          }
+        })
+      }
+      this.getCategoryByMarket()
 
 
     }).catch(e => {
@@ -255,42 +249,44 @@ app.checkToken()
     api.post("/facade/front/goods/queryGoodsByMarket", {
       categoryId: this.data.secCatId,
       marketPlaceId: this.data.marketPlaceList[this.data.marketIndex].marketplaceId
-    },
-    {
-      loading:true
-    }
-    ).then(res => {
+    }, {
+      loading: true
+    }).then(res => {
       this.setData({
         currentGoodsList: res.data,
-        skeleton:false
+        skeleton: false
       })
     }).catch(e => {
       console.log(e)
     })
 
   },
-  bindCatIdChange(e){
+  bindCatIdChange(e) {
     let item = e.currentTarget.dataset.item
-    let catId  = item.catId
-    if(this.data.catId == catId){
+    let catId = item.catId
+    if (this.data.catId == catId) {
+      this.setData({
+        catId: null,
+        secCatId: null
+      })
       return
     }
-    let secCatId = catId && item.children[0] ? item.children[0].catId :null
+    let secCatId = catId && item.children[0] ? item.children[0].catId : null
     this.setData({
-      catId:catId,
-      secCatId:secCatId
+      catId: catId,
+      secCatId: secCatId
     })
     this.getGoodsByCarId()
   },
 
-  bindSecCatIdChange(e){
+  bindSecCatIdChange(e) {
     let item = e.currentTarget.dataset.item
-    let catId  = item.catId
-    if(this.data.secCatId == catId){
+    let catId = item.catId
+    if (this.data.secCatId == catId) {
       return
     }
     this.setData({
-      secCatId:catId
+      secCatId: catId
     })
     this.getGoodsByCarId()
   },
@@ -299,12 +295,12 @@ app.checkToken()
       marketPlaceId: this.data.marketPlaceList[this.data.marketIndex].marketplaceId
     }).then(res => {
       let list = res.data
-         let catId  = list[0]?list[0].catId:null
-         let secCatId = catId && list[0].children[0] ? list[0].children[0].catId :null
+      let catId = list[0] ? list[0].catId : null
+      let secCatId = catId && list[0].children[0] ? list[0].children[0].catId : null
       this.setData({
         categoryList: list,
-        catId:catId,
-        secCatId:secCatId
+        catId: catId,
+        secCatId: secCatId
       })
       this.getGoodsByCarId()
     }).catch(e => {
@@ -314,7 +310,7 @@ app.checkToken()
 
   },
   //商品搜索
-  handleSearch(){
+  handleSearch() {
     let marketPlaceId = this.data.marketPlaceList[this.data.marketIndex].marketplaceId
     wx.navigateTo({
       url: "/Trade/goods_search/index?marketPlaceId=" + marketPlaceId,

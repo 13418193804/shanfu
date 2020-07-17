@@ -9,47 +9,57 @@ Page({
     currentPage: 1,
     pageSize: 20,
     noThing: false,
-    orderStatusEnum:{
-    WAITING_PAY:'等待支付',
-    
-    WAITING_MERCHANT_CONFIRM :'等待商家确认', 
-    WAITING_RIDER_CONFIRM :'等待骑手确认', 
-    WAITING_DELIVERY:'等待递送',
-    WAITING_RIDER_TAKE: '等待骑手取货',
-    IN_DELIVERY:'配送中',
-
-    USER_CANCEL:'订单取消',
-
-    ORDER_FINISH:'订单完成'
+    orderStatusEnum: {
+      WAITING_PAY: '等待支付',
+      WAITING_MERCHANT_CONFIRM: '等待商家确认',
+      WAITING_RIDER_CONFIRM: '等待骑手接单',
+      WAITING_DELIVERY: '等待递送',
+      WAITING_RIDER_TAKE: '等待骑手取货',
+      IN_DELIVERY: '配送中',
+      USER_CANCEL: '订单取消',
+      ORDER_CANCEL: '订单取消',
+      
+      ORDER_FINISH: '订单完成'
     },
-    orderList:[],
-    loginStatus:true,
-    skeleton:true,
+
+    refundEnum: {
+      USER_REQUESTS_REFUND: '退款中',
+      REFUSE_REFUND: '拒绝退款',
+      REFUND_FINISH: '退款成功'
+    },
+
+    orderList: [],
+    loginStatus: true,
+    skeleton: true,
     orderStatus: "ALL",
-    orderEnumList:[
-      {
-        title:'全部',
-        name:'ALL'
+    orderEnumList: [{
+        title: '全部',
+        name: 'ALL'
       },
       {
-        title:'待支付',
-        name:'WAITING_PAY'
+        title: '待支付',
+        name: 'WAITING_PAY'
       },
       {
-        title:'待接单',
-        name:'WAITING_MERCHANT_CONFIRM'
+        title: '待接单',
+        name: 'WAITING_MERCHANT_CONFIRM'
       },
       {
-        title:'待收货',
-        name:'IN_DELIVERY'
+        title: '待收货',
+        name: 'IN_DELIVERY'
       },
       {
-        title:'收货成功',
-        name:'ORDER_FINISH'
+        title: '收货成功',
+        name: 'ORDER_FINISH'
       },
+      {
+        title: '退款订单',
+        name: 'REFUND'
+      },
+
     ]
   },
-  goLogin(){
+  goLogin() {
     wx.navigateTo({
       url: '/pages/authorization/index',
     })
@@ -64,32 +74,32 @@ Page({
       orderStatus: options.orderStatus
     })
   },
-  goDetail(e){
+  goDetail(e) {
     let orderId = e.currentTarget.dataset.orderid
     wx.navigateTo({
       url: `/Trade/order_detail/index?orderId=${orderId}`,
     })
   },
-  nextpay(e){
-    let orderId  = e.currentTarget.dataset.id
+  nextpay(e) {
+    let orderId = e.currentTarget.dataset.id
     api.post("/facade/front/order/continuePay", {
-      orderId :orderId 
+      orderId: orderId
     }).then(res => {
-    this.doPayment(res.data.payId)
+      this.doPayment(res.data.payId)
     }).catch(e => {
       console.log(e)
     })
   },
   //取消支付
-  cancelpay(e){
+  cancelpay(e) {
     wx.showModal({
-      title:'提示',
-      content:'是否取消订单?',
-      success:(res)=>{
-        if(res.confirm){
-          let orderId  = e.currentTarget.dataset.id
+      title: '提示',
+      content: '是否取消订单?',
+      success: (res) => {
+        if (res.confirm) {
+          let orderId = e.currentTarget.dataset.id
           api.post("/facade/front/order/userCancelOrder", {
-            orderId :orderId 
+            orderId: orderId
           }).then(res => {
             wx.showToast({
               title: "取消成功",
@@ -104,15 +114,15 @@ Page({
     })
   },
   //删除订单
-  delpay(e){
+  delpay(e) {
     wx.showModal({
-      title:'提示',
-      content:'是否删除订单?',
-      success:(res)=>{
-        if(res.confirm){
-          let orderId  = e.currentTarget.dataset.id
+      title: '提示',
+      content: '是否删除订单?',
+      success: (res) => {
+        if (res.confirm) {
+          let orderId = e.currentTarget.dataset.id
           api.post("/facade/front/order/userDeleteOrder", {
-            orderId :orderId 
+            orderId: orderId
           }).then(res => {
             wx.showToast({
               title: "删除成功",
@@ -126,15 +136,20 @@ Page({
       }
     })
   },
-  onChange(e){
+  onChange(e) {
+
     this.setData({
-      orderStatus:e.detail.name,
+      orderStatus: e.detail.name,
       pageSize: 20
     })
+
     this.getOrderList()
+
+
+
   },
-  doPayment(payId){
-    let openId =  wx.getStorageSync("openId") ? wx.getStorageSync("openId") : '';
+  doPayment(payId) {
+    let openId = wx.getStorageSync("openId") ? wx.getStorageSync("openId") : '';
 
     api.post("/facade/front/wechat/miniPay", {
       "payId": payId,
@@ -151,7 +166,7 @@ Page({
             title: "支付成功",
             duration: 2000,
           })
-        this.getOrderList()
+          this.getOrderList()
         },
         fail(res) {
           wx.showToast({
@@ -161,8 +176,8 @@ Page({
           })
         },
         complete(e) {
-         
-          
+
+
         }
       })
     }).catch(e => {
@@ -170,24 +185,27 @@ Page({
     })
 
   },
-  getOrderList(){
+  getOrderList() {
     let params = {
       currentPage: this.data.currentPage,
       pageSize: this.data.pageSize,
-      orderStatus :this.data.orderStatus
+      orderStatus: this.data.orderStatus
     }
     console.log(this.data.orderStatus)
-    if(this.data.orderStatus == 'ALL'){
+    if (this.data.orderStatus == 'ALL') {
       delete params.orderStatus
     }
-    api.post("/facade/front/order/queryOrder",params,{
-      loading:true
+    let url = "/facade/front/order/queryOrder"
+    if (this.data.orderStatus == 'REFUND') {
+      url = `/facade/front/order/refund/list`
+    }
+    api.post(url, params, {
+      loading: true
     }).then(res => {
-      console.log(res)
-      if(res.data.list.length != this.data.pageSize){
+      if (res.data.list.length != this.data.pageSize) {
         this.setData({
           noThing: true
-        })
+        })
       }
       this.setData({
         orderList: res.data.list
@@ -206,7 +224,7 @@ Page({
   },
   // 监听用户滚动到底部事件
   scrollBottom() {
-    if(this.data.noThing){
+    if (this.data.noThing) {
       return
     }
     this.setData({
@@ -225,7 +243,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-      this.getOrderList()
+    this.getOrderList()
   },
 
   /**

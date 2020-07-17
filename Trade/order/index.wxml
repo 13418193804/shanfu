@@ -12,7 +12,11 @@
                       <view class="order_item_store">{{item.storeName}}<i class="iconfont iconshangxiazuoyou-"></i></view>
                       <view class="order_item_time fontSize24">{{item.createTime}}</view>
                       </view>
-                      <view class="order_item_store fontSize28">{{orderStatusEnum[item.orderStatus]}}</view>
+                      <view class="fontSize28" style="color:red" wx:if="{{item.refundStatus && item.refundStatus != 'REFUSE_REFUND'}}">
+                        {{refundEnum[item.refundStatus]}}
+                      </view>
+                      <view class="order_item_store fontSize28" wx:else>{{orderStatusEnum[item.orderStatus]}}</view>
+                      
                   </view>
                   <view class="order_item_content">
                       <view class="flex   flex-pack-justify fontSize28" style="padding:20rpx 20rpx 0;">

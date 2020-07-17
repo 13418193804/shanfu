@@ -250,17 +250,18 @@ Page({
   },
 
   onLoad: function (options) {
-    const token = wx.getStorageSync("token") ? wx.getStorageSync("token") : '';
-    this.setData({
-      token: token
-    })
+   
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function (e) {
-    if (this.data.token) {
+    const token = wx.getStorageSync("token") ? wx.getStorageSync("token") : '';
+    this.setData({
+      token
+    })
+    if (token) {
       this.getCartList()
     }
   },

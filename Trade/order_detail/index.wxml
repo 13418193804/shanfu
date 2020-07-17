@@ -3,7 +3,11 @@
 
 
 	<view class="detail_order_status">
-    {{orderStatusEnum[orderDetail.orderStatus]}}
+
+		<text wx:if="{{orderDetail.refundStatus&& orderDetail.refundStatus != 'REFUSE_REFUND'}}" style="color:red">{{refundEnum[orderDetail.refundStatus]}}</text>
+		
+		<text wx:else>{{orderStatusEnum[orderDetail.orderStatus]}}</text>
+
   </view>
 	<view class="address_tab fontSize28">
 		<view class="fontSize28" style="padding:20rpx;border-bottom:0.5px solid #F4F4F4">
@@ -71,7 +75,7 @@
 				<view class="detail_desc" wx:else>{{orderDetail.orderRemark}}</view>
 			</view>
 			<view class=" goods_info_list flex flex-pack-justify">
-				<view style="font-size: 24rpx;">运费</view>
+				<view style="font-size: 24rpx;">配送费</view>
 				<view class="detail_desc">{{orderDetail.freightAmount}}</view>
 			</view>
 			<view class=" goods_info_list flex flex-pack-justify">
@@ -101,12 +105,22 @@
 				<van-button plain hairline type="primary" color="black" size="small" catchtap="cancelpay" data-id="{{orderDetail.orderId}}">取消订单</van-button>
 			</view>
 		</view>
+
 		<view class="order_bottom flex flex-pack-justify"  wx:if="{{orderDetail.orderStatus == 'USER_CANCEL' || orderDetail.orderStatus == 'ORDER_FINISH'}}">
 			<view></view>
 			<view class="detail_desc" >
 				<van-button plain hairline type="primary" color="red" size="small" catchtap="delpay" data-id="{{orderDetail.orderId}}">删除订单</van-button>
 			</view>
 		</view>
+
+		<view class="order_bottom flex flex-pack-justify" wx:if="{{!orderDetail.refundStatus &&   orderDetail.orderStatus !== 'WAITING_PAY' && orderDetail.orderStatus !== 'ORDER_CANCEL' }}">
+			<view></view>
+			<view class="detail_desc" >
+				<van-button plain  type="assertive" color="red" size="small" catchtap="doRefund" data-id="{{orderDetail.orderId}}">申请退款</van-button>
+			</view>
+		</view>
+
+
 	</view>
 </view>
 </view>

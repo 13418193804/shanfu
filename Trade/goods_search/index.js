@@ -240,17 +240,8 @@ Page({
   openDetailModel(e){
     let item = e.currentTarget.dataset.item
     let goodsId = item.goodsId
-    api.post("/facade/front/goods/getGoodsDetail", {
-      goodsId: goodsId
-    }).then(res => {
-      this.setData({
-        goodsObj: Object.assign(res.data,{storeId:item.storeId,marketplaceId:item.marketplaceId,storeName:item.storeName})
-      })
-      this.setData({
-        detailModel: true
-      })
-    }).catch(e => {
-      console.log(e)
+    wx.navigateTo({
+      url: `/Trade/goods_detail/index?id=${goodsId}`,
     })
   },
   //商品详情增加数量
@@ -299,19 +290,7 @@ Page({
       columnId: options.columnId,
       searchRecordItem: searchRecordItem
     })
-  },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
     this.setData({
       skuModel: null,
       detailModel: null
@@ -326,6 +305,20 @@ Page({
     }else{
       this.getColumnList()
     }
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+    
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    
   },
 
   /**

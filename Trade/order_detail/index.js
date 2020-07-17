@@ -10,7 +10,7 @@ Page({
       WAITING_PAY:'等待支付',
       
       WAITING_MERCHANT_CONFIRM :'等待商家确认', 
-      WAITING_RIDER_CONFIRM :'等待骑手确认', 
+      WAITING_RIDER_CONFIRM :'等待骑手接单', 
       WAITING_DELIVERY:'等待递送',
       WAITING_RIDER_TAKE: '等待骑手取货',
       IN_DELIVERY:'配送中',
@@ -18,6 +18,11 @@ Page({
       ORDER_CANCEL:'订单取消',
   
       ORDER_FINISH:'订单完成'
+      },
+      refundEnum:{
+        USER_REQUESTS_REFUND:'退款中',
+        REFUSE_REFUND:'拒绝退款',
+        REFUND_FINISH:'退款成功'
       },
     orderId: null,
     orderDetail: null,
@@ -140,6 +145,34 @@ Page({
       console.log(e)
     })
   },
+doRefund(e){
+
+  wx.showModal({
+    title: '提示',
+    content: '是否提交退款申请？',
+    success: (res)=> {
+      if (res.confirm) {
+        let orderId  = e.currentTarget.dataset.id
+          
+        api.post("/facade/front/user/orderRefund", {
+          orderId :orderId 
+        }).then(res => {
+          wx.showToast({
+            title: "提交成功",
+            duration: 2000,
+          })
+            this.getOrderDetail()
+        }).catch(e => {
+          console.log(e)
+        })
+
+
+      } 
+    }
+  })
+
+},
+
   contactStore(){
     wx.makePhoneCall({
       phoneNumber: this.data.orderDetail.storeMobile,

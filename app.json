@@ -15,7 +15,8 @@
         "confirm/index",
         "order/index",
         "order_detail/index",
-        "goods_search/index"
+        "goods_search/index",
+        "goods_detail/index"
       ]
     },
     {
