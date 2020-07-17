@@ -30,7 +30,7 @@
 						</view>
 				</view>
 
-				<view class="goods_list_content flex-1">
+				<view class="goods_list_content flex-1" style="max-height: 100%;overflow: auto;">
 			<view class="goods_item fontSize28 flex" wx:for="{{currentGoodsList}}" bindtap="openDetailModel"  data-item="{{item}}">
 				<view class="flex flex-align-center category_image_box"><image mode="widthFix" src="{{item.goodsIcon}}" style="width:100%"></image></view>
 				<view style="line-height: 55rpx;">
