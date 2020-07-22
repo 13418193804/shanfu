@@ -38,6 +38,8 @@
 	<view class="banner" style="padding-top:{{capsuleTop + capsuleHeight}}px;margin-top:28rpx">
 		<image src="../../images/banner.png" mode="widthFix" style="width:100%;"></image>
 	</view>
+
+	<official-account></official-account>
 	<view class="category flex flex-align-center flex-pack-justify flex-warp-justify">
 		<view wx:for="{{hotBarList}}" style="width:20%;margin-bottom:30rpx" data-columnId="{{item.columnId}}" bindtap="hotBarSearch">
 			<view class="flex-1">

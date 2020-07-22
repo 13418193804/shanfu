@@ -74,10 +74,10 @@
 				<view class="detail_desc" wx:if="{{!orderDetail.orderRemark}}">无</view>
 				<view class="detail_desc" wx:else>{{orderDetail.orderRemark}}</view>
 			</view>
-			<view class=" goods_info_list flex flex-pack-justify">
+			<!-- <view class=" goods_info_list flex flex-pack-justify">
 				<view style="font-size: 24rpx;">配送费</view>
 				<view class="detail_desc">{{orderDetail.freightAmount}}</view>
-			</view>
+			</view> -->
 			<view class=" goods_info_list flex flex-pack-justify">
 				<view style="font-size: 24rpx;">包装费</view>
 				<view class="detail_desc">{{orderDetail.packageAmount}}</view>
