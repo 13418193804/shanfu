@@ -1,7 +1,11 @@
 import api from "../../utils/http_request.js"
 const app = getApp()
+
+  
+
 Page({
       data: {
+        maskModel:true,
         capsuleWidth: 0, //胶囊宽度
         capsuleHeight: 0, //胶囊宽度
         capsuleTop: 0,
@@ -54,8 +58,8 @@ Page({
             GASOLINE: '汽油',
             DIESEL: '柴油'
           },
-          statusBarHeight:0
-
+          statusBarHeight:0,
+          bannerList:[]
         },
         replaceStr(str) {
           return str.replace(/(.{4})/g, '$1 ');
@@ -86,6 +90,7 @@ Page({
             inputOilCardId: ''
           })
         },
+   
         getPhoneNumber(e) {
           console.log(e)
           if ((e.detail.iv || '') == '' && (e.detail.encryptedData || '') == '') {
@@ -236,6 +241,19 @@ Page({
           this.getColumnList()
           this.getMainPage()
           this.getCartList()
+
+          this.getBannerList()
+        },
+        getBannerList(){
+          
+
+          api.post("/facade/front/pageComponent/list", {
+          }).then(res => {
+            this.setData({
+              bannerList : res.data
+            })
+
+          })
         },
         //栏目
         getColumnList(){

@@ -9,7 +9,9 @@
                 <view wx:for="{{orderList}}" class="order_item" bindtap="goDetail" data-orderid="{{item.orderId}}" style="{{index ==0 ?'margin-top: 20rpx':''}}">
                   <view class="order_item_store_status flex   flex-pack-justify">
                       <view class="flex-1">
-                      <view class="order_item_store">{{item.storeName}}<i class="iconfont iconshangxiazuoyou-"></i></view>
+                      <view class="order_item_store">
+                      <!-- {{item.storeName}} -->自营
+                      <i class="iconfont iconshangxiazuoyou-"></i></view>
                       <view class="order_item_time fontSize24">{{item.createTime}}</view>
                       </view>
                       <view class="fontSize28" style="color:red" wx:if="{{item.refundStatus && item.refundStatus != 'REFUSE_REFUND'}}">

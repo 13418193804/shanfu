@@ -24,25 +24,28 @@ Page({
   },
 
   saveAddress() {
-    if((this.data.contractName || '') == ''){
+    if ((this.data.contractName || '') == '') {
       return wx.showToast({
         title: '请输入联系人',
-        icon:'none'
+        icon: 'none'
       })
-    } if((this.data.contractMobile || '') == ''){
+    }
+    if ((this.data.contractMobile || '') == '') {
       return wx.showToast({
         title: '请输入手机号',
-        icon:'none'
+        icon: 'none'
       })
-    } if((this.data.street || '') == ''){
+    }
+    if ((this.data.street || '') == '') {
       return wx.showToast({
         title: '请选择地址',
-        icon:'none'
+        icon: 'none'
       })
-    } if((this.data.address || '') == ''){
+    }
+    if ((this.data.address || '') == '') {
       return wx.showToast({
         title: '请输入门牌号',
-        icon:'none'
+        icon: 'none'
       })
     }
     let params = {
@@ -89,11 +92,10 @@ Page({
       }
     })
   },
-  prepareUpdateAddress(addressId){
-    api.post("/facade/front/cart/updateAddress", 
-    {
-      addressId :addressId,
-      prepareId :this.data.prepareId 
+  prepareUpdateAddress(addressId) {
+    api.post("/facade/front/cart/updateAddress", {
+      addressId: addressId,
+      prepareId: this.data.prepareId
     }, {
       loading: true
     }).then(res => {
@@ -112,17 +114,12 @@ Page({
       prepareId: options.prepareId
     })
 
-    if (options.id) {
-      this.getAddress()
-    } else {
-      this.doGetStreet(null)
-    }
+   
   },
   getAddress() {
 
     api.post("/facade/front/address/info", {
       addressId: this.data.addressId,
-
     }, {
 
     }).then(res => {
@@ -131,16 +128,16 @@ Page({
         address: res.data.address,
         city: res.data.city,
         country: res.data.country,
-        isDefault:res.data.isDefault,
+        isDefault: res.data.isDefault,
         contractMobile: res.data.contractMobile,
         contractName: res.data.contractName,
-        lat :res.data.lat,
-        lng :res.data.lng,
+        lat: res.data.lat,
+        lng: res.data.lng,
         province: res.data.province,
         street: res.data.street,
 
       })
- 
+
     })
   },
 
@@ -149,7 +146,6 @@ Page({
     let _self = this
     wx.chooseLocation({
       success: (e) => {
-        console.log(e)
         let location = {
           latitude: e.latitude,
           longitude: e.longitude
@@ -173,6 +169,33 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    const _self =this
+    wx.getSetting({
+      success(res) {
+    
+        if (!res.authSetting['scope.userLocation']) {
+
+          wx.showModal({
+            title: '提示',
+            content: '没有获取到位置信息，是否立即打开设置允许位置授权？',
+            success: (e) => {
+              if (e.confirm) {
+                wx.openSetting({})
+              }
+            }
+
+          })
+
+        }else{
+          if (_self.data.addressId) {
+            _self.getAddress()
+          } else {
+            _self.doGetStreet(null)
+          }
+        }
+      }
+    })
+
 
   },
   doGetStreet(location) {

@@ -2,14 +2,14 @@
 <!-- <include src="index.skeleton.wxml" wx:if="{{skeleton}}"/> -->
 
 	<view class="search_postion flex flex-align-center flex-pack-justify van-ellipsis">
-		 <picker class="postion flex  flex-align-center fontSize28" bindchange="bindMarketChange" value="{{marketIndex}}" range="{{marketPlaceList}}" range-key="marketplaceName">
-				<view class="postion_store_select van-ellipsis">
+		 <!-- <picker class="postion flex  flex-align-center fontSize28" bindchange="bindMarketChange" value="{{marketIndex}}" range="{{marketPlaceList}}" range-key="marketplaceName">
+			
+  	 </picker> -->
+	<view class="postion_store_select van-ellipsis">
 					<i class="iconfont icondingwei fontSize28" style="margin-right:10rpx;"></i>
 					<text>{{marketPlaceList[marketIndex].marketplaceName}}</text>
 					<i class="iconfont iconxia1" style=""></i>
 				</view>
-  	 </picker>
-
     <view class="search_white flex-1" bindtap="handleSearch">
 			<view class=" flex  flex-align-center fontSize28">
 				<i class="iconfont iconsousuo " style="font-size: 40rpx;color:#888888;margin-right:10rpx;"></i>
@@ -35,7 +35,9 @@
 				<view class="flex flex-align-center category_image_box"><image mode="widthFix" src="{{item.goodsIcon}}" style="width:100%"></image></view>
 				<view style="line-height: 55rpx;">
 					<view class="fontSize28 van-multi-ellipsis--l2" style="padding: 2rpx"> 
-						<van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>{{item.store.storeName}}</van-tag>{{item.goodsName}}
+						<van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>
+						<!-- {{item.store.storeName}} -->自营
+						</van-tag>{{item.goodsName}}
 					</view>
 					<view style="color:#888888" class="fontSize24">{{item.firstCatName}}</view>
 					<view class="flex flex-align-center">

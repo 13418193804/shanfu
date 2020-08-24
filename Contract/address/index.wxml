@@ -17,7 +17,7 @@
 		<view class="address_container_content  fontSize28 flex   flex-pack-justify flex-align-center">
 			<view class="address_container_content_label">地址</view>
 			<view class="flex flex-1" bindtap="chooseAddress">
-				<view class="flex-1 van-ellipsis">{{street}}</view>
+				<view class="flex-1 van-ellipsis">{{street||'获取中...'}}</view>
 				<view><i class="iconfont iconshangxiazuoyou-"></i></view>
 			</view>
 		</view>

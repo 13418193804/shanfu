@@ -48,7 +48,7 @@
         "iconPath": "./images/shop.png",
         "selectedIconPath": "./images/shop_select.png",
         "pagePath": "pages/category/index",
-        "text": "商家"
+        "text": "自营"
       },
       {
         "iconPath": "./images/cart.png",

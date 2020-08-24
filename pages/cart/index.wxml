@@ -3,7 +3,10 @@
 		<view class="shop_width_goods" wx:for="{{storeCartList}}">
 		
 		<view style="padding: 20rpx 30rpx;" class="fontSize28">
-			<van-checkbox  checked-color="#FF7F00"  name="{{item.storeId}}" value="{{selectAll || item.selected}}" bind:change="changeStore"  data-store="{{item}}">{{item.storeName}}></van-checkbox>
+			<van-checkbox  checked-color="#FF7F00"  name="{{item.storeId}}" value="{{selectAll || item.selected}}" bind:change="changeStore"  data-store="{{item}}">
+			<!-- {{item.storeName}} -->
+			自营>
+			</van-checkbox>
 		</view>
 
 		<view wx:for="{{item.children}}" wx:for-item="cart" wx:for-index="idx" style="background-color: #fff;">

@@ -103,6 +103,20 @@
 					"id": -1,
 					"name": "Trade/order/index",
 					"pathName": "Trade/order/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "Contract/address_list/index",
+					"pathName": "Contract/address_list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "Contract/address/index",
+					"pathName": "Contract/address/index",
 					"scene": null
 				}
 			]

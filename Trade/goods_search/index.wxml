@@ -36,7 +36,10 @@
             </view>
             <view style="line-height: 55rpx;">
                 <view class="fontSize28 van-multi-ellipsis--l2" style="padding: 2rpx"> 
-                    <van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>{{item.storeName}}</van-tag>{{item.goodsName}}
+                    <van-tag color="#009A44" size="large" style="margin-right:10rpx;" plain>
+                    <!-- {{item.storeName}} -->
+                    自营
+                    </van-tag>{{item.goodsName}}
                 </view>
                 <view style="color:#888888" class="fontSize24">{{item.firstCatName}}</view>
                 <view class="flex flex-align-center">

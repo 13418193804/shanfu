@@ -121,7 +121,6 @@ Page({
     
 
     api.post("/facade/front/order/getOrderNum", {}).then(res => {
-      console.log('---',res)
       let { inDeliveryNum,
         orderFinishNum,
         waitingMerchantConfirmNum,
@@ -144,6 +143,7 @@ Page({
   clearStore(){
     wx.clearStorage()
     wx.clearStorageSync()
+    app.getCode(() => {})
     wx.showToast({
       title: '清除成功',
     })
